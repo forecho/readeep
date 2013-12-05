@@ -2,7 +2,7 @@
 
 class SiteController extends Controller
 {
-	private $_weixinToken = "forecho";
+	public $_weixinToken = "forecho";
 
 	/**
 	 * Declares class-based actions.
@@ -27,15 +27,16 @@ class SiteController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	// public function actionIndex()
-	// {
-	// 	// renders the view file 'protected/views/site/index.php'
-	// 	// using the default layout 'protected/views/layouts/main.php'
-	// 	$this->render('index');
-	// }
+	public function actionIndex()
+	{
+		// renders the view file 'protected/views/site/index.php'
+		// using the default layout 'protected/views/layouts/main.php'
+		$this->render('index');
+	}
 
-   	public function actionIndex()
+   	public function actionWinxin()
     {
+    	var_dump($_GET);exit();
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
         // $weixin->debug = true;
@@ -52,8 +53,8 @@ class SiteController extends Controller
         switch ($msgType)
         {
         case 'text':
-        	$reply="text";
             //你要处理文本消息代码
+        	$weixin->makeText("你好");
             break;
         case 'image':
         	echo "image";

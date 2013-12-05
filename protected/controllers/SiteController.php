@@ -36,7 +36,6 @@ class SiteController extends Controller
 
    	public function actionWinxin()
     {
-    	var_dump($_GET);exit();
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
         // $weixin->debug = true;

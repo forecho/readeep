@@ -36,7 +36,7 @@ class SiteController extends Controller
 
    	public function actionWeixin()
     {
-    	Yii::createComponent('application.extensions.weixin.Weixin');
+    	// Yii::createComponent('application.extensions.weixin.Weixin');
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
         $weixin->debug = true;

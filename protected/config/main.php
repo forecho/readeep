@@ -8,9 +8,12 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
-
+	'timeZone' => 'Asia/Shanghai',
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array(
+		'log',
+		'weixin'
+	),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -36,6 +39,9 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		'weixin' => array(
+            'class' => 'ext.weixin.weixin',
+        ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(

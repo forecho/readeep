@@ -29,7 +29,7 @@ class Weixin
      * @access public
      * @return void
      */
-    public function __construct($params = array())
+    public function __construct($params)
     {
         foreach ($params as $k1 => $v1)
         {

@@ -40,7 +40,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		'weixin' => array(
-            'class' => 'ext.weixin.weixin',
+            'class' => 'ext.weixin.Weixin',
         ),
 		// uncomment the following to enable URLs in path-format
 		/*

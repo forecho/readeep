@@ -53,7 +53,7 @@ class SiteController extends Controller
         switch ($msgType)
         {
         case 'text':
-        	echo "text";
+        	$reply="text";
             //你要处理文本消息代码
             break;
         case 'image':

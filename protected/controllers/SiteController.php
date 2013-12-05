@@ -27,19 +27,18 @@ class SiteController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionIndex()
-	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
-	}
+	// public function actionIndex()
+	// {
+	// 	// renders the view file 'protected/views/site/index.php'
+	// 	// using the default layout 'protected/views/layouts/main.php'
+	// 	$this->render('index');
+	// }
 
-   	public function actionWeixin()
+   	public function actionIndex()
     {
-    	// Yii::createComponent('application.extensions.weixin.Weixin');
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
-        $weixin->debug = true;
+        // $weixin->debug = true;
  
         //网址接入时使用
         if (isset($_GET['echostr']))

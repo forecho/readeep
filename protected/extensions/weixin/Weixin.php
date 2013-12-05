@@ -1,12 +1,14 @@
 <?php
+ 
 /**
- * Created by PhpStorm.
- * WeixinCallback
- * User: lewison
- * Date: 13-11-26
- * Time: 9:44
+ * WeixinCallback 
+ * 
+ * @package 
+ * @version $id$
+ * @copyright 1997-2005 The PHP Group
+ * @author davidhhuan@126.com
+ * {@link <a href="http://www.sharefamily.net" target="_blank">http://www.sharefamily.net</a>}
  */
-
 class Weixin
 {
     //$_GET参数
@@ -19,11 +21,11 @@ class Weixin
     public $debug = false;
     public $msg = array();
     public $setFlag = false;
-
+ 
     /**
-     * __construct
-     *
-     * @param mixed $params
+     * __construct 
+     * 
+     * @param mixed $params 
      * @access public
      * @return void
      */
@@ -37,10 +39,10 @@ class Weixin
             }
         }
     }
-
+     
     /**
-     * valid
-     * 微信接口验证
+     * valid 
+     * 
      * @access public
      * @return void
      */
@@ -52,17 +54,17 @@ class Weixin
             Yii::app()->end();
         }
     }
-
+ 
     /**
-     * 获得用户发过来的消息（消息内容和消息类型 ）
-     *
+     * 获得用户发过来的消息（消息内容和消息类型  ） 
+     * 
      * @access public
      * @return void
      */
     public function init()
     {
         $postStr = empty($GLOBALS["HTTP_RAW_POST_DATA"]) ? '' : $GLOBALS["HTTP_RAW_POST_DATA"];
-        if ($this->debug)
+        if ($this->debug) 
         {
             $this->log($postStr);
         }
@@ -70,22 +72,22 @@ class Weixin
             $this->msg = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
         }
     }
-
+ 
     /**
-     * makeEvent
-     *
+     * makeEvent 
+     * 
      * @access public
      * @return void
      */
     public function makeEvent()
     {
-
+         
     }
-
+ 
     /**
-     * 回复文本消息
-     *
-     * @param string $text
+     * 回复文本消息 
+     * 
+     * @param string $text 
      * @access public
      * @return void
      */
@@ -99,23 +101,22 @@ class Weixin
             <CreateTime>{$createTime}</CreateTime>
             <MsgType><![CDATA[text]]></MsgType>
             <Content><![CDATA[%s]]></Content>
+            <FuncFlag>%s</FuncFlag>
             </xml>";
         return sprintf($textTpl,$text,$funcFlag);
     }
-
+     
     /**
-     * 根据数组参数回复图文消息
-     *
-     * @param array $newsData
+     * 根据数组参数回复图文消息 
+     * 
+     * @param array $newsData 
      * @access public
      * @return void
      */
     public function makeNews($newsData=array())
     {
         $createTime = time();
-        $funcFlag = $this->setFlag ? 1 : 0;//这个接口xml信息已经废弃
-
-        //组建返回数据的xml，其中newTplItem是会循环增加多条，但不多于10条
+        $funcFlag = $this->setFlag ? 1 : 0;
         $newTplHeader = "<xml>
             <ToUserName><![CDATA[{$this->msg->FromUserName}]]></ToUserName>
             <FromUserName><![CDATA[{$this->msg->ToUserName}]]></FromUserName>
@@ -129,13 +130,12 @@ class Weixin
             <Url><![CDATA[%s]]></Url>
             </item>";
         $newTplFoot = "</Articles>
+            <FuncFlag>%s</FuncFlag>
             </xml>";
-
         $content = '';
         $itemsCount = count($newsData['items']);
         //微信公众平台图文回复的消息一次最多10条
         $itemsCount = $itemsCount < 10 ? $itemsCount : 10;
-        //组建content内容
         if ($itemsCount) {
             foreach ($newsData['items'] as $key => $item) {
                 if ($key<=9) {
@@ -145,30 +145,28 @@ class Weixin
         }
         $header = sprintf($newTplHeader,$itemsCount);
         $footer = sprintf($newTplFoot,$funcFlag);
-
-        //连接
         return $header . $content . $footer;
     }
-
+ 
     /**
-     * reply
-     *
-     * @param mixed $data
+     * reply 
+     * 
+     * @param mixed $data 
      * @access public
      * @return void
      */
     public function reply($data)
     {
-        if ($this->debug)
+        if ($this->debug) 
         {
             $this->log($data);
         }
         echo $data;
     }
-
+ 
     /**
-     * checkSignature
-     *
+     * checkSignature 
+     * 
      * @access private
      * @return void
      */
@@ -178,17 +176,17 @@ class Weixin
         sort($tmpArr);
         $tmpStr = implode( $tmpArr );
         $tmpStr = sha1( $tmpStr );
-
+         
         if( $tmpStr == $this->signature ){
             return true;
         }else{
             return false;
         }
     }
-
+ 
     /**
-     * log
-     *
+     * log 
+     * 
      * @access private
      * @return void
      */

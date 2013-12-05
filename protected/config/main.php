@@ -12,7 +12,7 @@ return array(
 	// preloading 'log' component
 	'preload'=>array(
 		'log',
-		'weixin'
+		'weixin',
 	),
 
 	// autoloading model and component classes
@@ -40,7 +40,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		'weixin' => array(
-            'class' => 'ext.weixin.Weixin',
+            'class' => 'ext.weixin.weixin',
         ),
 		// uncomment the following to enable URLs in path-format
 		/*

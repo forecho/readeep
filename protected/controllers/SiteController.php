@@ -2,7 +2,7 @@
 
 class SiteController extends Controller
 {
-	public $_weixinToken = "forecho";
+	private $_weixinToken = "forecho";
 
 	/**
 	 * Declares class-based actions.
@@ -34,11 +34,12 @@ class SiteController extends Controller
 		$this->render('index');
 	}
 
-   	public function actionWinxin()
+   	public function actionWeixin()
     {
+    	// Yii::createComponent('application.extensions.weixin.Weixin');
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
-        // $weixin->debug = true;
+        $weixin->debug = true;
  
         //网址接入时使用
         if (isset($_GET['echostr']))
@@ -52,8 +53,8 @@ class SiteController extends Controller
         switch ($msgType)
         {
         case 'text':
-            //你要处理文本消息代码
         	$weixin->makeText("你好");
+            //你要处理文本消息代码
             break;
         case 'image':
         	echo "image";

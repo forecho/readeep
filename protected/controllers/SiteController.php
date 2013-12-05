@@ -53,21 +53,27 @@ class SiteController extends Controller
         switch ($msgType)
         {
         case 'text':
+        	echo "text";
             //你要处理文本消息代码
             break;
         case 'image':
+        	echo "image";
             //你要处理图文消息代码
             break;
         case 'location':
+        	echo "location";
             //你要处理位置消息代码
             break;
         case 'link':
+        	echo "link";
             //你要处理链接消息代码
             break;
         case 'event':
+        	echo "event";
             //你要处理事件消息代码
             break;
         default: 
+        	echo "无效";
             //无效消息情况下的处理方式
             break;
         }

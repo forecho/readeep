@@ -40,7 +40,8 @@ class SiteController extends Controller
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
         $weixin->debug = true;
- 
+ 		
+ 		var_dump($_GET);exit();
         //网址接入时使用
         if (isset($_GET['echostr']))
         {

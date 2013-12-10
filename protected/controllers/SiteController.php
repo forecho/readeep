@@ -36,7 +36,6 @@ class SiteController extends Controller
 
    	public function actionWeixin()
     {
-    	// Yii::createComponent('application.extensions.weixin.Weixin');
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
         $weixin->debug = true;
@@ -53,7 +52,7 @@ class SiteController extends Controller
         switch ($msgType)
         {
         case 'text':
-        	$weixin->makeText("你好");
+        	echo $weixin->makeText("你好");
             //你要处理文本消息代码
             break;
         case 'image':

@@ -44,7 +44,7 @@ return array(
             'class' => 'ext.weixin.Weixin',
         ),
         'login' => array(
-            'class' => 'ext.login.LoginWinxin',
+            'class' => 'ext.login.LoginWeixin',
         ),
 		// uncomment the following to enable URLs in path-format
 		/*

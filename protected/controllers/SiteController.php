@@ -79,6 +79,19 @@ class SiteController extends Controller
         $weixin->reply($reply);
     }
 
+    // 模拟登录微信发消息
+    public function actionSend()
+    {
+    	$arr = array(
+			'account' => '',
+			'password' => ''
+		);
+		$w = new LoginWeixin($arr);
+		var_dump($w->getAllUserInfo());//获取所有用户信息
+		$a = $w->sendMessage('群发内123123123容');
+    }
+
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

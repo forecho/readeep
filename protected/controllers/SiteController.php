@@ -45,14 +45,20 @@ class SiteController extends Controller
         {
             $weixin->valid();
         }
-         
+        
+        $item['items'][0]['title'] = "hello";
+    	$item['items'][0]['description'] = "美图";
+    	$item['items'][0]['picurl'] = "http://img.weimob.com/static/19/98/8b/image/20131112/20131112113604_35285.jpg";
+    	$item['items'][0]['url'] = "http://www.baidu.com";
+
         $weixin->init();
         $reply = '';
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         switch ($msgType)
         {
         case 'text':
-        	echo $weixin->makeText("你好");
+        	//echo $weixin->makeText("你好");
+        	echo $weixin->makeNews($item);
             //你要处理文本消息代码
             break;
         case 'image':

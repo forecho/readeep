@@ -88,6 +88,7 @@ class SiteController extends Controller
     // 模拟登录微信发消息
     public function actionSend()
     {
+    	Yii::import('ext.login.LoginWeixin');
     	$arr = array(
 			'account' => '',
 			'password' => ''

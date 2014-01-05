@@ -55,13 +55,13 @@ class SiteController extends Controller
         $reply = '';
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息
-        $type = intval($weixin->msg->Content);
+        $msg = $weixin->msg->Content;
 		// var_dump($weixin->msg);
 
         switch ($msgType)
         {
         case 'text':
-        	echo $weixin->makeText($type);
+        	echo $weixin->makeText($msg);
         	// echo $weixin->makeNews($item);
             //你要处理文本消息代码
             break;

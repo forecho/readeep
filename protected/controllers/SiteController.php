@@ -51,7 +51,7 @@ class SiteController extends Controller
     	$item['items'][0]['picurl'] = "http://img.weimob.com/static/19/98/8b/image/20131112/20131112113604_35285.jpg";
     	$item['items'][0]['url'] = "http://www.baidu.com";
 
-    	$init = $weixin->init();
+    	$weixin->init();
         $reply = '';
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息

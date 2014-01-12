@@ -1,4 +1,6 @@
 assets/
 protected/runtime/
+protected/admin/runtime/
 nbproject/
 .idea/
+uploads/

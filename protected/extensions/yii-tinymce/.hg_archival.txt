@@ -1,0 +1,5 @@
+repo: b52c0c2e69252054d0fe133ceb64d013f6e5d17f
+node: dcafe0fcaacf5606fcc9803f5f2c839a7607eff2
+branch: tinymce4x
+latesttag: 1.0.0
+latesttagdistance: 10

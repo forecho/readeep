@@ -21,11 +21,6 @@
 <body>
 
 <div class="container" id="page">
-
-<?php foreach(Yii::app()->user->getFlashes() as $key => $message) {
-    echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
-}  ?>
-
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
@@ -36,6 +31,7 @@
 				array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
 				array('label'=>t('Card','menu'), 'url'=>array('/card/index')),
 				array('label'=>t('Post','menu'), 'url'=>array('/postPosts/index')),
+				array('label'=>t('CardType','menu'), 'url'=>array('/cardType/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
@@ -48,7 +44,7 @@
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
-
+	<?php echo renderFlash(); ?>
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

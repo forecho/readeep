@@ -1,22 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "card".
+ * This is the model class for table "card_type".
  *
- * The followings are the available columns in table 'card':
+ * The followings are the available columns in table 'card_type':
  * @property integer $id
- * @property string $thumb
- * @property string $image
- * @property integer $type
- * @property string $music
+ * @property string $name
  * @property integer $admin_id
  */
-class Card extends CActiveRecord
+class CardType extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Card the static model class
+	 * @return CardType the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +25,7 @@ class Card extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'card';
+		return 'card_type';
 	}
 
 	/**
@@ -39,12 +36,12 @@ class Card extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('thumb, image, type', 'required'),
-			array('type, admin_id', 'numerical', 'integerOnly'=>true),
-			array('thumb, image, music', 'length', 'max'=>100),
+			array('name', 'required'),
+			array('admin_id', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, thumb, image, type, music, admin_id', 'safe', 'on'=>'search'),
+			array('id, name, admin_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,10 +63,7 @@ class Card extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'thumb' => 'Thumb',
-			'image' => 'Image',
-			'type' => 'Type',
-			'music' => 'Music',
+			'name' => 'Name',
 			'admin_id' => 'Admin',
 		);
 	}
@@ -86,10 +80,7 @@ class Card extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('thumb',$this->thumb,true);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('type',$this->type);
-		$criteria->compare('music',$this->music,true);
+		$criteria->compare('name',$this->name,true);
 		$criteria->compare('admin_id',$this->admin_id);
 
 		return new CActiveDataProvider($this, array(
@@ -101,5 +92,12 @@ class Card extends CActiveRecord
 	{
 		$this->admin_id = Yii::app()->user->id;
 	    return parent::beforeSave();
+	}
+
+	public function getAllCardTypeName()
+	{
+		$allCardType = CardType::model()->findAll('admin_id=:adminID', array('adminID'=>Yii::app()->user->id));
+		return CHtml::listData($allCardType, 'id', 'name');
+
 	}
 }

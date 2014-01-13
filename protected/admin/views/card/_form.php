@@ -28,26 +28,30 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>60,'maxlength'=>100)); ?>
+		<?php $this->widget('ext.yii-elFinder.ServerFileInput', array(
+		        'model' => $model,
+		        'attribute' => 'image',
+		        'connectorRoute' => 'elfinder/connector',
+		    )
+		);?>
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
+		<?php echo $form->dropDownList($model,'type',CardType::model()->getAllCardTypeName()); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'music'); ?>
-		<?php echo $form->textField($model,'music',array('size'=>60,'maxlength'=>100)); ?>
+		<?php $this->widget('ext.yii-elFinder.ServerFileInput', array(
+		        'model' => $model,
+		        'attribute' => 'music',
+		        'connectorRoute' => 'elfinder/connector',
+		    )
+		);?>
 		<?php echo $form->error($model,'music'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'admin_id'); ?>
-		<?php echo $form->textField($model,'admin_id'); ?>
-		<?php echo $form->error($model,'admin_id'); ?>
 	</div>
 
 	<div class="row buttons">

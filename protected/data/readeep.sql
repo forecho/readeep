@@ -20,7 +20,7 @@ CREATE TABLE `admins` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL COMMENT '用户名-微信名',
   `email` varchar(50) NOT NULL COMMENT '登录邮箱',
-  `password` varchar(20) NOT NULL COMMENT '密码',
+  `password` varchar(50) NOT NULL COMMENT '密码',
   `login_ip` varchar(20) NOT NULL COMMENT '登录IP',
   `login_time` int(10) NOT NULL COMMENT '登录时间',
   `login_count` int(10) DEFAULT NULL COMMENT '登录次数',

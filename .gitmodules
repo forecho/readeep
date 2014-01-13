@@ -1,3 +1,0 @@
-[submodule "protected/extensions/yii-selectize"]
-	path = protected/extensions/yii-selectize
-	url = https://github.com/giovdk21/yii-selectize.git

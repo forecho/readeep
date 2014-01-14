@@ -7,7 +7,7 @@
  * @property integer $id
  * @property string $thumb
  * @property string $image
- * @property integer $type
+ * @property integer $card_type_id
  * @property string $music
  * @property integer $admin_id
  */
@@ -39,12 +39,12 @@ class Card extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('thumb, image, type', 'required'),
-			array('type, admin_id', 'numerical', 'integerOnly'=>true),
+			array('thumb, image, card_type_id', 'required'),
+			array('card_type_id, admin_id', 'numerical', 'integerOnly'=>true),
 			array('thumb, image, music', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, thumb, image, type, music, admin_id', 'safe', 'on'=>'search'),
+			array('id, thumb, image, card_type_id, music, admin_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,6 +56,7 @@ class Card extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'cardType' => array(self::BELONGS_TO, 'CardType', 'card_type_id'),
 		);
 	}
 
@@ -68,7 +69,7 @@ class Card extends CActiveRecord
 			'id' => 'ID',
 			'thumb' => 'Thumb',
 			'image' => 'Image',
-			'type' => 'Type',
+			'card_type_id' => 'Card Type Id',
 			'music' => 'Music',
 			'admin_id' => 'Admin',
 		);
@@ -88,7 +89,7 @@ class Card extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('thumb',$this->thumb,true);
 		$criteria->compare('image',$this->image,true);
-		$criteria->compare('type',$this->type);
+		$criteria->compare('card_type_id',$this->card_type_id);
 		$criteria->compare('music',$this->music,true);
 		$criteria->compare('admin_id',$this->admin_id);
 

@@ -138,7 +138,7 @@ CREATE TABLE `card` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `thumb` varchar(100) NOT NULL COMMENT '贺卡缩略图片',
   `image` varchar(100) NOT NULL COMMENT '贺卡背景图片',
-  `type` int(2) NOT NULL,
+  `card_type_id` int(2) NOT NULL,
   `music` varchar(100) DEFAULT NULL COMMENT '贺卡音乐',
   `admin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)

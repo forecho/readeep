@@ -17,8 +17,8 @@
 	<?php echo CHtml::encode($data->image); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
-	<?php echo CHtml::encode($data->type); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('card_type_id')); ?>:</b>
+	<?php echo CHtml::encode($data->card_type_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('music')); ?>:</b>

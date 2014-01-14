@@ -24,7 +24,7 @@ $this->menu=array(
 		'id',
 		'thumb',
 		'image',
-		'type',
+		'card_type_id',
 		'music',
 		'admin_id',
 	),

@@ -38,9 +38,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type',CardType::model()->getAllCardTypeName()); ?>
-		<?php echo $form->error($model,'type'); ?>
+		<?php echo $form->labelEx($model,'card_type_id'); ?>
+		<?php echo $form->dropDownList($model,'card_type_id',CardType::model()->getAllCardTypeName()); ?>
+		<?php echo $form->error($model,'card_type_id'); ?>
 	</div>
 
 	<div class="row">

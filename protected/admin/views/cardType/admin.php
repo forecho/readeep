@@ -47,7 +47,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'name',
-		'admin_id',
+		// array(
+  //           'name'=>'admin_id',
+  //           'value'=>'$data->admin->username',
+  //       ),
 		array(
 			'class'=>'CButtonColumn',
 		),

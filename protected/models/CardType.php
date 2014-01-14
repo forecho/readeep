@@ -39,6 +39,7 @@ class CardType extends CActiveRecord
 			array('name', 'required'),
 			array('admin_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>10),
+			array('name', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, admin_id', 'safe', 'on'=>'search'),

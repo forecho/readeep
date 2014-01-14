@@ -65,7 +65,7 @@ class CardTypeController extends Controller
 		$model=new CardType;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['CardType']))
 		{
@@ -91,7 +91,7 @@ class CardTypeController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['CardType']))
 		{

@@ -7,10 +7,10 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name' => 'My Web Application',
+	'theme' => 'foundation',
 	'timeZone' => 'Asia/Shanghai',
 	'language' => 'zh_CN',
-	'theme' => 'semantic',
 	// preloading 'log' component
 	'preload'=>array(
 		'log',
@@ -88,8 +88,8 @@ return array(
 				array(
 					// 'class'=>'CFileLogRoute',
 					// 'levels'=>'error, warning',
-					'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',  
-					'ipFilters'=>array('*'),  
+					'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+					'ipFilters'=>array('*'),
 				),
 				// uncomment the following to show log messages on web pages
 				/*

@@ -24,6 +24,7 @@ $backendArray=array(
     'basePath' => $frontend,
     'controllerPath' => $backend.'/controllers',
     'viewPath' => $backend.'/views',
+    'theme' => 'classic',
     'runtimePath' => $backend.'/runtime',
 	// 'defaultController'=>'options/welcome',
     // autoloading model and component classes

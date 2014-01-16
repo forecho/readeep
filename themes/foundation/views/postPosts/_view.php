@@ -3,8 +3,14 @@
 /* @var $data PostPosts */
 ?>
 
-<div class="view">
 
+<div class="medium-6 large-6 columns">
+<div class="panel p0 bd0">
+	<?php echo CHtml::link(CHtml::image($data->image, '',array('class'=>'w100')), array('view', 'id'=>$data->id)); ?>
+  	<!-- <h5>This is a regular panel.</h5>
+  	<p>It has an easy to override visual style, and is appropriately subdued.</p> -->
+</div>
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
 	<br />
@@ -25,11 +31,6 @@
 	<?php echo CHtml::encode($data->create_time); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
-	<br />
-
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('order')); ?>:</b>
 	<?php echo CHtml::encode($data->order); ?>
 	<br />

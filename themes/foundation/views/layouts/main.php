@@ -6,6 +6,7 @@
 	<meta name="language" content="en" />
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/foundation.min.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/normalize.css" rel="stylesheet">
+	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/style.css" rel="stylesheet">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -23,7 +24,7 @@
 			<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
 					array('label'=>'Home', 'url'=>array('/site/index')),
-					array('label'=>'Home', 'url'=>array('/site/index')),
+					array('label'=>'Post', 'url'=>array('/postPosts/index')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
 					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

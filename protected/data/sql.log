@@ -1,0 +1,9 @@
+数据库更新说明：
+
+1月17日
+	post_posts 表添加 comment_count 评论数字段。
+
+1月18日
+	admins 表添加 avatar 头像字段。
+	admins 表添加 description 简介字段。
+

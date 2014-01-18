@@ -29,9 +29,12 @@ CREATE TABLE `admins` (
   `create_time` int(10) NOT NULL COMMENT '创建时间',
   `status` tinyint(1) DEFAULT '1' COMMENT '1为正常 0为禁用',
   `invite_code` varchar(10) NOT NULL COMMENT '邀请码',
+  `avatar` varchar(50) DEFAULT NULL COMMENT '头像',
+  `description` varchar(255) DEFAULT NULL COMMENT '简介',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='管理员表';
-
+-- ALTER TABLE `admins` add `avatar` varchar(50) DEFAULT NULL COMMENT '头像';
+-- ALTER TABLE `admins` add `description` varchar(255) DEFAULT NULL COMMENT '简介';
 
 CREATE TABLE `post_actions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,

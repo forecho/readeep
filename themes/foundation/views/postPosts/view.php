@@ -17,11 +17,6 @@ $this->breadcrumbs=array(
 				<?php echo $model->create_time; ?>
 
 				<?php echo $model->admin->username; ?>
-
-				<?php $tags = explode(' ', $model->tags); ?>
-				<?php foreach ($tags as $key => $value): ?>
-				<?php echo $value; ?>
-				<?php endforeach ?>
 			</header>
 			<section class="mtb20">
 				<?php echo $model->content; ?>
@@ -31,27 +26,29 @@ $this->breadcrumbs=array(
 			</section>
 		</article>
   	</div>
-  	<div class="medium-3 large-3 columns headspace-20">
+  	<div class="medium-3 large-3 columns pl10">
   		<aside class="sidebar">
-
-		<div class="block column-about">
-		  	<a href="/WebNotes" class="avatar-link">
-		    	<img class="avatar-big" ng-src="http://p1.zhimg.com/53/d2/53d2d98a0_l.jpg" src="http://p1.zhimg.com/53/d2/53d2d98a0_l.jpg">
-		  	</a>
-		  	<a href="/WebNotes" class="title ng-binding">小道消息</a>
-		  	<!-- ngIf: column.creator.slug == me.slug -->
-		  	<div class="followers" ng-switch="" on="!!column.followersCount">
-			    <!-- ngSwitchWhen: true --><a ng-switch-when="true" href="/WebNotes/followers" class="ng-scope ng-binding">5023 人关注</a>
-			    <!-- ngSwitchWhen: false -->
-		  	</div>
-		  	<div class="description ng-binding" ng-bind-html="column.description | linky">小道消息，只有小道消息才能拯救中国互联网。</div>
-		</div>
-
-		<div class="block rel-topics ng-hide" ng-show="post.state != 'censoring' &amp;&amp; (post.topics.length || ownPost(post))">
-		  	<!-- ngIf: post.topics.length -->
-		  	<!-- ngIf: ownPost(post) -->
-		</div>
-
+			<div class="block column-about">
+				<?php echo CHtml::link(
+						CHtml::image($model->admin->avatar, '',array('class'=>'avatar-big')),
+						array('view', 'aid'=>$model->admin_id),
+						array('class'=>'avatar-link')
+				);?>
+				<?php echo CHtml::link($model->admin->username,
+						array('view', 'aid'=>$model->admin_id),
+						array('class'=>'title')
+				);?>
+			  	<div class="mt10 description"><?php echo $model->admin->description; ?></div>
+			  	<div class="tags mt10">
+			  		<?php $tags = explode(' ', $model->tags); ?>
+					<?php foreach ($tags as $key => $value): ?>
+						<?php echo CHtml::link($value,
+								array('view', 'tag'=>$value),
+								array('class'=>'tag')
+						);?>
+					<?php endforeach ?>
+			  	</div>
+			</div>
 		</aside>
   	</div>
 </div>

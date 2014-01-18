@@ -53,16 +53,16 @@ return array(
         //     'class' => 'ext.login.LoginWeixin',
         // ),
 		// uncomment the following to enable URLs in path-format
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'showScriptName' => false,// 使用URL重写，去掉index.php 
-			'urlSuffix' => '.html',//开启伪静态
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		),
+		// 'urlManager'=>array(
+		// 	'urlFormat'=>'path',
+		// 	'showScriptName' => false,// 使用URL重写，去掉index.php 
+		// 	'urlSuffix' => '.html',//开启伪静态
+		// 	'rules'=>array(
+		// 		'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+		// 		'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+		// 		'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+		// 	),
+		// ),
 
 		// 'db'=>array(
 		// 	'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',

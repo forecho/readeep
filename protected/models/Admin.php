@@ -15,6 +15,8 @@
  * @property integer $create_time
  * @property integer $status
  * @property string $invite_code
+ * @property string $avatar
+ * @property string $description
  */
 class Admin extends CActiveRecord
 {
@@ -47,11 +49,12 @@ class Admin extends CActiveRecord
 			array('username, email, password, login_ip, login_time, create_ip, create_time, invite_code', 'required'),
 			array('login_time, login_count, create_time, status', 'numerical', 'integerOnly'=>true),
 			array('username, password, login_ip, create_ip', 'length', 'max'=>20),
-			array('email', 'length', 'max'=>50),
+			array('email, avatar', 'length', 'max'=>50),
 			array('invite_code', 'length', 'max'=>10),
+			array('description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, email, password, login_ip, login_time, login_count, create_ip, create_time, status, invite_code', 'safe', 'on'=>'search'),
+			array('id, username, email, password, login_ip, login_time, login_count, create_ip, create_time, status, invite_code, avatar, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,6 +86,8 @@ class Admin extends CActiveRecord
 			'create_time' => 'Create Time',
 			'status' => 'Status',
 			'invite_code' => 'Invite Code',
+			'avatar' => 'Avatar',
+			'description' => 'Description',
 		);
 	}
 
@@ -108,6 +113,8 @@ class Admin extends CActiveRecord
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('invite_code',$this->invite_code,true);
+		$criteria->compare('avatar',$this->avatar,true);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

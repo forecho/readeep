@@ -99,9 +99,13 @@
 	    <div class="clear"></div>
 
 		<div id="footer">
-			Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-			All Rights Reserved.<br/>
-			<?php echo Yii::powered(); ?>
+			<div class="row">
+				<div class="large-12 columns">
+				Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+				All Rights Reserved.<br/>
+				<?php echo Yii::powered(); ?>
+				</div>
+			</div>
 		</div><!-- footer -->
 
   		<a class="exit-off-canvas"></a>

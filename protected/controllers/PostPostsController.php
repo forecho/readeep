@@ -2,6 +2,8 @@
 
 class PostPostsController extends Controller
 {
+	public $layout='//layouts/column1';
+
 	public function actionIndex()
 	{
 		$model=new PostPosts('search');

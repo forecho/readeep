@@ -364,6 +364,9 @@ function decryptParamsForUrl($hash){
  * 时间轴函数
  */
 function tranTime($time) {
+    if(!is_numeric($time)) {
+        $time = strtotime($time);
+    }
     $rtime = date("m-d H:i",$time);
     $htime = date("H:i",$time);
     $time = time() - $time;
@@ -390,4 +393,52 @@ function tranTime($time) {
         $str = $rtime;
     }
     return $str;
+}
+
+/**
+ * 时间轴函数，单位以unix时间戳计算
+ * @param int $pubtime 发布时间
+ */
+function timeShaft($pubtime) {
+    if(!is_numeric($pubtime)) {
+        $pubtime = strtotime($pubtime);
+    }
+    $time = time ();
+    /** 如果不是同一年 */
+    if (idate ( 'Y', $time ) != idate ( 'Y', $pubtime )) {
+        return date ( 'Y年m月d日', $pubtime );
+    }
+    /** 以下操作同一年的日期 */
+    $seconds = $time - $pubtime;
+    $days = idate ( 'z', $time ) - idate ( 'z', $pubtime );
+    /** 如果是同一天 */
+    if ($days == 0) {
+        /** 如果是一小时内 */
+        if ($seconds < 3600) {
+            /** 如果是一分钟内 */
+            if ($seconds < 60) {
+                if (3 > $seconds) {
+                    return '刚刚';
+                } else {
+                    return $seconds . '秒前';
+                }
+            }
+            return intval ( $seconds / 60 ) . '分钟前';
+        }
+        return idate ( 'H', $time ) - idate ( 'H', $pubtime ) . '小时前';
+    }
+    /** 如果是昨天 */
+    if ($days == 1) {
+        return '昨天' . date ( 'H:i', $pubtime );
+    }
+    /** 如果是前天 */
+    if ($days == 2) {
+        return '前天 ' . date ( 'H:i', $pubtime );
+    }
+    /** 如果是7天内 */
+    if ($days < 7) {
+        return $days. '天前';
+    }
+    /** 超过7天 */
+    return date ( 'n月j日 H:i', $pubtime );
 }

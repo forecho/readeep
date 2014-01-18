@@ -72,7 +72,8 @@
 	    <aside class="left-off-canvas-menu">
 			<ul class="off-canvas-list">
 				<li><label>Foundation</label></li>
-				<li><a href="#">The Psychohistorians</a></li>
+				<li><a href="/site/index">Home</a></li>
+				<li><a href="/postPosts/index">Post</a></li>
 				<li><label>Foundation and Empire</label></li>
 				<li><a href="#">The General</a></li>
 				<li><label>Second Foundation</label></li>
@@ -113,6 +114,7 @@
 
 	</div>
 </div>
+<?php Yii::app()->clientScript->registerCoreScript('jquery');?>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/foundation/foundation.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/foundation/foundation.offcanvas.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/foundation/foundation.topbar.js"></script>

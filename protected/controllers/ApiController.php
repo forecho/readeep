@@ -66,7 +66,9 @@ class ApiController extends Controller
     		case '%':
     			$criteria->addSearchCondition('title', $msg);
     			break;
-
+    		case '#':
+    			$criteria->addSearchCondition('tags', $msg);
+    			break;
     		default:
     			# code...
     			break;

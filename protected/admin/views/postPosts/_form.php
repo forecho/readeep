@@ -29,7 +29,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php $this->widget('ext.yii-elFinder.ServerFileInput', array(
+		<?php $this->widget('ext.yii-elfinder.ServerFileInput', array(
 		        'model' => $model,
 		        'attribute' => 'image',
 		        'connectorRoute' => 'elfinder/connector',

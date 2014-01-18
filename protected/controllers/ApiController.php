@@ -4,11 +4,6 @@ class ApiController extends Controller
 {
 	private $_weixinToken = "forecho";
 
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
-
 	public function actionWeixin()
     {
         $weixin = new Weixin($_GET);
@@ -31,7 +26,7 @@ class ApiController extends Controller
         switch ($msgType)
         {
         case 'text':
-        	$item = $this->_search();
+        	$item = $this->_search($msg);
         	// echo $weixin->makeText($msg);
         	echo $weixin->makeNews($item);
             //你要处理文本消息代码
@@ -60,12 +55,37 @@ class ApiController extends Controller
         $weixin->reply($reply);
     }
 
-    public function _search($value='')
+    public function _search($msg='')
+    // public function actionSearch($msg='')
     {
-    	$item['items'][0]['title'] = "hello";
-    	$item['items'][0]['description'] = "美图";
-    	$item['items'][0]['picurl'] = "http://img.weimob.com/static/19/98/8b/image/20131112/20131112113604_35285.jpg";
-    	$item['items'][0]['url'] = "http://www.baidu.com";
+    	$type = substr($msg, 0, 1 );
+    	$msg = substr($msg, 1 );
+
+		$criteria = new CDbCriteria;
+    	switch ($type) {
+    		case '%':
+    			$criteria->addSearchCondition('title', $msg);
+    			break;
+
+    		default:
+    			# code...
+    			break;
+    	}
+    	$criteria->addCondition("status=1");
+    	$criteria->addCondition("create_time<".time());
+		$criteria->limit = 10;
+		$criteria->order = 'id DESC';
+		$data = PostPosts::model()->findAll($criteria);
+    	foreach ($data as $key => $value) {
+		    $item['items'][$key]['title'] = $value->attributes['title'];
+		    $item['items'][$key]['description'] = $value->attributes['excerpt'];
+		    $item['items'][$key]['picurl'] = $value->attributes['image'];
+		    $item['items'][$key]['url'] = Yii::app()->request->hostInfo.'index.php?r=postPosts/view&id='.$value->attributes['id'];
+		}
+    	// $item['items'][0]['title'] = "hello";
+    	// $item['items'][0]['description'] = "美图";
+    	// $item['items'][0]['picurl'] = "http://img.weimob.com/static/19/98/8b/image/20131112/20131112113604_35285.jpg";
+    	// $item['items'][0]['url'] = "http://www.baidu.com";
     	return $item;
     }
 

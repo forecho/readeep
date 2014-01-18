@@ -9,21 +9,61 @@ $this->breadcrumbs=array(
 ?>
 <div class="row">
 	<div class="medium-9 large-9 columns">
-		<article>
+		<article class="post-view">
 			<header>
 				<?php //echo $model->id; ?>
 				<?php echo CHtml::link(CHtml::image($model->image, '',array('class'=>'w100')), $model->image); ?>
 				<h1 class="mtb10"><?php echo $model->title; ?></h1>
-				<?php echo $model->create_time; ?>
-
-				<?php echo $model->admin->username; ?>
+				<ul>
+					<li>
+						<i class="fi-torso"></i>
+						<?php echo $model->admin->username; ?>
+					</li>
+					<li>
+						<i class="fi-calendar"></i>
+						<?php echo $model->create_time; ?>
+					</li>
+					<li>
+						<i class="fi-eye"></i>
+						<?php echo $model->view_count; ?>次围观
+					</li>
+				</ul>
 			</header>
 			<section class="mtb20">
 				<?php echo $model->content; ?>
-				<?php echo $model->view_count; ?>
-				<?php echo $model->thanks_count; ?>
-				<?php echo $model->like_count; ?>
 			</section>
+			<footer>
+				<div>
+					<?php echo CHtml::ajaxLink(
+					    CHtml::tag('i', array('class'=>'fi-like'), ' <em>'.$model->like_count.'</em> 赞'),
+					    array('postPosts/addLike'),
+					    array(
+					    	'type'=>'GET',
+					        'dataType'=>'json',
+					        'data'=>'js:{ "id":'.$model->id.' }',
+					        'success'=>'function(html){ jQuery("#post-like em").html(html); }',
+					        'complete' => 'function() {
+					          	$("#post-like").addClass("bhover");
+					        }',
+					    ),
+					    array('class'=>'button tiny', 'id'=>'post-like')
+					);?>
+					<?php echo CHtml::ajaxLink(
+					    CHtml::tag('i', array('class'=>'fi-heart'), ' <em>'.$model->thanks_count.'</em> 感谢'),
+					    array('postPosts/addThanks'),
+					    array(
+					    	'type'=>'GET',
+					        'dataType'=>'json',
+					        'data'=>'js:{ "id":'.$model->id.' }',
+					        'success'=>'function(html){ jQuery("#post-thanks em").html(html); }',
+					        'complete' => 'function() {
+					          	$("#post-thanks").addClass("bhover");
+					        }',
+					    ),
+					    array('class'=>'button tiny', 'id'=>'post-thanks')
+					);?>
+				</div>
+			</footer>
 		</article>
   	</div>
   	<div class="medium-3 large-3 columns pl10">

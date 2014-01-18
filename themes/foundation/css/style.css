@@ -75,6 +75,21 @@ font-size: 15px;
 white-space: pre-wrap;
 }
 
+.post-view header ul{
+	display: block;
+	padding: 2px 0;
+	margin: 0 auto 30px;
+}
+.post-view header ul li{
+	display: inline;
+	float: left;
+	margin-right: 10px;
+	color: #9d9e9f;
+}
+.bhover {
+	background-color: #007295;
+}
+
 #footer {
 	background: #2daebf;
 	padding: 20px;

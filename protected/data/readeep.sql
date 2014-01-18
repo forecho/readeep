@@ -8,10 +8,10 @@ CREATE TABLE `post_posts` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1:发布 0：草稿',
   `order` int(5) DEFAULT NULL COMMENT '排序 0最大',
   `tags` varchar(200) NOT NULL COMMENT '空格隔开',
-  `view_count`  int(8) DEFAULT NULL COMMENT '浏览次数',
-  `thanks_count` int(8) DEFAULT NULL COMMENT '感谢次数',
-  `like_count` int(8) DEFAULT NULL COMMENT '点赞次数',
-  `comment_count` int(8) DEFAULT NULL COMMENT '评论次数',
+  `view_count`  int(8) DEFAULT '0' COMMENT '浏览次数',
+  `thanks_count` int(8) DEFAULT '0' COMMENT '感谢次数',
+  `like_count` int(8) DEFAULT '0' COMMENT '点赞次数',
+  `comment_count` int(8) DEFAULT '0' COMMENT '评论次数',
   `admin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文章表';

@@ -16,6 +16,7 @@
  * @property integer $view_count
  * @property integer $thanks_count
  * @property integer $like_count
+ * @property integer $comment_count
  * @property integer $admin_id
  */
 class PostPosts extends CActiveRecord
@@ -47,7 +48,7 @@ class PostPosts extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, image, content, create_time, tags', 'required'),
-			array('status, order, view_count, thanks_count, like_count, admin_id', 'numerical', 'integerOnly'=>true),
+			array('status, order, view_count, thanks_count, like_count, comment_count, admin_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>50),
 			array('excerpt', 'length', 'max'=>255),
 			array('image', 'length', 'max'=>100),
@@ -55,7 +56,7 @@ class PostPosts extends CActiveRecord
 			array('create_time', 'date', 'format'=>'yyyy-MM-dd hh:mm', 'message'=>'{attribute} have wrong format'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, excerpt, image, content, create_time, status, order, tags, view_count, thanks_count, like_count, admin_id', 'safe', 'on'=>'search'),
+			array('id, title, excerpt, image, content, create_time, status, order, tags, view_count, thanks_count, like_count, comment_count, admin_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,6 +90,7 @@ class PostPosts extends CActiveRecord
 			'view_count' => 'View Count',
 			'thanks_count' => 'Thanks Count',
 			'like_count' => 'Like Count',
+			'comment_count' => 'Comment Count',
 			'admin_id' => 'Admin',
 		);
 	}
@@ -116,6 +118,7 @@ class PostPosts extends CActiveRecord
 		$criteria->compare('view_count',$this->view_count);
 		$criteria->compare('thanks_count',$this->thanks_count);
 		$criteria->compare('like_count',$this->like_count);
+		$criteria->compare('comment_count',$this->comment_count);
 		$criteria->compare('admin_id',$this->admin_id);
 
 		return new CActiveDataProvider($this, array(

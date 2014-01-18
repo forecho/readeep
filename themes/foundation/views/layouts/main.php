@@ -6,6 +6,7 @@
 	<meta name="language" content="en" />
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/foundation.min.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/normalize.css" rel="stylesheet">
+	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/foundation-icons/foundation-icons.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/style.css" rel="stylesheet">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>

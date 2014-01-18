@@ -11,6 +11,7 @@ CREATE TABLE `post_posts` (
   `view_count`  int(8) DEFAULT NULL COMMENT '浏览次数',
   `thanks_count` int(8) DEFAULT NULL COMMENT '感谢次数',
   `like_count` int(8) DEFAULT NULL COMMENT '点赞次数',
+  `comment_count` int(8) DEFAULT NULL COMMENT '评论次数',
   `admin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文章表';

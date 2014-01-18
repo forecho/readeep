@@ -1,3 +1,8 @@
+.panel {
+	background: none
+}
+
+
 .mtb20 {
 	margin: 20px 0;
 }
@@ -16,3 +21,31 @@
 .p0 {
 	padding: 0;
 }
+.post-list {
+	position: relative;
+	padding: 270px 22px 22px;
+	cursor: pointer;
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(rgba(0,0,0,.01) 40%),to(rgba(0,0,0,.7) 80%));
+	background-image: -webkit-linear-gradient(top,rgba(0,0,0,.01) 40%,rgba(0,0,0,.7) 80%);
+	background-image: -moz-linear-gradient(top,rgba(0,0,0,.01) 40%,rgba(0,0,0,.7) 80%);
+	background-image: linear-gradient(top,rgba(0,0,0,.01) 40%,rgba(0,0,0,.7) 80%);
+	background-repeat: repeat-x;
+}
+.post-list, .post-list h1, .post-list a {
+	color: #FFF;
+}
+.post-list .post-link, .post-list .post-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.post-list .post-img {
+	max-width: 100%;
+	z-index: -2;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+

@@ -80,7 +80,7 @@ class ApiController extends Controller
 		    $item['items'][$key]['title'] = $value->attributes['title'];
 		    $item['items'][$key]['description'] = $value->attributes['excerpt'];
 		    $item['items'][$key]['picurl'] = $value->attributes['image'];
-		    $item['items'][$key]['url'] = Yii::app()->request->hostInfo.'index.php?r=postPosts/view&id='.$value->attributes['id'];
+		    $item['items'][$key]['url'] = Yii::app()->request->hostInfo.'/index.php?r=postPosts/view&id='.$value->attributes['id'];
 		}
     	// $item['items'][0]['title'] = "hello";
     	// $item['items'][0]['description'] = "美图";

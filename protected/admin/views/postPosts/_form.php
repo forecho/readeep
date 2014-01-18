@@ -47,7 +47,7 @@
 		    'compressorRoute' => 'tinyMce/compressor',
 		    'spellcheckerUrl' => array('tinyMce/spellchecker'),
 		    'fileManager' => array(
-		        'class' => 'ext.yii-elFinder.TinyMceElFinder',
+		        'class' => 'ext.yii-elfinder.TinyMceElFinder',
 		        'connectorRoute'=>'elfinder/connector',
 		    ),
 		    'htmlOptions' => array(

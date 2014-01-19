@@ -42,10 +42,9 @@ $backendArray=array(
 			'allowAutoLogin'=>true,
 		),
         'request' => array(
-            'class' => 'application.admin.components.HttpRequest',
-            'enableCsrfValidation' => true,
+           'class' => 'application.admin.components.HttpRequest',
+           'enableCsrfValidation' => true,
         ),
-
 		// 'log'=>array(
 		// 	'class'=>'CLogRouter',
 		// 	'routes'=>array(

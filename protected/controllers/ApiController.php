@@ -22,13 +22,15 @@ class ApiController extends Controller
         // 获得用户发过来的消息
         $msg = $weixin->msg->Content;
         $username = $weixin->msg->FromUserName;
+        $admin = $weixin->msg->ToUserName;
 		// var_dump($weixin->msg);
 
         switch ($msgType)
         {
         case 'text':
         	// echo $weixin->makeText($msg);
-        	echo $weixin->makeText($username);
+        	echo $weixin->makeText($admin);
+        	// echo $weixin->makeText($username);
         	// $item = $this->_search($msg);
         	// echo $weixin->makeNews($item);
             //你要处理文本消息代码

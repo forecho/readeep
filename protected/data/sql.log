@@ -8,3 +8,5 @@
 	admins 表添加 description 简介字段。
 	post_posts 表 view_count thanks_count like_count comment_count默认由 null 改为 0
 
+1月19日
+	users 表 open_id 字段由 varchar(30) 改成 varchar(80)

@@ -47,7 +47,7 @@ CREATE TABLE `post_actions` (
 
 CREATE TABLE `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `open_id` varchar(30) NOT NULL COMMENT '微信openid',
+  `open_id` varchar(80) NOT NULL COMMENT '微信openid',
   `username` varchar(20) DEFAULT NULL COMMENT '用户名',
   `email` varchar(50) DEFAULT NULL COMMENT '登录邮箱',
   `password` varchar(20) DEFAULT NULL COMMENT '密码',

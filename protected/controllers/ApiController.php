@@ -21,14 +21,16 @@ class ApiController extends Controller
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息
         $msg = $weixin->msg->Content;
+        $username = $weixin->msg->FromUserName;
 		// var_dump($weixin->msg);
 
         switch ($msgType)
         {
         case 'text':
-        	$item = $this->_search($msg);
         	// echo $weixin->makeText($msg);
-        	echo $weixin->makeNews($item);
+        	echo $weixin->makeText($username);
+        	// $item = $this->_search($msg);
+        	// echo $weixin->makeNews($item);
             //你要处理文本消息代码
             break;
         case 'image':

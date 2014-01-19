@@ -21,7 +21,7 @@ $this->breadcrumbs=array(
 					</li>
 					<li>
 						<i class="fi-calendar"></i>
-						<?php echo $model->create_time; ?>
+						<?php echo timeShaft($model->create_time); ?>
 					</li>
 					<li>
 						<i class="fi-eye"></i>

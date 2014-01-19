@@ -457,10 +457,11 @@ function timeShaft($pubtime) {
     if ($days == 2) {
         return '前天 ' . date ( 'H:i', $pubtime );
     }
-    /** 如果是7天内 */
-    if ($days < 7) {
+    /** 如果是100天内 */
+    if ($days < 100) {
         return $days. '天前';
     }
-    /** 超过7天 */
-    return date ( 'n月j日 H:i', $pubtime );
+    /** 超过100天 */
+    // return date ( 'n月j日 H:i', $pubtime );
+    return date ( 'm月d日 H:i', $pubtime );
 }

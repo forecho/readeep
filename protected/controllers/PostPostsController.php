@@ -127,7 +127,11 @@ class PostPostsController extends Controller
 		$model->post_id = $id;
 		$model->type = $type;
 		$model->user_id = Yii::app()->session['uid']; //用户登录
-		$model->save();
+		if ($model->save()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// 是否被点赞 感谢

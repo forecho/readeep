@@ -23,20 +23,18 @@ class ApiController extends Controller
         $msg = $weixin->msg->Content;
 
         $rawid = $weixin->msg->ToUserName;
-        $admin = WeixinSet::model()->find('rawid=:rawid', array('rawid'=>$rawid))
+        $admin = WeixinSet::model()->find('rawid=:rawid', array('rawid'=>$rawid));
 		// var_dump($weixin->msg);
 
  		// 获取 open_id
         $open_id = $weixin->msg->FromUserName;
-        $uid = 1;
-        // $uid = $this->_isUser($open_id, $admin->admin_id);
+        $uid = $this->_isUser($open_id, $admin->admin_id);
 
         switch ($msgType)
         {
         case 'text':
         	// echo $weixin->makeText($msg);
-        	echo $weixin->makeText($rawid);
-        	// echo $weixin->makeText($uid);
+        	echo $weixin->makeText($uid);
         	// echo $weixin->makeText($open_id);
         	// $item = $this->_search($msg);
         	// echo $weixin->makeNews($item);

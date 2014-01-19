@@ -9,19 +9,19 @@ class PostPostsController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	// public function accessRules()
-	// {
-	// 	return array(
-	// 		array('allow',  // allow all users to perform 'index' and 'view' actions
-	// 			'actions'=>array('index','view'),
-	// 			'users'=>array('*'),
-	// 		),
-	// 		array('allow', // allow authenticated user to perform 'create' and 'update' actions
-	// 			'actions'=>array('addLike','addThanks'),
-	// 			'users'=>array('@'),
-	// 		),
-	// 	);
-	// }
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('addLike','addThanks'),
+				'users'=>array('@'),
+			),
+		);
+	}
 
 	public function actionIndex()
 	{
@@ -107,14 +107,14 @@ class PostPostsController extends Controller
 		$model = new PostActions;
 		$model->post_id = $id;
 		$model->type = $type;
-		$model->user_id = 2; //用户登录
+		$model->user_id = Yii::app()->session['uid']; //用户登录
 		$model->save();
 	}
 
 	// 是否被点赞 感谢
 	public function _isPostAction($id, $type)
 	{
-		$uid = 2;
+		$uid = Yii::app()->session['uid'];
 		$count = PostActions::model()->count(
 					'post_id=:postId AND user_id=:userId AND type=:type',
 					array(

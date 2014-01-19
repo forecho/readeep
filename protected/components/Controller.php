@@ -28,7 +28,7 @@ class Controller extends CController
 				$data = Users::model()->find(
 							'open_id=:openId',
 							array(':openId'=>Yii::app()->request->getParam('oid'))
-						)；
+						);
 				Yii::app()->session['uid'] = $data->id;
 			}
 			return true;

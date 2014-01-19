@@ -28,7 +28,8 @@ class ApiController extends Controller
 
  		// 获取 open_id
         $open_id = $weixin->msg->FromUserName;
-        $uid = $this->_isUser($open_id, $admin->admin_id);
+        $uid = 1;
+        // $uid = $this->_isUser($open_id, $admin->admin_id);
 
         switch ($msgType)
         {

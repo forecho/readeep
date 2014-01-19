@@ -34,34 +34,52 @@ $this->breadcrumbs=array(
 			</section>
 			<footer>
 				<div>
-					<?php echo CHtml::ajaxLink(
-					    CHtml::tag('i', array('class'=>'fi-like'), ' <em>'.$model->like_count.'</em> 赞'),
-					    array('postPosts/addLike'),
-					    array(
-					    	'type'=>'GET',
-					        'dataType'=>'json',
-					        'data'=>'js:{ "id":'.$model->id.' }',
-					        'success'=>'function(html){ jQuery("#post-like em").html(html); }',
-					        'complete' => 'function() {
-					          	$("#post-like").addClass("bhover");
-					        }',
-					    ),
-					    array('class'=>'button tiny', 'id'=>'post-like')
-					);?>
-					<?php echo CHtml::ajaxLink(
-					    CHtml::tag('i', array('class'=>'fi-heart'), ' <em>'.$model->thanks_count.'</em> 感谢'),
-					    array('postPosts/addThanks'),
-					    array(
-					    	'type'=>'GET',
-					        'dataType'=>'json',
-					        'data'=>'js:{ "id":'.$model->id.' }',
-					        'success'=>'function(html){ jQuery("#post-thanks em").html(html); }',
-					        'complete' => 'function() {
-					          	$("#post-thanks").addClass("bhover");
-					        }',
-					    ),
-					    array('class'=>'button tiny', 'id'=>'post-thanks')
-					);?>
+					<?php if ($like_count) {
+						echo CHtml::link(
+								CHtml::tag('i', array('class'=>'fi-like'), ' <em>'.$model->like_count.'</em> 赞'),
+								'javaccript:;',
+								array('class'=>'button tiny button-hover')
+							);
+					} else {
+						echo CHtml::ajaxLink(
+						    	CHtml::tag('i', array('class'=>'fi-like'), ' <em>'.$model->like_count.'</em> 赞'),
+							    array('postPosts/addLike'),
+							    array(
+							    	'type'=>'GET',
+							        'dataType'=>'json',
+							        'data'=>'js:{ "id":'.$model->id.' }',
+							        'success'=>'function(html){ jQuery("#post-like em").html(html); }',
+							        'complete' => 'function() {
+							          	$("#post-like").addClass("button-hover");
+							          	$("#post-like").removeAttr("id");
+							        }',
+							    ),
+							    array('class'=>'button tiny', 'id'=>'post-like','live'=>false)
+							);
+					} ?>
+					<?php if ($thanks_count) {
+						echo CHtml::link(
+								CHtml::tag('i', array('class'=>'fi-heart'), ' '.$model->thanks_count.' 感谢'),
+								'javaccript:;',
+								array('class'=>'button tiny button-hover')
+							);
+					} else {
+						echo CHtml::ajaxLink(
+						    CHtml::tag('i', array('class'=>'fi-heart'), ' <em>'.$model->thanks_count.'</em> 感谢'),
+						    array('postPosts/addThanks'),
+						    array(
+						    	'type'=>'GET',
+						        'dataType'=>'json',
+						        'data'=>'js:{ "id":'.$model->id.' }',
+						        'success'=>'function(html){ jQuery("#post-thanks em").html(html); }',
+						        'complete' => 'function() {
+						          	$("#post-thanks").addClass("button-hover");
+						          	$("#post-thanks").removeAttr("id");
+						        }',
+						    ),
+						    array('class'=>'button tiny', 'id'=>'post-thanks','live'=>false)
+						);
+					} ?>
 				</div>
 			</footer>
 		</article>

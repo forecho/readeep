@@ -94,9 +94,12 @@ class PostPostsController extends Controller
 	{
 		if (!$this->_isPostAction($id, 1)) {
 			$model = $this->loadModel($id);
-			// 计时器 赞+1
-			$model->saveCounters(array('like_count'=>1));
-			$this->_postAction($id, 1); // 1为赞
+
+			$data = $this->_postAction($id, 1); // 1为赞
+			if ($data) {
+				// 计时器 赞+1
+				$model->saveCounters(array('like_count'=>1));
+			}
 			echo $model->like_count;
 			Yii::app()->end();
 		}
@@ -107,9 +110,11 @@ class PostPostsController extends Controller
 	{
 		if (!$this->_isPostAction($id, 2)) {
 			$model = $this->loadModel($id);
-			// 计时器 感谢+1
-			$model->saveCounters(array('thanks_count'=>1));
-			$this->_postAction($id, 2); // 2为感谢
+			$data = $this->_postAction($id, 2); // 2为感谢
+			if ($data) {
+				// 计时器 感谢+1
+				$model->saveCounters(array('thanks_count'=>1));
+			}
 			echo $model->thanks_count;
 			Yii::app()->end();
 		}

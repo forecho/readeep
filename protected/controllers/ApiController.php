@@ -73,7 +73,7 @@ class ApiController extends Controller
     	$data = Users::model()->find(
     		'open_id=:openId AND admin_id=:adminId',
     		array(':openId'=>$open_id, ':adminId'=>$admin_id)
-    	)
+    	);
     	if (!$data) {
     		$model = new Users;
 			$model->open_id = $open_id;

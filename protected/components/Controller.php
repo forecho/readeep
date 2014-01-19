@@ -20,4 +20,17 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+	protected function beforeAction($action) {
+        if(parent::beforeAction($action))
+		{
+			if (Yii::app()->request->getParam('oid')) {
+				$data = Users::model()->find('open_id=:openId', array(':openId'=>Yii::app()->request->getParam('oid')))
+				Yii::app()->session['uid'] = $data->id;
+			}
+			return true;
+		}
+		else
+			return false;
+    }
 }

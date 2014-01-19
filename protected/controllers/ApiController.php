@@ -33,12 +33,12 @@ class ApiController extends Controller
         switch ($msgType)
         {
         case 'text':
-        	// echo $weixin->makeText($msg);
-        	echo $weixin->makeText(Yii::app()->session['uid']);
-        	// echo $weixin->makeText($open_id);
-        	// $item = $this->_search($msg);
-        	// echo $weixin->makeNews($item);
             //你要处理文本消息代码
+        	// echo $weixin->makeText($msg);
+        	//echo $weixin->makeText(Yii::app()->session['uid']);
+        	// echo $weixin->makeText($open_id);
+        	$item = $this->_search($msg, $open_id);
+        	echo $weixin->makeNews($item);
             break;
         case 'image':
         	echo "image";
@@ -91,7 +91,7 @@ class ApiController extends Controller
     	}
     }
 
-    public function _search($msg='')
+    public function _search($msg, $open_id)
     // public function actionSearch($msg='')
     {
     	$type = substr($msg, 0, 1 );
@@ -118,7 +118,7 @@ class ApiController extends Controller
 		    $item['items'][$key]['title'] = $value->attributes['title'];
 		    $item['items'][$key]['description'] = $value->attributes['excerpt'];
 		    $item['items'][$key]['picurl'] = $value->attributes['image'];
-		    $item['items'][$key]['url'] = Yii::app()->request->hostInfo.'/index.php?r=postPosts/view&id='.$value->attributes['id'];
+		    $item['items'][$key]['url'] = Yii::app()->request->hostInfo.'/index.php?r=postPosts/view&id='.$value->attributes['id'].'&oid='.$open_id;
 		}
     	// $item['items'][0]['title'] = "hello";
     	// $item['items'][0]['description'] = "美图";

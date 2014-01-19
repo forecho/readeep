@@ -42,7 +42,7 @@ $backendArray=array(
 			'allowAutoLogin'=>true,
 		),
         'request' => array(
-           'class' => 'application.admin.components.HttpRequest',
+           'class' => 'application.components.HttpRequest',
            'enableCsrfValidation' => true,
         ),
 		// 'log'=>array(

@@ -83,9 +83,9 @@ class ApiController extends Controller
 			}
 			exit;
     	} else {
-    		if($model->save()){
+    		if($data->save()){
     			// 登录次数 == 发送消息数
-    			$model->saveCounters(array('login_count'=>1));
+    			$data->saveCounters(array('login_count'=>1));
 				return Yii::app()->session['uid'] = $data->id;
 			}
     	}

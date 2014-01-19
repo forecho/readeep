@@ -21,16 +21,21 @@ class ApiController extends Controller
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息
         $msg = $weixin->msg->Content;
-        $username = $weixin->msg->FromUserName;
-        $admin = $weixin->msg->ToUserName;
+
+        $rawid = $weixin->msg->ToUserName;
+        $admin = WeixinSet::model()->find('rawid=:rawid', array('rawid'=>$rawid))
 		// var_dump($weixin->msg);
+
+ 		// 获取 open_id
+        $open_id = $weixin->msg->FromUserName;
+        $uid = $this->_isUser($open_id, $admin->admin_id);
 
         switch ($msgType)
         {
         case 'text':
         	// echo $weixin->makeText($msg);
-        	echo $weixin->makeText($admin);
-        	// echo $weixin->makeText($username);
+        	echo $weixin->makeText($uid);
+        	// echo $weixin->makeText($open_id);
         	// $item = $this->_search($msg);
         	// echo $weixin->makeNews($item);
             //你要处理文本消息代码
@@ -57,6 +62,28 @@ class ApiController extends Controller
             break;
         }
         $weixin->reply($reply);
+    }
+
+    /**
+     * 判断是否存在 并写入 session
+     * 返回写入 session 的用户 id
+     */
+    public function _isUser($open_id, $admin_id)
+    {
+    	$data = Users::model()->find(
+    		'open_id=:openId AND admin_id=:adminId',
+    		array(':openId'=>$open_id, ':adminId'=>$admin_id)
+    	)
+    	if (!$data) {
+    		$model = new Users;
+			$model->open_id = $open_id;
+			$model->admin_id = $admin_id;
+			if($model->save()>0){
+				return Yii::app()->session['uid'] = $model->attributes['id'];
+			}
+    	} else {
+    		return Yii::app()->session['uid'] = $data->id;
+    	}
     }
 
     public function _search($msg='')

@@ -78,9 +78,12 @@ class ApiController extends Controller
     		$model = new Users;
 			$model->open_id = $open_id;
 			$model->admin_id = $admin_id;
-			if($model->save()>0){
-				return Yii::app()->session['uid'] = $model->attributes['id'];
-			}
+			// if($model->save()>0){
+			// 	return Yii::app()->session['uid'] = $model->attributes['id'];
+			// }
+			$model->save();
+			var_dump($model->errors);
+			exit;
     	} else {
     		return Yii::app()->session['uid'] = $data->id;
     	}

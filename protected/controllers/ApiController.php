@@ -78,14 +78,16 @@ class ApiController extends Controller
     		$model = new Users;
 			$model->open_id = $open_id;
 			$model->admin_id = $admin_id;
-			// if($model->save()>0){
-			// 	return Yii::app()->session['uid'] = $model->attributes['id'];
-			// }
-			$model->save();
-			var_dump($model->errors);
+			if($model->save()){
+				return Yii::app()->session['uid'] = $model->attributes['id'];
+			}
 			exit;
     	} else {
-    		return Yii::app()->session['uid'] = $data->id;
+    		if($model->save()){
+    			// 登录次数 == 发送消息数
+    			$model->saveCounters(array('login_count'=>1));
+				return Yii::app()->session['uid'] = $data->id;
+			}
     	}
     }
 

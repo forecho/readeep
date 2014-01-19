@@ -29,7 +29,7 @@ class PostPostsController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('addLike','addThanks'),
-				'users'=>array('@'),
+				'users'=>array('?'),
 			),
 			array('deny',  // deny all users
 	            'users'=>array('*'),

@@ -121,4 +121,26 @@ class Users extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	 * This is invoked before the record is saved.
+	 * @return boolean whether the record should be saved.
+	 */
+	protected function beforeSave()
+	{
+		if(parent::beforeSave())
+		{
+			if($this->isNewRecord)
+			{
+				$this->create_time = $this->login_time = time();
+				$this->create_ip = $this->login_ip = GetIP();
+			}
+			else
+				$this->login_time = time();
+				$this->login_ip = GetIP();
+			return true;
+		}
+		else
+			return false;
+	}
 }

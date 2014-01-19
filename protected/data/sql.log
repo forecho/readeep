@@ -10,3 +10,5 @@
 
 1月19日
 	users 表 open_id 字段由 varchar(30) 改成 varchar(80)
+	weixin_set 表 rawid 字段由 varchar(10) 改成 varchar(50)
+	--weixin_set 表添加 description 简介字段。

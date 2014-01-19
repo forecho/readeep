@@ -281,12 +281,34 @@ function renderFlash()
     }
 }
 
+/**
+ * 获取IP
+ * return $nowurl;
+ */
+function GetIP() {
+    if ($_SERVER["HTTP_X_FORWARDED_FOR"])
+        $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+    else if ($_SERVER["HTTP_CLIENT_IP"])
+        $ip = $_SERVER["HTTP_CLIENT_IP"];
+    else if ($_SERVER["REMOTE_ADDR"])
+        $ip = $_SERVER["REMOTE_ADDR"];
+    else if (getenv("HTTP_X_FORWARDED_FOR"))
+        $ip = getenv("HTTP_X_FORWARDED_FOR");
+    else if (getenv("HTTP_CLIENT_IP"))
+        $ip = getenv("HTTP_CLIENT_IP");
+    else if (getenv("REMOTE_ADDR"))
+        $ip = getenv("REMOTE_ADDR");
+    else
+        $ip = "Unknown";
+    return $ip;
+}
+
 
 /**
  * 获取IP 使用淘宝IP地址库得到访客来源信息
  * return $nowurl;
  */
-function GetIP() {
+function GetIp2Taobao() {
     $info = file_get_contents('http://ip.taobao.com/service/getIpInfo.php?ip='.$_SERVER["REMOTE_ADDR"]);
     $a = CJSON::decode($info);
     return $a['data']['country'].$a['data']['region'].$a['data']['city'].'网友';

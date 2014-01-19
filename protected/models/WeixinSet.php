@@ -33,7 +33,8 @@ class WeixinSet extends CActiveRecord
 		return array(
 			array('token, name, wx_id, rawid, admin_id', 'required'),
 			array('admin_id', 'numerical', 'integerOnly'=>true),
-			array('token, rawid', 'length', 'max'=>10),
+			array('token', 'length', 'max'=>10),
+			array('rawid', 'length', 'max'=>50),
 			array('name, wx_id', 'length', 'max'=>20),
 			array('avatar, qr_code', 'length', 'max'=>100),
 			// The following rule is used by search().

@@ -35,7 +35,7 @@ class ApiController extends Controller
         {
         case 'text':
         	// echo $weixin->makeText($msg);
-        	echo $weixin->makeText($admin->admin_id);
+        	echo $weixin->makeText($rawid);
         	// echo $weixin->makeText($uid);
         	// echo $weixin->makeText($open_id);
         	// $item = $this->_search($msg);

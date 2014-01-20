@@ -19,7 +19,7 @@
 		<nav class="top-bar docs-bar hide-for-small" data-topbar="">
 			 <ul class="title-area">
 			    <li class="name">
-			    	<h1><a href="/site/index">深度阅读</a></h1>
+			    	<h1><?php echo CHtml::link('深度阅读',array('/site/index')); ?></h1>
 			    </li>
 			</ul>
 		<section class="top-bar-section">

@@ -10,7 +10,7 @@ return array(
 	'name' => '深度阅读',
 	'theme' => 'foundation',
 	'timeZone' => 'Asia/Shanghai',
-	'language' => 'zh_CN',
+	'language' => 'zh_cn',
 	// preloading 'log' component
 	'preload'=>array(
 		'log',

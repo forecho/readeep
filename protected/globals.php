@@ -451,11 +451,13 @@ function timeShaft($pubtime) {
     }
     /** 如果是昨天 */
     if ($days == 1) {
-        return '昨天' . date ( 'H:i', $pubtime );
+        return '昨天';
+        // return '昨天' . date ( 'H:i', $pubtime );
     }
     /** 如果是前天 */
     if ($days == 2) {
-        return '前天 ' . date ( 'H:i', $pubtime );
+        return '前天 ';
+        // return '前天 ' . date ( 'H:i', $pubtime );
     }
     /** 如果是100天内 */
     if ($days < 100) {
@@ -463,5 +465,5 @@ function timeShaft($pubtime) {
     }
     /** 超过100天 */
     // return date ( 'n月j日 H:i', $pubtime );
-    return date ( 'm月d日 H:i', $pubtime );
+    return date ( 'm月d日', $pubtime );
 }

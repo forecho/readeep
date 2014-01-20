@@ -55,7 +55,7 @@ return array(
 		// uncomment the following to enable URLs in path-format
 		// 'urlManager'=>array(
 		// 	'urlFormat'=>'path',
-		// 	'showScriptName' => false,// 使用URL重写，去掉index.php 
+		// 	'showScriptName' => false,// 使用URL重写，去掉index.php
 		// 	'urlSuffix' => '.html',//开启伪静态
 		// 	'rules'=>array(
 		// 		'<controller:\w+>/<id:\d+>'=>'<controller>/view',

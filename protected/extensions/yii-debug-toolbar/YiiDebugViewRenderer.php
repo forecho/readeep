@@ -15,21 +15,14 @@
  * @package
  * @since 1.1.7
  */
-class YiiDebugViewRenderer extends ProxyComponent
+class YiiDebugViewRenderer extends YiiDebugComponentProxy
 {
-
-    //private $_fileExtension = '.php';
 
     protected $abstract = array(
         'fileExtension' => '.php',
     );
 
     protected $_debugStackTrace = array();
-//
-//    public function getFileExtension()
-//    {
-//        return $this->_fileExtension;
-//    }
 
     public function getDebugStackTrace()
     {

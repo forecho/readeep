@@ -17,7 +17,7 @@ $this->breadcrumbs=array(
 				<ul>
 					<li>
 						<i class="fi-torso"></i>
-						<?php echo $model->admin->username; ?>
+						<?php echo $model->weixin_set->name; ?>
 					</li>
 					<li>
 						<i class="fi-calendar"></i>
@@ -88,16 +88,16 @@ $this->breadcrumbs=array(
   		<aside class="sidebar">
 			<div class="block column-about">
 				<?php echo CHtml::link(
-						CHtml::image($model->admin->avatar, '',array('class'=>'avatar-big')),
+						CHtml::image($model->weixin_set->avatar, '',array('class'=>'avatar-big')),
 						array('view', 'aid'=>$model->admin_id),
 						array('class'=>'avatar-link')
 				);?>
-				<?php echo CHtml::link($model->admin->username,
-						array('view', 'aid'=>$model->admin_id),
+				<?php echo CHtml::link($model->weixin_set->name,
+						array('view', 'id'=>$model->admin_id),
 						array('class'=>'title')
 				);?>
-			  	<div class="mt10 description"><?php echo $model->admin->description; ?></div>
-			  	<div class="tags mt10">
+			  	<div class="mt10 description"><?php echo $model->weixin_set->description; ?></div>
+			  	<div class="tags mtb10">
 			  		<?php $tags = explode(' ', $model->tags); ?>
 					<?php foreach ($tags as $key => $value): ?>
 						<?php echo CHtml::link($value,

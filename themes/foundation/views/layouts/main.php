@@ -19,21 +19,18 @@
 		<nav class="top-bar docs-bar hide-for-small" data-topbar="">
 			 <ul class="title-area">
 			    <li class="name">
-			    	<h1><a href="http://foundation.zurb.com/">Foundation</a></h1>
+			    	<h1><a href="/site/index">深度阅读</a></h1>
 			    </li>
 			</ul>
 		<section class="top-bar-section">
 			<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
-					array('label'=>'Home', 'url'=>array('/site/index')),
-					array('label'=>'Post', 'url'=>array('/postPosts/index')),
-					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-					array('label'=>'Contact', 'url'=>array('/site/contact')),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
+					array('label'=>t('Post', 'menu'), 'url'=>array('/postPosts/index')),
+					array('label'=>t('About', 'menu'), 'url'=>array('/site/page', 'view'=>'about')),
 				),
 			)); ?>
-		    <ul class="right">
+		    <!-- <ul class="right">
 				<li class="divider"></li>
 				<li class="has-dropdown not-click">
 					<a href="http://foundation.zurb.com/learn/features.html" class="">Learn</a>
@@ -50,7 +47,7 @@
 					<a href="http://foundation.zurb.com/docs" class="">Docs</a>
 				</li>
 				<li class="divider"></li>
-			</ul>
+			</ul> -->
 		  </section>
 		</nav>
 
@@ -61,46 +58,34 @@
 			</section>
 
 			<section class="middle tab-bar-section">
-				<h1 class="title">Foundation</h1>
+				<h1 class="title">深度阅读</h1>
 			</section>
 
-			<section class="right-small">
+			<!-- <section class="right-small">
 				<a class="right-off-canvas-toggle menu-icon"><span></span></a>
-			</section>
+			</section> -->
 	    </nav>
 
 	    <aside class="left-off-canvas-menu">
 	    	<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
-					array('label'=>'Home', 'url'=>array('/site/index')),
-					array('label'=>'Post', 'url'=>array('/postPosts/index')),
-					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-					array('label'=>'Contact', 'url'=>array('/site/contact')),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
+					array('label'=>t('Post', 'menu'), 'url'=>array('/postPosts/index')),
+					array('label'=>t('About', 'menu'), 'url'=>array('/site/page', 'view'=>'about')),
+					// array('label'=>'Contact', 'url'=>array('/site/contact')),
 				),
 				'htmlOptions' => array('class'=>'off-canvas-list'),
 			)); ?>
-			<ul class="off-canvas-list">
-				<li><label>Foundation</label></li>
-				<li><a href="/site/index">Home</a></li>
-				<li><a href="/postPosts/index">Post</a></li>
-				<li><label>Foundation and Empire</label></li>
-				<li><a href="#">The General</a></li>
-				<li><label>Second Foundation</label></li>
-				<li><a href="#">Search by the Mule</a></li>
-				<li><a href="#">Search by the Foundation</a></li>
-			</ul>
 	    </aside>
 
-	    <aside class="right-off-canvas-menu">
+	   	<!-- <aside class="right-off-canvas-menu">
 			<ul class="off-canvas-list">
 				<li><label>Users</label></li>
 				<li><a href="#">Emperor Cleon I</a></li>
 				<li><a href="#">Salvor Hardin</a></li>
 				<li><a href="#">Bel Riose</a></li>
 			</ul>
-	    </aside>
+	    </aside> -->
 
 	    <section class="main-section">
 			<div class="row">
@@ -111,12 +96,11 @@
 	    </section>
 	    <div class="clear"></div>
 
-		<div id="footer">
+		<div id="footer" class="mt10">
 			<div class="row">
 				<div class="large-12 columns">
-				Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+				Copyright &copy; <?php echo date('Y'); ?> by ForEcho.<br/>
 				All Rights Reserved.<br/>
-				<?php echo Yii::powered(); ?>
 				</div>
 			</div>
 		</div><!-- footer -->

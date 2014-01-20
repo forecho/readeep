@@ -69,6 +69,7 @@ class PostPosts extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'admin'=>array(self::BELONGS_TO, 'Admin', 'admin_id'),
+			'weixin_set'=>array(self::HAS_ONE, 'WeixinSet', '', 'on' => 'admin_id=weixin_set.admin_id'),
 		);
 	}
 

@@ -15,7 +15,7 @@
  * @package
  * @since 1.1.7
  */
-class ProxyComponent extends CComponent
+class YiiDebugComponentProxy extends CComponent
 {
 
     private $_instance;

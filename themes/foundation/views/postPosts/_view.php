@@ -8,7 +8,7 @@
 		<header>
 			<h1><?php echo $data->title; ?></h1>
 			<div class="post-title">
-				<a href="http://www.admin.com"><?php echo $data->admin->username; ?></a>
+				<a href="http://www.admin.com"><?php echo $data->weixin_set->name; ?></a> ·
 				<span></span>
 				<time datetime="<?php echo $data->create_time; ?>"><?php echo timeShaft($data->create_time); ?></time>
 				<a href="http://www.baidu.com">

@@ -11,6 +11,7 @@
  * @property string $rawid
  * @property string $avatar
  * @property string $qr_code
+ * @property string $description
  * @property integer $admin_id
  */
 class WeixinSet extends CActiveRecord
@@ -37,9 +38,10 @@ class WeixinSet extends CActiveRecord
 			array('rawid', 'length', 'max'=>50),
 			array('name, wx_id', 'length', 'max'=>20),
 			array('avatar, qr_code', 'length', 'max'=>100),
+			array('description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, token, name, wx_id, rawid, avatar, qr_code, admin_id', 'safe', 'on'=>'search'),
+			array('id, token, name, wx_id, rawid, avatar, qr_code, description, admin_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +69,7 @@ class WeixinSet extends CActiveRecord
 			'rawid' => 'Rawid',
 			'avatar' => 'Avatar',
 			'qr_code' => 'Qr Code',
+			'description' => 'Description',
 			'admin_id' => 'Admin',
 		);
 	}
@@ -96,6 +99,7 @@ class WeixinSet extends CActiveRecord
 		$criteria->compare('rawid',$this->rawid,true);
 		$criteria->compare('avatar',$this->avatar,true);
 		$criteria->compare('qr_code',$this->qr_code,true);
+		$criteria->compare('description',$this->description,true);
 		$criteria->compare('admin_id',$this->admin_id);
 
 		return new CActiveDataProvider($this, array(

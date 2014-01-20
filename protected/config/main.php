@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name' => 'My Web Application',
+	'name' => '深度阅读',
 	'theme' => 'foundation',
 	'timeZone' => 'Asia/Shanghai',
 	'language' => 'zh_CN',
@@ -75,6 +75,8 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
+			'enableProfiling'=>true,
+        	'enableParamLogging'=>true,
 		),
 
 		'errorHandler'=>array(

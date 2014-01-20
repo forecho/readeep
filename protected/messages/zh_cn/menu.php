@@ -3,8 +3,8 @@
 * @Author: caicai
 * @Date:   2014-01-11 12:12:27
 * @Email:  email@example.com
-* @Last modified by:   caicai
-* @Last modified time: 2014-01-11 12:13:22
+* @Last modified by:   forecho
+* @Last modified time: 2014-01-20 22:47:14
 */
 return array(
 	'Login' => '登录',
@@ -25,6 +25,7 @@ return array(
 	'Comments' => '最新评论',
 	'Logout' => '退出',
 	'About' => '关于本站',
+	'Post' => '文章',
 
 	'newPosts' => '最新发布',
 );

@@ -5,7 +5,7 @@
  * @author Sergey Malyshev <malyshev.php@gmail.com>
  */
 
-Yii::import('yii-debug-toolbar.components.YiiDebugViewRenderer');
+Yii::import('yii-debug-toolbar.YiiDebugViewRenderer');
 
 /**
  * YiiDebugToolbarPanelViews represents an ...
@@ -17,8 +17,10 @@ Yii::import('yii-debug-toolbar.components.YiiDebugViewRenderer');
  * @package
  * @since 1.1.7
  */
-class YiiDebugToolbarPanelViewsRendering extends YiiDebugToolbarPanel
+class YiiDebugToolbarPanelViews extends YiiDebugToolbarPanel
 {
+	public $i = 'l';
+	
     private $_viewsCount = 0;
 
     private $_viewRenderer;
@@ -31,7 +33,6 @@ class YiiDebugToolbarPanelViewsRendering extends YiiDebugToolbarPanel
     public function init()
     {
         parent::init();
-
         $this->_viewRenderer = Yii::app()->getComponent('viewRenderer');
     }
 
@@ -40,12 +41,11 @@ class YiiDebugToolbarPanelViewsRendering extends YiiDebugToolbarPanel
         $data = array();
         $viewRenderer = $this->_viewRenderer;
 
-        if ($viewRenderer instanceof YiiDebugViewRenderer)
-        {
+        if ($viewRenderer instanceof YiiDebugViewRenderer) {
             $data = $this->_viewRenderer->debugStackTrace;
         }
 
-        $this->render('views_rendering', array('data'=>$data));
+        $this->render('views', array('data'=>$data));
     }
 
     public function getInheritance(ReflectionClass $class)
@@ -93,9 +93,7 @@ class YiiDebugToolbarPanelViewsRendering extends YiiDebugToolbarPanel
      */
     public function getMenuSubTitle()
     {
-        return YiiDebug::t('{count} views', array(
-            '{count}'=>$this->viewsCount
-        ));
+        return $this->viewsCount;
     }
 
     /**
@@ -103,9 +101,7 @@ class YiiDebugToolbarPanelViewsRendering extends YiiDebugToolbarPanel
      */
     public function getTitle()
     {
-        return YiiDebug::t('Views Rendering ({count} rendered)', array(
-            '{count}'=>$this->viewsCount
-        ));
+        return YiiDebug::t('Views Rendering');
     }
 
     /**

@@ -63,6 +63,8 @@ class PostPostsController extends Controller
 
 		$like_count = $this->_isPostAction($id, 1);
 		$thanks_count = $this->_isPostAction($id, 2);
+		// 网站的 title
+		$this->pageTitle = $model->title.' - '.app()->name;
 		$this->render('view',array(
 			'model'=>$model,
 			'like_count'=>$like_count,

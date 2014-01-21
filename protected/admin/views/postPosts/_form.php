@@ -45,8 +45,8 @@
 		    'attribute' => 'content',
 		    // Optional config
 		    'compressorRoute' => 'tinyMce/compressor',
-		    'spellcheckerUrl' => 'http://speller.yandex.net/services/tinyspell',
-		    // 'spellcheckerUrl' => array('tinyMce/spellchecker'),
+		    // 'spellcheckerUrl' => 'http://speller.yandex.net/services/tinyspell',
+		    'spellcheckerUrl' => array('tinyMce/spellchecker'),
 		    'fileManager' => array(
 		        'class' => 'ext.yii-elfinder.TinyMceElFinder',
 		        'connectorRoute'=>'elfinder/connector',

@@ -73,7 +73,7 @@ class ServerFileInput extends CInputWidget
         $contHtmlOptions = $this->htmlOptions;
         $contHtmlOptions['id'] = $id . 'container';
         echo CHtml::openTag('div', $contHtmlOptions);
-        $inputOptions = array('id' => $id, 'style' => 'float:left;' /*, 'readonly' => 'readonly'*/);
+        $inputOptions = array('id' => $id, 'style' => 'float:left;', 'class' => 'form-control'/*, 'readonly' => 'readonly'*/);
         if ($this->hasModel())
             echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
         else

@@ -19,14 +19,17 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textField($model,'name',array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-group">
+		<?php echo CHtml::submitButton(
+			$model->isNewRecord ? 'Create' : 'Save',
+			array('class'=>'btn btn-primary')
+		); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

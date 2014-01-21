@@ -15,7 +15,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'thumb'); ?>
 		<?php $this->widget('ext.yii-elFinder.ServerFileInput', array(
 		        'model' => $model,
@@ -26,7 +26,7 @@
 		<?php echo $form->error($model,'thumb'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'image'); ?>
 		<?php $this->widget('ext.yii-elFinder.ServerFileInput', array(
 		        'model' => $model,
@@ -37,13 +37,18 @@
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'card_type_id'); ?>
-		<?php echo $form->dropDownList($model,'card_type_id',CardType::model()->getAllCardTypeName()); ?>
+		<?php echo $form->dropDownList(
+					$model,
+					'card_type_id',
+					CardType::model()->getAllCardTypeName(),
+					array('class'=>'form-control')
+				); ?>
 		<?php echo $form->error($model,'card_type_id'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'music'); ?>
 		<?php $this->widget('ext.yii-elFinder.ServerFileInput', array(
 		        'model' => $model,
@@ -54,8 +59,11 @@
 		<?php echo $form->error($model,'music'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-group">
+		<?php echo CHtml::submitButton(
+			$model->isNewRecord ? 'Create' : 'Save',
+			array('class'=>'btn btn-primary')
+		); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

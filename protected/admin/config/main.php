@@ -41,6 +41,7 @@ $backendArray=array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+
         'request' => array(
            'class' => 'application.components.HttpRequest',
            'enableCsrfValidation' => true,
@@ -75,7 +76,7 @@ if(!function_exists('w3_array_union_recursive'))
         $retval=$array1+$array2;
         foreach($array1 as $key=>$value)
         {
-            if(is_array($array1[$key]) && is_array($array2[$key]))
+            if(is_array(@$array1[$key]) && is_array(@$array2[$key]))
                 $retval[$key]=w3_array_union_recursive($array1[$key],$array2[$key]);
         }
         return $retval;

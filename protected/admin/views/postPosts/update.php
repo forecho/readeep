@@ -9,7 +9,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PostPosts', 'url'=>array('index')),
 	array('label'=>'Create PostPosts', 'url'=>array('create')),
 	array('label'=>'View PostPosts', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage PostPosts', 'url'=>array('admin')),

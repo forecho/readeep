@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PostPosts', 'url'=>array('index')),
 	array('label'=>'Create PostPosts', 'url'=>array('create')),
 	array('label'=>'Update PostPosts', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete PostPosts', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),

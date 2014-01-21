@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PostPosts', 'url'=>array('index')),
 	array('label'=>'Create PostPosts', 'url'=>array('create')),
 );
 
@@ -49,7 +48,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'title',
 		'excerpt',
 		'image',
-		'content',
+		// 'content',
 		'create_time',
 		/*
 		'status',
@@ -64,4 +63,5 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'class'=>'CButtonColumn',
 		),
 	),
+	'itemsCssClass'=>'table table-striped',
 )); ?>

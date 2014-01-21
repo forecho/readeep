@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Card', 'url'=>array('index')),
 	array('label'=>'Manage Card', 'url'=>array('admin')),
 );
 ?>

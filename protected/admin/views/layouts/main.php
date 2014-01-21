@@ -25,10 +25,10 @@
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
-					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
-					array('label'=>t('Card','menu'), 'url'=>array('/card/index')),
-					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/index')),
-					array('label'=>t('CardType','menu'), 'url'=>array('/cardType/index')),
+					array('label'=>t('Home', 'menu'), 'url'=>array('/site/admin')),
+					array('label'=>t('Card','menu'), 'url'=>array('/card/admin')),
+					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/admin')),
+					array('label'=>t('CardType','menu'), 'url'=>array('/cardType/admin')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
 				),

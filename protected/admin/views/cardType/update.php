@@ -9,7 +9,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List CardType', 'url'=>array('index')),
 	array('label'=>'Create CardType', 'url'=>array('create')),
 	array('label'=>'View CardType', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage CardType', 'url'=>array('admin')),

@@ -15,19 +15,19 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->textField($model,'title',array('class'=>'form-control','size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'title'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'excerpt'); ?>
-		<?php echo $form->textArea($model,'excerpt',array('rows'=>6, 'cols'=>50, 'maxlength'=>255)); ?>
+		<?php echo $form->textArea($model,'excerpt',array('rows'=>6, 'cols'=>50,'class'=>'form-control','maxlength'=>255)); ?>
 		<?php echo $form->error($model,'excerpt'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'image'); ?>
 		<?php $this->widget('ext.yii-elfinder.ServerFileInput', array(
 		        'model' => $model,
@@ -38,7 +38,7 @@
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'content'); ?>
 		<?php $this->widget('ext.yii-tinymce.TinyMce', array(
 		    'model' => $model,
@@ -59,7 +59,7 @@
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'create_time'); ?>
 			<?php $this->widget('application.extensions.timepicker.EJuiDateTimePicker',array(
 			    'model'=>$model,
@@ -75,28 +75,29 @@
 			        ),
 			    'htmlOptions'=>array(
 		    		'readonly'=>true,
+		    		'class'=>'form-control',
 		    		'style'=>'width:180px;'
 		    	),
 			)); ?>
 		<?php echo $form->error($model,'create_time'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->dropDownList($model,'status',array('1'=>'发布','0'=>'草稿')); ?>
+		<?php echo $form->dropDownList($model,'status',array('1'=>'发布','0'=>'草稿'),array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'order'); ?>
-		<?php echo $form->textField($model,'order'); ?>
+		<?php echo $form->textField($model,'order',array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'order'); ?>
 		<p class="hint">
 			提示：数字越小，越排前面。0在第一位。
 		</p>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'tags'); ?>
 		<?php $this->widget('ext.yii-selectize.YiiSelectize', array(
 		    'name' => 'tags',
@@ -112,8 +113,11 @@
 		<?php echo $form->error($model,'tags'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-group">
+		<?php echo CHtml::submitButton(
+			$model->isNewRecord ? 'Create' : 'Save',
+			array('class'=>'btn btn-primary')
+		); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

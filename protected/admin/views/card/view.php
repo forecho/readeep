@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Card', 'url'=>array('index')),
 	array('label'=>'Create Card', 'url'=>array('create')),
 	array('label'=>'Update Card', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete Card', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),

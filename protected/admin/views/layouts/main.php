@@ -5,9 +5,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css" /> -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" />
-
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -25,7 +25,7 @@
 		<div class="navbar-collapse collapse" id="navbar-main">
 			<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
-					array('label'=>t('Home', 'menu'), 'url'=>array('/site/admin')),
+					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
 					array('label'=>t('Card','menu'), 'url'=>array('/card/admin')),
 					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/admin')),
 					array('label'=>t('CardType','menu'), 'url'=>array('/cardType/admin')),

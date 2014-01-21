@@ -13,3 +13,7 @@
 .errorMessage, .errorSummary {
 	color: red;
 }
+.selectize-input {
+    font-size: 14px;
+    height: 34px;
+}

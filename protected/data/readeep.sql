@@ -164,6 +164,7 @@ CREATE TABLE `card_info` (
   `content` varchar(200) NOT NULL COMMENT '贺卡内容',
   `has_music` tinyint(1) DEFAULT '1' COMMENT '1播放音乐 0是没有音乐',
   `user_id` int(10) NOT NULL,
+  `name` varchar(10) NOT NULL COMMENT '发送人',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='贺卡内容表';
 

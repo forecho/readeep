@@ -21,4 +21,5 @@
 	admins 表删除 description 简介字段。
 
 01月22日
-	card 表加 title varchar(20) 字段
+	card 表加 title varchar(20) 字段。
+	card_info 表 添加 name varchar(20) 署名字段。

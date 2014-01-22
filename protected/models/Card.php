@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'card':
  * @property integer $id
+ * @property string $title
  * @property string $thumb
  * @property string $image
  * @property integer $card_type_id
@@ -39,12 +40,13 @@ class Card extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('thumb, image, card_type_id', 'required'),
+			array('title, thumb, image, card_type_id', 'required'),
 			array('card_type_id, admin_id', 'numerical', 'integerOnly'=>true),
 			array('thumb, image, music', 'length', 'max'=>100),
+			array('title', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, thumb, image, card_type_id, music, admin_id', 'safe', 'on'=>'search'),
+			array('id, title, thumb, image, card_type_id, music, admin_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +69,7 @@ class Card extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'title' => 'Title',
 			'thumb' => 'Thumb',
 			'image' => 'Image',
 			'card_type_id' => 'Card Type Id',
@@ -87,6 +90,7 @@ class Card extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('title',$this->title,true);
 		$criteria->compare('thumb',$this->thumb,true);
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('card_type_id',$this->card_type_id);

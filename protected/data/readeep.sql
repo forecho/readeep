@@ -140,6 +140,7 @@ CREATE TABLE `weixin_reply` (
 
 CREATE TABLE `card` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) NOT NULL COMMENT '贺卡标题',
   `thumb` varchar(100) NOT NULL COMMENT '贺卡缩略图片',
   `image` varchar(100) NOT NULL COMMENT '贺卡背景图片',
   `card_type_id` int(2) NOT NULL,

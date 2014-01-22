@@ -16,6 +16,12 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="form-group">
+		<?php echo $form->labelEx($model,'title'); ?>
+		<?php echo $form->textField($model,'title',array('class'=>'form-control','size'=>50,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'title'); ?>
+	</div>
+
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'thumb'); ?>
 		<?php $this->widget('ext.yii-elFinder.ServerFileInput', array(
 		        'model' => $model,

@@ -8,6 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
+	array('label'=>'List Card', 'url'=>array('index')),
 	array('label'=>'Create Card', 'url'=>array('create')),
 );
 
@@ -45,38 +46,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'title',
 		'thumb',
 		'image',
-		array(
-          	'name'=>'card_type_id',
-          	'filter'=>CardType::model()->getAllCardTypeName(),
-          	'value'=>'$data->cardType->name',
-      	),
+		'card_type_id',
 		'music',
-		// 'admin_id',
+		'admin_id',
 		array(
 			'class'=>'CButtonColumn',
-		   	'template'=>'{update} {view} {delete}',
-		    'buttons'=>array (
-		        'update'=> array(
-		            'label'=>'',
-		            'imageUrl'=>'',
-		            'options'=>array( 'class'=>'glyphicon glyphicon-pencil', 'title'=>t('update', 'menu')),
-		        ),
-		        'view'=>array(
-		            'label'=>'',
-		            'imageUrl'=>'',
-		            'options'=>array( 'class'=>'glyphicon glyphicon-search', 'title'=>t('view', 'menu')),
-		        ),
-		        'delete'=>array(
-		            'label'=>'',
-		            'imageUrl'=>'',
-		            'options'=>array( 'class'=>'glyphicon glyphicon-trash', 'title'=>t('delete', 'menu')),
-		        ),
-		    ),
-		    'htmlOptions'=>array('style' => 'width: 70px')
 		),
 	),
-	'itemsCssClass'=>'table table-striped table-bordered table-hover',
 )); ?>

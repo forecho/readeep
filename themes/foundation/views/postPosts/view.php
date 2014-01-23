@@ -101,7 +101,7 @@ $this->breadcrumbs=array(
 			  		<?php $tags = explode(' ', $model->tags); ?>
 					<?php foreach ($tags as $key => $value): ?>
 						<?php echo CHtml::link($value,
-								array('view', 'tag'=>$value),
+								array('index', 'PostPosts[tags]'=>$value),
 								array('class'=>'tag')
 						);?>
 					<?php endforeach ?>

@@ -23,3 +23,6 @@
 01月22日
 	card 表加 title varchar(20) 字段。
 	card_info 表 添加 name varchar(20) 署名字段。
+
+01月23日
+	砍掉发贺卡。

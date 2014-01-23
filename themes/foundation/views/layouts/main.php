@@ -27,7 +27,6 @@
 				'items'=>array(
 					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
 					array('label'=>t('Post', 'menu'), 'url'=>array('/postPosts/index')),
-					array('label'=>t('Card', 'menu'), 'url'=>array('/card/index')),
 					array('label'=>t('About', 'menu'), 'url'=>array('/site/page', 'view'=>'about')),
 				),
 			)); ?>
@@ -72,7 +71,6 @@
 				'items'=>array(
 					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
 					array('label'=>t('Post', 'menu'), 'url'=>array('/postPosts/index')),
-					array('label'=>t('Card', 'menu'), 'url'=>array('/card/index')),
 					array('label'=>t('About', 'menu'), 'url'=>array('/site/page', 'view'=>'about')),
 					// array('label'=>'Contact', 'url'=>array('/site/contact')),
 				),

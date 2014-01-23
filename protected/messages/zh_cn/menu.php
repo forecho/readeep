@@ -4,7 +4,7 @@
 * @Date:   2014-01-11 12:12:27
 * @Email:  email@example.com
 * @Last modified by:   forecho
-* @Last modified time: 2014-01-20 22:47:14
+* @Last modified time: 2014-01-23 21:45:18
 */
 return array(
 	'Login' => '登录',
@@ -19,7 +19,6 @@ return array(
 	'change_password' => '修改密码',
 
 	'Home' => '首页',
-	'Card' => '贺卡',
 	'New' => '最新',
 	'Submit' => '分享',
 	'Comments' => '最新评论',

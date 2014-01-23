@@ -138,37 +138,6 @@ CREATE TABLE `weixin_reply` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='回复表';
 
 
-CREATE TABLE `card` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(20) NOT NULL COMMENT '贺卡标题',
-  `thumb` varchar(100) NOT NULL COMMENT '贺卡缩略图片',
-  `image` varchar(100) NOT NULL COMMENT '贺卡背景图片',
-  `card_type_id` int(2) NOT NULL,
-  `music` varchar(100) DEFAULT NULL COMMENT '贺卡音乐',
-  `admin_id` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='贺卡表';
-
-
-CREATE TABLE `card_type` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
-  `admin_id` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='贺卡分类表';
-
-
-CREATE TABLE `card_info` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `card_id` int(2) NOT NULL,
-  `content` varchar(200) NOT NULL COMMENT '贺卡内容',
-  `has_music` tinyint(1) DEFAULT '1' COMMENT '1播放音乐 0是没有音乐',
-  `user_id` int(10) NOT NULL,
-  `name` varchar(10) NOT NULL COMMENT '发送人',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='贺卡内容表';
-
-
 CREATE TABLE `invite_code` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `code` varchar(10) NOT NULL,

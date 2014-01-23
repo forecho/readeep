@@ -45,7 +45,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'admin_id'); ?>
-		<?php echo $form->textField($model,'admin_id'); ?>
+		<?php $this->widget('ext.wdueditor.WDueditor',array(
+	        'model' => $model,
+	        'attribute' => 'admin_id',
+	        // 'toolbars' =>array(
+		       //      'FullScreen','Source','Undo', 'Redo','Bold'
+		       //  ),
+		));  ?>
 		<?php echo $form->error($model,'admin_id'); ?>
 	</div>
 

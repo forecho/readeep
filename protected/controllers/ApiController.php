@@ -2,12 +2,11 @@
 
 class ApiController extends Controller
 {
-	private $_weixinToken = "forecho";
-
-	public function actionWeixin()
+	public function actionWeixin($id)
     {
+        $weixin_set = WeixinSet::model()->findByPk($id);
         $weixin = new Weixin($_GET);
-        $weixin->token = $this->_weixinToken;
+        $weixin->token = $weixin_set->token;
         $weixin->debug = true;
 
         //网址接入时使用

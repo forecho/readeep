@@ -7,10 +7,15 @@
 body {
 	background-color: #fdfdfd;
 }
+h1 {
+	font-size: 20px;
+	font-weight: bold;
+}
 
 .fl {float: left;}
 .ml10 {margin-left: 10px;}
 .ml20 {margin-left: 20px;}
+.mb20 {margin-bottom: 20px;}
 .mt10 {margin-top: 10px;}
 .mt15 {margin-top: 15px;}
 .mt20 {margin-top: 20px;}

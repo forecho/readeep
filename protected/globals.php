@@ -428,7 +428,7 @@ function timeShaft($pubtime) {
     $time = time ();
     /** 如果不是同一年 */
     if (idate ( 'Y', $time ) != idate ( 'Y', $pubtime )) {
-        return date ( 'Y年m月d日', $pubtime );
+        return date ( 'Y-m-d', $pubtime );
     }
     /** 以下操作同一年的日期 */
     $seconds = $time - $pubtime;

@@ -12,7 +12,6 @@ $this->breadcrumbs=array(
 		<article class="post-view">
 			<header>
 				<?php //echo $model->id; ?>
-				<?php echo CHtml::link(CHtml::image($model->image, '',array('class'=>'w100')), $model->image); ?>
 				<h1 class="mtb10"><?php echo $model->title; ?></h1>
 				<ul>
 					<li>
@@ -30,6 +29,7 @@ $this->breadcrumbs=array(
 				</ul>
 			</header>
 			<section class="mtb20">
+				<?php echo CHtml::link(CHtml::image($model->image, '',array('class'=>'w100 mb20')), $model->image); ?>
 				<?php echo $model->content; ?>
 			</section>
 			<footer>

@@ -96,7 +96,7 @@ $this->breadcrumbs=array(
 						array('view', 'id'=>$model->admin_id),
 						array('class'=>'title')
 				);?>
-			  	<div class="mt10 description"><?php echo $model->weixin_set->description; ?></div>
+			  	<div class="mt10 description"><p><?php echo $model->weixin_set->description; ?></p></div>
 			  	<div class="tags mtb10">
 			  		<?php $tags = explode(' ', $model->tags); ?>
 					<?php foreach ($tags as $key => $value): ?>

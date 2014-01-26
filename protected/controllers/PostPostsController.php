@@ -161,7 +161,7 @@ class PostPostsController extends Controller
 		//print_r($xml_array->Posts);
 		$xml = $this->object_to_array($xml_array->Posts);
 		foreach($xml['Post'] as  $tmp){
-			    $model = new postPosts;
+			    $model = new PostPosts;
 				$model->title = $tmp['Title'];
 				$model->image = $tmp['Title'];
 				$model->admin_id = 1;

@@ -121,9 +121,12 @@ class PostPosts extends CActiveRecord
 		$criteria->compare('like_count',$this->like_count);
 		$criteria->compare('comment_count',$this->comment_count);
 		$criteria->compare('admin_id',$this->admin_id);
-		$criteria->order = 'create_time DESC';
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+			    'defaultOrder'=>'create_time DESC',
+			),
 		));
 	}
 

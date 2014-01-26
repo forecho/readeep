@@ -24,7 +24,7 @@ class PostPostsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','import'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -152,5 +152,34 @@ class PostPostsController extends Controller
 					)
 				);
 		return $count;
+	}
+
+	// 导入
+    public function actionImport()
+    {
+		$xml_array=simplexml_load_file('readeep.xml'); //将XML中的数据,读取到数组对象中
+		//print_r($xml_array->Posts);
+		$xml = $this->object_to_array($xml_array->Posts);
+		foreach($xml['Post'] as  $tmp){
+			    $model = new postPosts;
+				$model->title = $tmp['Title'];
+				$model->image = $tmp['Title'];
+				$model->admin_id = 1;
+				$model->create_time = date('Y-m-d H:i' , substr($tmp['CreateTime'], 0, 10 ));
+				$model->content = $tmp['Text'];
+				$model->tags = implode(" ", (array)$tmp['Tags']['Tag']);
+				$model->save();
+		}
+
+    }
+
+    public function object_to_array($obj){
+    	$arr = array();
+	 	$_arr = is_object($obj) ? get_object_vars($obj) : $obj;
+	    foreach ($_arr as $key => $val){
+	        $val = (is_array($val) || is_object($val)) ? $this->object_to_array($val) : $val;
+	        $arr[$key] = $val;
+	    }
+	    return $arr;
 	}
 }

@@ -46,6 +46,9 @@ class PostPostsController extends Controller
 		if(isset($_GET['PostPosts']))
 			$model->attributes=$_GET['PostPosts'];
 
+		// 网站的 title
+		$title = isset($_GET['PostPosts']['tags']) ? "搜索标签「".$_GET['PostPosts']['tags']."」" : '文章列表' ;
+		$this->pageTitle = $title.' - '.app()->name;
 		$this->render('index',array(
 			'model'=>$model,
 		));

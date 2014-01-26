@@ -12,16 +12,18 @@
 						$data->weixin_set->name,
 						array('view', 'id'=>$data->id)
 				);?>
-				<span></span>
+				<span> · </span>
 				<time datetime="<?php echo $data->create_time; ?>"><?php echo timeShaft($data->create_time); ?></time>
-				<a href="<?php echo Yii::app()->createUrl('postPosts/view', array('id' => $data->id))?>">
+				<?php
+				/* <a href="<?php echo Yii::app()->createUrl('postPosts/view', array('id' => $data->id))?>">
 					<i class="fi-comment"></i>
 					<span><?php if ($data->comment_count): ?>
 						<?php echo $data->comment_count; ?>条评论
 					<?php else: ?>
 						没有评论
 					<?php endif ?></span>
-				</a>
+				</a> */
+				?>
 				<a href="<?php echo Yii::app()->createUrl('postPosts/view', array('id' => $data->id))?>">
 					<i class="fi-like"></i>
 					<span><?php if ($data->like_count): ?>

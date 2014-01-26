@@ -25,6 +25,7 @@ return array(
 	'Logout' => '退出',
 	'About' => '关于本站',
 	'Post' => '文章',
+	'WeixinSet' => '微信设置',
 
 	'newPosts' => '最新发布',
 );

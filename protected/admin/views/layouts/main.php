@@ -27,6 +27,8 @@
 				'items'=>array(
 					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
 					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/admin')),
+					array('label'=>t('WeixinSet','menu'), 'url'=>array('/weixinSet/admin')),
+					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/admin')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
 				),

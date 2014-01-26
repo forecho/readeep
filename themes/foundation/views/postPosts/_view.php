@@ -23,7 +23,7 @@
 						没有评论
 					<?php endif ?></span>
 				</a> */
-				?>
+				?><span> · </span>
 				<a href="<?php echo Yii::app()->createUrl('postPosts/view', array('id' => $data->id))?>">
 					<i class="fi-like"></i>
 					<span><?php if ($data->like_count): ?>

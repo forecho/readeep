@@ -98,11 +98,24 @@ class ApiController extends Controller
 
 		$criteria = new CDbCriteria;
     	switch ($type) {
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                $criteria->limit = $type;
+                break;
     		case '%':
     			$criteria->addSearchCondition('title', $msg);
+                $criteria->limit = 5;
     			break;
     		case '#':
     			$criteria->addSearchCondition('tags', $msg);
+                $criteria->limit = 5;
     			break;
     		default:
     			# code...
@@ -110,8 +123,7 @@ class ApiController extends Controller
     	}
     	$criteria->addCondition("status=1");
     	$criteria->addCondition("create_time<".time());
-		$criteria->limit = 10;
-		$criteria->order = 'id DESC';
+		$criteria->order = 'create_time DESC';
 		$data = PostPosts::model()->findAll($criteria);
     	foreach ($data as $key => $value) {
 		    $item['items'][$key]['title'] = $value->attributes['title'];

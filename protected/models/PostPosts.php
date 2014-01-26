@@ -121,7 +121,7 @@ class PostPosts extends CActiveRecord
 		$criteria->compare('like_count',$this->like_count);
 		$criteria->compare('comment_count',$this->comment_count);
 		$criteria->compare('admin_id',$this->admin_id);
-
+		$criteria->order = 'create_time DESC';
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -137,7 +137,7 @@ class PostPosts extends CActiveRecord
 
 	protected function afterFind()
 	{
-	    $this->create_time = Yii::app()->dateFormatter->format('yyyy-MM-dd hh:mm', $this->create_time);
+	    $this->create_time = Yii::app()->dateFormatter->format('yyyy-MM-dd HH:mm', $this->create_time);
 	    return parent::afterFind();
 	}
 }

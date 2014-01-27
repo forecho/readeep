@@ -15,8 +15,12 @@ $this->widget('zii.widgets.CListView', array(
     'pager' => array(
             'header'=>false,
             'htmlOptions'=>array('class'=>'pagination'),
-            'selectedPageCssClass' => 'active',
+            'selectedPageCssClass' => 'current',
             'hiddenPageCssClass' => 'disabled',
+            'firstPageLabel'=>'首页',//定义首页按钮的显示文字
+            'lastPageLabel'=>'尾页',//定义末页按钮的显示文字
+            'nextPageLabel'=>'下一页',//定义下一页按钮的显示文字
+            'prevPageLabel'=>'上一页',//定义上一页按钮的显示文字
         ),
     'htmlOptions'=>array('class'=>'list-group'),
     'itemsTagName'=>'div',

@@ -44,6 +44,7 @@ h1 {
 	z-index: 1;
 	position:absolute;
 	bottom: 20px;
+	padding: 0 22px 0 0;
 }
 .post-list, .post-list h1, .post-list a {
 	color: #FFF;

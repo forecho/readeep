@@ -36,7 +36,7 @@ class ApiController extends Controller
         	// echo $weixin->makeText($msg);
         	//echo $weixin->makeText(Yii::app()->session['uid']);
         	// echo $weixin->makeText($open_id);
-        	$item = $this->_search($msg, $open_id);
+        	$item = $this->_search($msg, $open_id, $admin->admin_id);
         	echo $weixin->makeNews($item);
             break;
         case 'image':
@@ -90,7 +90,7 @@ class ApiController extends Controller
     	}
     }
 
-    public function _search($msg, $open_id)
+    public function _search($msg, $open_id, $admin_id)
     // public function actionSearch($msg='')
     {
     	$type = substr($msg, 0, 1 );
@@ -121,7 +121,8 @@ class ApiController extends Controller
     			# code...
     			break;
     	}
-    	$criteria->addCondition("status=1");
+        $criteria->addCondition("status=1");
+    	$criteria->addCondition("$admin_id=".$admin_id);
     	$criteria->addCondition("create_time<".time());
 		$criteria->order = 'create_time DESC';
 		$data = PostPosts::model()->findAll($criteria);

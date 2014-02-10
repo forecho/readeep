@@ -82,6 +82,21 @@ $this->breadcrumbs=array(
 					} ?>
 				</div>
 			</footer>
+			<!-- Duoshuo Comment BEGIN -->
+			<div class="ds-thread" data-thread-key="<?php echo $model->id; ?>" data-title="<?php echo $model->title; ?>" data-image="<?php echo $model->image; ?>"></div>
+			<!-- <div class="ds-thread"></div> -->
+			<script type="text/javascript">
+			var duoshuoQuery = {short_name:"readeep"};
+				(function() {
+					var ds = document.createElement('script');
+					ds.type = 'text/javascript';ds.async = true;
+					ds.src = 'http://static.duoshuo.com/embed.js';
+					ds.charset = 'UTF-8';
+					(document.getElementsByTagName('head')[0] 
+					|| document.getElementsByTagName('body')[0]).appendChild(ds);
+				})();
+				</script>
+			<!-- Duoshuo Comment END -->
 		</article>
   	</div>
   	<div class="medium-3 large-3 columns pl10">

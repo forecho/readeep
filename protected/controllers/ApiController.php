@@ -127,7 +127,8 @@ class ApiController extends Controller
 		$criteria->order = 'create_time DESC';
 		$data = PostPosts::model()->findAll($criteria);
     	foreach ($data as $key => $value) {
-		    $item['items'][$key]['title'] = $value->attributes['title'];
+            // $item['items'][$key]['title'] = $value->attributes['title'];
+		    $item['items'][$key]['title'] = Yii::app()->session['sleep'] = "value";;
 		    $item['items'][$key]['description'] = $value->attributes['excerpt'];
 		    $item['items'][$key]['picurl'] = $value->attributes['image'];
 		    $item['items'][$key]['url'] = Yii::app()->request->hostInfo.'/index.php?r=postPosts/view&id='.$value->attributes['id'].'&oid='.$open_id;

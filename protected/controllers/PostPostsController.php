@@ -60,7 +60,6 @@ class PostPostsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		var_dump(Yii::app()->session['sleep']);
 		$model = $this->loadModel($id);
 		// 计时器 围观+1
 		$model->saveCounters(array('view_count'=>1));

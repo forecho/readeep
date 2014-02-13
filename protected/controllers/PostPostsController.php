@@ -39,7 +39,6 @@ class PostPostsController extends Controller
 
 	public function actionIndex()
 	{
-		var_dump(Yii::app()->session['sleep']);
 		$model=new PostPosts('search');
 		$model->unsetAttributes();  // clear any default values
 		$model->status = 1; // 筛选掉草稿
@@ -61,6 +60,7 @@ class PostPostsController extends Controller
 	 */
 	public function actionView($id)
 	{
+		var_dump(Yii::app()->session['sleep']);
 		$model = $this->loadModel($id);
 		// 计时器 围观+1
 		$model->saveCounters(array('view_count'=>1));

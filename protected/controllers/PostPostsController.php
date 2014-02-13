@@ -39,7 +39,7 @@ class PostPostsController extends Controller
 
 	public function actionIndex()
 	{
-		echo Yii::app()->session['sleep'];
+		var_dump(Yii::app()->session['sleep']);
 		$model=new PostPosts('search');
 		$model->unsetAttributes();  // clear any default values
 		$model->status = 1; // 筛选掉草稿

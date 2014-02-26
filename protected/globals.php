@@ -8,7 +8,7 @@
  * This is the shortcut to DIRECTORY_SEPARATOR
  */
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
- 
+
 /**
  * This is the shortcut to Yii::app()
  * @return CApplication Yii::app()
@@ -17,7 +17,7 @@ function app()
 {
     return Yii::app();
 }
- 
+
 /**
  * This is the shortcut to Yii::app()->clientScript
  * @return CClientScript Yii::app()->clientScript
@@ -51,7 +51,7 @@ function aurl($route, array $params=array(), $schema='', $anchor = null, $ampers
 {
     return Yii::app()->createAbsoluteUrl($route, $params, $schema, $ampersand) . ($anchor !== null ? '#' . $anchor : '');
 }
- 
+
 /**
  * This is the shortcut to CHtml::encode
  * @param string $text 待处理字符串
@@ -61,7 +61,7 @@ function h($text)
 {
     return CHtml::encode($text);
 }
- 
+
 /**
  * This is the shortcut to CHtml::link()
  * @param string $text 链接显示文本
@@ -85,7 +85,7 @@ function image($src, $alt='', $htmlOptions=array())
 {
     return CHtml::image($src, $alt, $htmlOptions);
 }
- 
+
 /**
  * This is the shortcut to Yii::t() with default category = 'stay'
  */
@@ -93,7 +93,7 @@ function t($message, $category = 'main', $params = array(), $source = null, $lan
 {
     return Yii::t($category, $message, $params, $source, $language);
 }
- 
+
 /**
  * This is the shortcut to Yii::app()->request->baseUrl
  * If the parameter is given, it will be returned and prefixed with the app baseUrl.
@@ -121,7 +121,7 @@ function abu($url = null)
         $baseUrl = rtrim(Yii::app()->request->getBaseUrl(true), '/') . '/';
     return $url === null ? $baseUrl : $baseUrl. ltrim($url, '/');
 }
- 
+
 /**
  * Returns the named application parameter.
  * This is the shortcut to Yii::app()->params[$name].
@@ -132,7 +132,7 @@ function param($name)
 {
     return Yii::app()->params[$name];
 }
- 
+
 /**
  * This is the shortcut to Yii::app()->user.
  * @return CWebUser
@@ -151,7 +151,7 @@ function tbu($url = null, $useDefault = true)
 {
     if (empty(Yii::app()->theme))
         return sbu($url);
-    
+
     static $themeBasePath;
     static $themeBaseUrl;
     $themeBasePath = rtrim(param('themeResourceBasePath'), DS) . DS . Yii::app()->theme->name . DS;
@@ -187,7 +187,7 @@ function fbu($url = null)
     static $uploadBaseUrl = null;
     if ($uploadBaseUrl === null)
         $uploadBaseUrl = rtrim(param('uploadBaseUrl'), '/') . '/';
-    
+
     return $url === null ? $uploadBaseUrl : $uploadBaseUrl . ltrim($url, '/');
 }
 
@@ -201,7 +201,7 @@ function sbu($url = null)
     static $resourceBaseUrl = null;
     if ($resourceBaseUrl === null)
         $resourceBaseUrl = rtrim(param('resourceBaseUrl'), '/') . '/';
-    
+
     return $url === null ? $resourceBaseUrl : $resourceBaseUrl . ltrim($url, '/');
 }
 
@@ -318,12 +318,12 @@ function GetIp2Taobao() {
  * 正则匹配获取URL中的域名
  */
 function GetDomain($url){
-    // 从 URL 中取得主机名 
-    preg_match("/^(http:\/\/)?([^\/]+)/i", $url, $matches); 
-    $host = $matches[2]; 
-    // 从主机名中取得后面两段 
-    preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches); 
-    //echo "domain name is: {$matches[0]}\n"; 
+    // 从 URL 中取得主机名
+    preg_match("/^(http:\/\/)?([^\/]+)/i", $url, $matches);
+    $host = $matches[2];
+    // 从主机名中取得后面两段
+    preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches);
+    //echo "domain name is: {$matches[0]}\n";
     $domain = $matches[0];
     return $domain;
 }
@@ -332,9 +332,9 @@ function GetDomain($url){
  * 获取META信息
  */
 function GetSiteMeta($url) {
-    
+
     $data = file_get_contents($url);
-         
+
     $meta = array();
     if (!empty($data)) {
         #Title
@@ -349,7 +349,7 @@ function GetSiteMeta($url) {
 /**
  *  把数组加密为URL可传递的字符串，只支持一维数组
  * @param array $params
- * @return string 
+ * @return string
  */
 function encryptParamsForUrl($params){
     if(is_array($params)){
@@ -466,4 +466,17 @@ function timeShaft($pubtime) {
     /** 超过100天 */
     // return date ( 'n月j日 H:i', $pubtime );
     return date ( 'm月d日', $pubtime );
+}
+
+ /**
+ * 根据 email 获取 gravatar 头像的地址
+ * @param $email
+ * @param int $size
+ * @param string $type
+ * @param string $rating
+ * @return string
+ */
+function getGravatarUrl($email, $size = 64, $type = 'identicon', $rating = 'pg'){
+    $gravatar = sprintf('http://www.gravatar.com/avatar/%s?d=%s&s=%d&r=%s', md5($email), $type, $size, $rating);
+    return $gravatar;
 }

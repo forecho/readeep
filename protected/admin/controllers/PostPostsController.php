@@ -76,6 +76,7 @@ class PostPostsController extends Controller
 				$model->tags = implode(' ', $_POST['tags']);
 			}
 			$model->attributes=$_POST['PostPosts'];
+			$model->weixin_id=Yii::app()->session['weixin_id'];;
 			if($model->save()){
 				Yii::app()->user->setFlash('success', "Thinks saved success!");
 				$this->redirect(array('view','id'=>$model->id));
@@ -102,6 +103,7 @@ class PostPostsController extends Controller
 				$tags[$key] = new PostTags;
 				$tags[$key]->name = $value;
 				$tags[$key]->admin_id = Yii::app()->user->id;
+				$tags[$key]->weixin = Yii::app()->session['weixin_id'];
 				$tags[$key]->save();
 			}
 		}

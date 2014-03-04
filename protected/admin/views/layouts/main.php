@@ -26,6 +26,7 @@
 			<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
 					array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
+					array('label'=>t('Admin', 'menu'), 'url'=>array('/admin/index')),
 					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/admin')),
 					array('label'=>t('WeixinSet','menu'), 'url'=>array('/weixinSet/admin')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),

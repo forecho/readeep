@@ -51,6 +51,7 @@ class WeixinSetController extends Controller
 	 */
 	public function actionView($id)
 	{
+		Yii::app()->session['weixin_id'] = $id;
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));

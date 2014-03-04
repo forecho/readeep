@@ -31,7 +31,14 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$data = WeixinSet::model()->findAll(
+					'admin_id=:admin_id',
+					array(':admin_id'=>Yii::app()->user->id)
+				);
+		$this->render('index', array(
+			'data'=>$data,
+		));
+
 	}
 
    	public function actionWeixin()
@@ -39,13 +46,13 @@ class SiteController extends Controller
         $weixin = new Weixin($_GET);
         $weixin->token = $this->_weixinToken;
         $weixin->debug = true;
- 		
+
         //网址接入时使用
         if (isset($_GET['echostr']))
         {
             $weixin->valid();
         }
-        
+
         $item['items'][0]['title'] = "hello";
     	$item['items'][0]['description'] = "美图";
     	$item['items'][0]['picurl'] = "http://img.weimob.com/static/19/98/8b/image/20131112/20131112113604_35285.jpg";
@@ -81,7 +88,7 @@ class SiteController extends Controller
         	echo "event";
             //你要处理事件消息代码
             break;
-        default: 
+        default:
         	echo "无效";
             //无效消息情况下的处理方式
             break;

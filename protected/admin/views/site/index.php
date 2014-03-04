@@ -6,15 +6,17 @@ $this->pageTitle=Yii::app()->name;
 
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<div class="row">
+	<?php foreach ($data as $key => $value): ?>
+		<div class="col-sm-6 col-md-4">
+			<a href="<?php echo Yii::app()->createUrl('weixinSet/view', array('id' => $value->id)); ?>">
+				<div class="thumbnail">
+					<img src="<?php echo $value->avatar; ?>" alt="<?php echo $value->name; ?>">
+					<div class="caption">
+						<h3><?php echo $value->name; ?></h3>
+					</div>
+				</div>
+			</a>
+		</div>
+	<?php endforeach ?>
+</div>

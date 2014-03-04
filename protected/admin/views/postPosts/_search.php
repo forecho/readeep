@@ -76,6 +76,11 @@
 		<?php echo $form->textField($model,'admin_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'weixin_id'); ?>
+		<?php echo $form->textField($model,'weixin_id'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

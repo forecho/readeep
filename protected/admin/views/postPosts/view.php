@@ -33,5 +33,6 @@ $this->menu=array(
 		'thanks_count',
 		'like_count',
 		'admin_id',
+		'weixin_id',
 	),
 )); ?>

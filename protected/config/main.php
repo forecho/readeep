@@ -22,6 +22,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'application.extensions.qiniu.QiNiuClound',
 	),
 
 	'modules'=>array(

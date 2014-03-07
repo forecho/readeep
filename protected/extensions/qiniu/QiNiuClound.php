@@ -12,7 +12,7 @@ class QiNiuClound extends CApplicationComponent
     public $accessKey;
     public $secretKey;
 
-    public function __construct($bucket = 'phpers', $accessKey = 'Nvn2WQOsP8jUF8b7rXCaj9Td1V8yUrAZxZoL2X6c', $secretKey = 'WI6vG6ATtmvrMBVM9lkpAML9ulTyLGJEWIetzuz4')
+    public function __construct($bucket = 'readeep', $accessKey = 'nfrMLWJnNuGCdVQbJHEeRTIOh2BWE4gEJBM7WOHg', $secretKey = 'QtaXSlyXMLQ2nF82Nzhb9nQiFUosOHu3iOlVEu8m')
     {
         $this->bucket    = $bucket;
         $this->accessKey = $accessKey;

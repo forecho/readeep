@@ -7,11 +7,11 @@
 <div class="form">
 
         <?php
-                $form = $this->beginWidget('CActiveForm', array(
-                    'id'                   => 'post-posts-form',
-                    'htmlOptions'          => array('name' => 'myForm'),
-                    'enableAjaxValidation' => true,
-                ));
+            $form = $this->beginWidget('CActiveForm', array(
+                'id'                   => 'post-posts-form',
+                'htmlOptions'          => array('name' => 'myForm'),
+                'enableAjaxValidation' => true,
+            ));
         ?>
 
         <p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -19,35 +19,35 @@
         <?php echo $form->errorSummary($model); ?>
 
         <div class="form-group">
-                <?php echo $form->labelEx($model, 'title'); ?>
-                <?php echo $form->textField($model, 'title', array('class'     => 'form-control', 'size'      => 50, 'maxlength' => 50)); ?>
-                <?php echo $form->error($model, 'title'); ?>
+            <?php echo $form->labelEx($model, 'title'); ?>
+            <?php echo $form->textField($model, 'title', array('class' => 'form-control', 'size' => 50, 'maxlength' => 50)); ?>
+            <?php echo $form->error($model, 'title'); ?>
         </div>
 
         <div class="form-group">
-                <?php echo $form->labelEx($model, 'excerpt'); ?>
-                <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
-                <?php echo $form->error($model, 'excerpt'); ?>
+            <?php echo $form->labelEx($model, 'excerpt'); ?>
+            <?php echo $form->textArea($model, 'excerpt', array('rows' => 6, 'cols' => 50, 'class' => 'form-control', 'maxlength' => 255)); ?>
+            <?php echo $form->error($model, 'excerpt'); ?>
         </div>
         <div class="form-group">
                 <?php echo $form->labelEx($model, 'content'); ?>
                 <?php
-                        $this->widget('ext.yii-tinymce.TinyMce', array(
-                            'model'           => $model,
-                            'attribute'       => 'content',
-                            // Optional config
-                            'compressorRoute' => 'tinyMce/compressor',
-                            // 'spellcheckerUrl' => 'http://speller.yandex.net/services/tinyspell',
-                            'spellcheckerUrl' => array('tinyMce/spellchecker'),
-                            'fileManager'     => array(
-                                'class'          => 'ext.yii-elfinder.TinyMceElFinder',
-                                'connectorRoute' => 'elfinder/connector',
-                            ),
-                            'htmlOptions'     => array(
-                                'rows' => 30,
-                                'cols' => 60,
-                            ),
-                        ));
+                    $this->widget('ext.yii-tinymce.TinyMce', array(
+                        'model'           => $model,
+                        'attribute'       => 'content',
+                        // Optional config
+                        'compressorRoute' => 'tinyMce/compressor',
+                        // 'spellcheckerUrl' => 'http://speller.yandex.net/services/tinyspell',
+                        'spellcheckerUrl' => array('tinyMce/spellchecker'),
+                        'fileManager'     => array(
+                            'class'          => 'ext.yii-elfinder.TinyMceElFinder',
+                            'connectorRoute' => 'elfinder/connector',
+                        ),
+                        'htmlOptions'     => array(
+                            'rows' => 30,
+                            'cols' => 60,
+                        ),
+                    ));
                 ?>
                 <?php echo $form->error($model, 'content'); ?>
         </div>
@@ -167,64 +167,64 @@
         }
 </style>
 <script>
-        document.getElementById("submit").onclick = function() {
-                qiniuAjaxUp();
-        };
-        function qiniuAjaxUp()
-        {
-                var Qiniu_UploadUrl = "http://up.qiniu.com";
-                var progressbar = $("#progressbar"),
-                        progressLabel = $(".progress-label");
-                //普通上传
-                var Qiniu_upload = function(f, token, key) {
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('POST', Qiniu_UploadUrl, true);
-                        var formData, startDate;
-                        formData = new FormData();
-                        if (key !== null && key !== undefined)
-                                formData.append('key', key);
-                        formData.append('token', token);
-                        formData.append('file', f);
-                        var taking;
-                        xhr.upload.addEventListener("progress", function(evt) {
-                                if (evt.lengthComputable) {
-                                        var nowDate = new Date().getTime();
-                                        taking = nowDate - startDate;
-                                        var x = (evt.loaded) / 1024;
-                                        var y = taking / 1000;
-                                        var uploadSpeed = (x / y);
-                                        var formatSpeed;
-                                        if (uploadSpeed > 1024) {
-                                                formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
-                                        } else {
-                                                formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
-                                        }
-                                        var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-                                        progressbar.progressbar("value", percentComplete);
-                                        // console && console.log(percentComplete, ",", formatSpeed);
-                                }
-                        }, false);
-                        xhr.onreadystatechange = function(response) {
-                                if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
-                                        var blkRet = JSON.parse(xhr.responseText);
-//                                                console && console.log(blkRet);
-//                                         $("#dialog").html(xhr.responseText).dialog();
-                                        document.getElementById('PostPosts_image').value=document.getElementById('key').value;
-                                        document.getElementById('post-posts-form').submit();
-                                } else if (xhr.status != 200 && xhr.responseText) {
-
-                                }
-                        };
-                        startDate = new Date().getTime();
-                        $("#progressbar").show();
-                        xhr.send(formData);
-                };
-                var token = $("#token").val();
-                if ($("#file")[0].files.length > 0 && token != "") {
-                        Qiniu_upload($("#file")[0].files[0], token, $("#key").val());
+document.getElementById("submit").onclick = function() {
+    qiniuAjaxUp();
+};
+function qiniuAjaxUp()
+{
+    var Qiniu_UploadUrl = "http://up.qiniu.com";
+    var progressbar = $("#progressbar"),
+        progressLabel = $(".progress-label");
+    //普通上传
+    var Qiniu_upload = function(f, token, key) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', Qiniu_UploadUrl, true);
+        var formData, startDate;
+        formData = new FormData();
+        if (key !== null && key !== undefined)
+            formData.append('key', key);
+        formData.append('token', token);
+        formData.append('file', f);
+        var taking;
+        xhr.upload.addEventListener("progress", function(evt) {
+            if (evt.lengthComputable) {
+                var nowDate = new Date().getTime();
+                taking = nowDate - startDate;
+                var x = (evt.loaded) / 1024;
+                var y = taking / 1000;
+                var uploadSpeed = (x / y);
+                var formatSpeed;
+                if (uploadSpeed > 1024) {
+                    formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
                 } else {
-                        console && console.log("form input error");
+                    formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
                 }
+                var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                progressbar.progressbar("value", percentComplete);
+                // console && console.log(percentComplete, ",", formatSpeed);
+            }
+        }, false);
+        xhr.onreadystatechange = function(response) {
+            if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+                var blkRet = JSON.parse(xhr.responseText);
+                //  console && console.log(blkRet);
+                //  $("#dialog").html(xhr.responseText).dialog();
+                document.getElementById('PostPosts_image').value=document.getElementById('key').value;
+                document.getElementById('post-posts-form').submit();
+            } else if (xhr.status != 200 && xhr.responseText) {
+                // do something
+            }
+        };
+        startDate = new Date().getTime();
+        $("#progressbar").show();
+        xhr.send(formData);
+    };
+    var token = $("#token").val();
+    if ($("#file")[0].files.length > 0 && token != "") {
+        Qiniu_upload($("#file")[0].files[0], token, $("#key").val());
+    } else {
+        console && console.log("form input error");
+    }
 
-        }
+}
 </script>

@@ -19,18 +19,11 @@ class QiNiuController extends Controller
         );
     }
 
-<<<<<<< HEAD
-                public function actionIndex()
-                {
-                        $obj = new QiNiuClound();
-                        $this->render('index', array('token' => $obj->getUpToken()));
-                }
-=======
+
     public function actionIndex()
     {
        $obj=new QiNiuClound();
        $this->render('index',array('token'=>$obj->getUpToken()));
     }
->>>>>>> 7f4077693cb59a693d717044b54d31820ba3ddc2
 
 }

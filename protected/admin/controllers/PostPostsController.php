@@ -14,14 +14,22 @@ class PostPostsController extends Controller
      */
     public function filters()
     {
+<<<<<<< HEAD
         return array(
             'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
         );
+=======
+            return array(
+                'accessControl', // perform access control for CRUD operations
+                'postOnly + delete', // we only allow deletion via POST request
+            );
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     public function actions()
     {
+<<<<<<< HEAD
         return array(
             'connector' => array(
                 'class'    => 'ext.yii-elfinder.ElFinderConnectorAction',
@@ -33,6 +41,19 @@ class PostPostsController extends Controller
                 )
             ),
         );
+=======
+            return array(
+                'connector' => array(
+                    'class'    => 'ext.yii-elfinder.ElFinderConnectorAction',
+                    'settings' => array(
+                        'root'       => Yii::getPathOfAlias('webroot') . '/uploads/',
+                        'URL'        => Yii::app()->baseUrl . '/uploads/',
+                        'rootAlias'  => 'Home',
+                        'mimeDetect' => 'none'
+                    )
+                ),
+            );
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -42,6 +63,7 @@ class PostPostsController extends Controller
      */
     public function accessRules()
     {
+<<<<<<< HEAD
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view'),
@@ -59,6 +81,25 @@ class PostPostsController extends Controller
                 'users' => array('*'),
             ),
         );
+=======
+            return array(
+                array('allow', // allow all users to perform 'index' and 'view' actions
+                    'actions' => array('index', 'view'),
+                    'users'   => array('*'),
+                ),
+                array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                    'actions' => array('create', 'update'),
+                    'users'   => array('@'),
+                ),
+                array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                    'actions' => array('admin', 'delete'),
+                    'users'   => array('admin'),
+                ),
+                array('deny', // deny all users
+                    'users' => array('*'),
+                ),
+            );
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -67,9 +108,15 @@ class PostPostsController extends Controller
      */
     public function actionView($id)
     {
+<<<<<<< HEAD
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
+=======
+            $this->render('view', array(
+                'model' => $this->loadModel($id),
+            ));
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -79,6 +126,7 @@ class PostPostsController extends Controller
     public function actionCreate()
     {
 
+<<<<<<< HEAD
         Yii::import('ext.yii-tinymce.*');
         $model = new PostPosts;
         $obj = new QiNiuClound();
@@ -107,6 +155,36 @@ class PostPostsController extends Controller
             'model' => $model,
             'token' => $obj->getUpToken(),
         ));
+=======
+            Yii::import('ext.yii-tinymce.*');
+            $model = new PostPosts;
+            $obj = new QiNiuClound();
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
+
+            if (isset($_POST['PostPosts']))
+            {
+                    if (isset($_POST['tags']))
+                    {
+                            // 添加标签
+                            $this->createTags($_POST['tags']);
+                            $model->tags = implode(' ', $_POST['tags']);
+                    }
+                    $model->attributes = $_POST['PostPosts'];
+                    $model->weixin_id  = Yii::app()->session['weixin_id'];
+                    ;
+                    if ($model->save())
+                    {
+                            Yii::app()->user->setFlash('success', "Thinks saved success!");
+                            $this->redirect(array('view', 'id' => $model->id));
+                    }
+            }
+
+            $this->render('create', array(
+                'model' => $model,
+                'token' => $obj->getUpToken(),
+            ));
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -114,6 +192,7 @@ class PostPostsController extends Controller
      */
     public function createTags($tags)
     {
+<<<<<<< HEAD
         foreach ($tags as $key => $value)
         {
             $count[$key] = PostTags::model()->countByAttributes(array(
@@ -130,6 +209,24 @@ class PostPostsController extends Controller
                 $tags[$key]->save();
             }
         }
+=======
+            foreach ($tags as $key => $value)
+            {
+                    $count[$key] = PostTags::model()->countByAttributes(array(
+                        'name'     => $value,
+                        'admin_id' => Yii::app()->user->id
+                    ));
+                    // 判断标签是否存在
+                    if (!$count[$key])
+                    {
+                            $tags[$key]           = new PostTags;
+                            $tags[$key]->name     = $value;
+                            $tags[$key]->admin_id = Yii::app()->user->id;
+                            $tags[$key]->weixin   = Yii::app()->session['weixin_id'];
+                            $tags[$key]->save();
+                    }
+            }
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -139,6 +236,7 @@ class PostPostsController extends Controller
      */
     public function actionUpdate($id)
     {
+<<<<<<< HEAD
         Yii::import('ext.yii-tinymce.*');
         $model = $this->loadModel($id);
 
@@ -162,6 +260,31 @@ class PostPostsController extends Controller
         $this->render('update', array(
             'model' => $model,
         ));
+=======
+            Yii::import('ext.yii-tinymce.*');
+            $model = $this->loadModel($id);
+
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
+
+            if (isset($_POST['PostPosts']))
+            {
+                    $model->attributes = $_POST['PostPosts'];
+                    // 标签
+                    if (isset($_POST['tags']))
+                    {
+                            // 添加标签
+                            $this->createTags($_POST['tags']);
+                            $model->tags = implode(' ', $_POST['tags']);
+                    }
+                    if ($model->save())
+                            $this->redirect(array('view', 'id' => $model->id));
+            }
+
+            $this->render('update', array(
+                'model' => $model,
+            ));
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -171,11 +294,19 @@ class PostPostsController extends Controller
      */
     public function actionDelete($id)
     {
+<<<<<<< HEAD
         $this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+=======
+            $this->loadModel($id)->delete();
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if (!isset($_GET['ajax']))
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -183,10 +314,17 @@ class PostPostsController extends Controller
      */
     public function actionIndex()
     {
+<<<<<<< HEAD
         $dataProvider = new CActiveDataProvider('PostPosts');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
+=======
+            $dataProvider = new CActiveDataProvider('PostPosts');
+            $this->render('index', array(
+                'dataProvider' => $dataProvider,
+            ));
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
     }
 
     /**
@@ -197,7 +335,11 @@ class PostPostsController extends Controller
         $model             = new PostPosts('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['PostPosts']))
+<<<<<<< HEAD
             $model->attributes = $_GET['PostPosts'];
+=======
+                $model->attributes = $_GET['PostPosts'];
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
 
         $this->render('admin', array(
             'model' => $model,
@@ -215,7 +357,11 @@ class PostPostsController extends Controller
     {
         $model = PostPosts::model()->findByPk($id);
         if ($model === null)
+<<<<<<< HEAD
             throw new CHttpException(404, 'The requested page does not exist.');
+=======
+                throw new CHttpException(404, 'The requested page does not exist.');
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
         return $model;
     }
 
@@ -227,8 +373,13 @@ class PostPostsController extends Controller
     {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'post-posts-form')
         {
+<<<<<<< HEAD
             echo CActiveForm::validate($model);
             Yii::app()->end();
+=======
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+>>>>>>> 0b191e8d6787fae60685ed503fc57becb30df98f
         }
     }
 

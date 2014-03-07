@@ -4,6 +4,7 @@ protected/admin/runtime/
 nbproject/
 .idea/
 uploads/
+index.php
 !protected/extensions/yii-debug-toolbar/assets/
 !protected/extensions/yii-elfinder/assets/
 !protected/extensions/timepicker/assets/

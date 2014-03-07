@@ -32,6 +32,7 @@ $backendArray=array(
         'application.models.*',
         'application.components.*',
         'application.extensions.*',
+         'application.extensions.qiniu.QiNiuClound',
         'application.extensions.nestedset.*',
         'backend.models.*',
         'backend.components.*', //这里的先后顺序一定要搞清

@@ -21,9 +21,8 @@
 
                 public function actionIndex()
                 {
-                        
-                       $obj=new QiNiuClound();
-                       $this->render('index',array('token'=>$obj->getUpToken()));
-                   }
+                        $obj = new QiNiuClound();
+                        $this->render('index', array('token' => $obj->getUpToken()));
+                }
 
         }

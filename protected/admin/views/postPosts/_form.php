@@ -29,7 +29,7 @@
                                 <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
                                 <?php echo $form->error($model, 'excerpt'); ?>
                 </div>
-                
+
                 <div class="form-group">
                                 <?php echo $form->labelEx($model, 'create_time'); ?>
                                 <?php
@@ -54,7 +54,7 @@
                                 ?>
                                 <?php echo $form->error($model, 'create_time'); ?>
                 </div>
-                
+
                 <div class="form-group">
                                 <?php echo $form->labelEx($model, 'content'); ?>
                                 <?php
@@ -82,7 +82,7 @@
                                 <?php echo $form->error($model, 'content'); ?>
                 </div>
 
-            
+
 
                 <div class="form-group">
                                 <?php echo $form->labelEx($model, 'status'); ?>
@@ -175,11 +175,19 @@
 </style>
 <script>
                 document.getElementById("submit").onclick = function() {
-
+                                
+                                if (document.getElementById('key').value.length == 0)
+                                {
+                                                var path = document.getElementById("file").value;
+                                                var fileName = getFileName(path);
+                                                document.getElementById('key').value=fileName;
+                                }
                                 qiniuAjaxUp();
                 };
                 function qiniuAjaxUp()
                 {
+
+
                                 var Qiniu_UploadUrl = "http://up.qiniu.com";
                                 var progressbar = $("#progressbar"),
                                         progressLabel = $(".progress-label");
@@ -242,5 +250,14 @@
                                                 console && console.log("form input error");
                                 }
 
+                }
+                function getFileName(path) {
+                                var pos1 = path.lastIndexOf('/');
+                                var pos2 = path.lastIndexOf('\\');
+                                var pos = Math.max(pos1, pos2)
+                                if (pos < 0)
+                                                return path;
+                                else
+                                                return path.substring(pos + 1);
                 }
 </script>

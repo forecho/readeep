@@ -82,7 +82,7 @@ class PostPostsController extends Controller
 
         Yii::import('ext.yii-tinymce.*');
         $model = new PostPosts;
-        $obj = new QiNiuClound();
+        $obj = new QiNiuClound('scz');
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
@@ -96,9 +96,10 @@ class PostPostsController extends Controller
             }
             $model->attributes = $_POST['PostPosts'];
             $model->weixin_id  = Yii::app()->session['weixin_id'];
-            ;
+            print_r( $_POST);exit;
             if ($model->save())
             {
+                           
                 Yii::app()->user->setFlash('success', "Thinks saved success!");
                 $this->redirect(array('view', 'id' => $model->id));
             }

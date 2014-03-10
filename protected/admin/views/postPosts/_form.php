@@ -6,7 +6,6 @@
 
 <div class="form">
 
-                <<<<<<< HEAD
                 <?php
                         $form = $this->beginWidget('CActiveForm', array(
                             'id'                   => 'post-posts-form',
@@ -14,21 +13,11 @@
                             'enableAjaxValidation' => true,
                         ));
                 ?>
-                =======
-                <?php
-                        $form = $this->beginWidget('CActiveForm', array(
-                            'id'                   => 'post-posts-form',
-                            'htmlOptions'          => array('name' => 'myForm'),
-                            'enableAjaxValidation' => true,
-                        ));
-                ?>
-                >>>>>>> 4147fe5a815d5b1f5fdb31d83f49ab830490c428
 
                 <p class="note">Fields with <span class="required">*</span> are required.</p>
 
                 <?php echo $form->errorSummary($model); ?>
 
-                <<<<<<< HEAD
                 <div class="form-group">
                                 <?php echo $form->labelEx($model, 'title'); ?>
                                 <?php echo $form->textField($model, 'title', array('class'     => 'form-control', 'size'      => 50, 'maxlength' => 50)); ?>
@@ -40,6 +29,32 @@
                                 <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
                                 <?php echo $form->error($model, 'excerpt'); ?>
                 </div>
+                
+                <div class="form-group">
+                                <?php echo $form->labelEx($model, 'create_time'); ?>
+                                <?php
+                                        $this->widget('application.extensions.timepicker.EJuiDateTimePicker', array(
+                                            'model'       => $model,
+                                            'attribute'   => 'create_time',
+                                            'language'    => 'zh-CN',
+                                            'options'     => array(
+                                                'hourGrid'    => 4,
+                                                'hourMin'     => 9,
+                                                'hourMax'     => 17,
+                                                'timeFormat'  => 'hh:mm',
+                                                'changeMonth' => true,
+                                                'changeYear'  => false,
+                                            ),
+                                            'htmlOptions' => array(
+                                                'readonly' => true,
+                                                'class'    => 'form-control',
+                                                'style'    => 'width:180px;'
+                                            ),
+                                        ));
+                                ?>
+                                <?php echo $form->error($model, 'create_time'); ?>
+                </div>
+                
                 <div class="form-group">
                                 <?php echo $form->labelEx($model, 'content'); ?>
                                 <?php
@@ -66,66 +81,8 @@
                                 ?>
                                 <?php echo $form->error($model, 'content'); ?>
                 </div>
-                =======
-                <div class="form-group">
-                                <?php echo $form->labelEx($model, 'title'); ?>
-                                <?php echo $form->textField($model, 'title', array('class'     => 'form-control', 'size'      => 50, 'maxlength' => 50)); ?>
-                                <?php echo $form->error($model, 'title'); ?>
-                </div>
 
-                <div class="form-group">
-                                <?php echo $form->labelEx($model, 'excerpt'); ?>
-                                <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
-                                <?php echo $form->error($model, 'excerpt'); ?>
-                </div>
-                <div class="form-group">
-                                <?php echo $form->labelEx($model, 'content'); ?>
-                                <?php
-                                        $this->widget('ext.yii-tinymce.TinyMce', array(
-                                            'model'           => $model,
-                                            'attribute'       => 'content',
-                                            // Optional config
-                                            'compressorRoute' => 'tinyMce/compressor',
-                                            // 'spellcheckerUrl' => 'http://speller.yandex.net/services/tinyspell',
-                                            'spellcheckerUrl' => array('tinyMce/spellchecker'),
-                                            'fileManager'     => array(
-                                                'class'          => 'ext.yii-elfinder.TinyMceElFinder',
-                                                'connectorRoute' => 'elfinder/connector',
-                                            ),
-                                            'htmlOptions'     => array(
-                                                'rows' => 30,
-                                                'cols' => 60,
-                                            ),
-                                        ));
-                                ?>
-                                <?php echo $form->error($model, 'content'); ?>
-                </div>
-                >>>>>>> 4147fe5a815d5b1f5fdb31d83f49ab830490c428
-
-                <div class="form-group">
-                                <?php echo $form->labelEx($model, 'create_time'); ?>
-                                <?php
-                                        $this->widget('application.extensions.timepicker.EJuiDateTimePicker', array(
-                                            'model'       => $model,
-                                            'attribute'   => 'create_time',
-                                            'language'    => 'zh-CN',
-                                            'options'     => array(
-                                                'hourGrid'    => 4,
-                                                'hourMin'     => 9,
-                                                'hourMax'     => 17,
-                                                'timeFormat'  => 'hh:mm',
-                                                'changeMonth' => true,
-                                                'changeYear'  => false,
-                                            ),
-                                            'htmlOptions' => array(
-                                                'readonly' => true,
-                                                'class'    => 'form-control',
-                                                'style'    => 'width:180px;'
-                                            ),
-                                        ));
-                                ?>
-                                <?php echo $form->error($model, 'create_time'); ?>
-                </div>
+            
 
                 <div class="form-group">
                                 <?php echo $form->labelEx($model, 'status'); ?>
@@ -217,10 +174,26 @@
                 }
 </style>
 <script>
-
                 document.getElementById("submit").onclick = function() {
+
                                 qiniuAjaxUp();
                 };
+                function ajaxValid()
+                {
+                                var httpRequest
+                                if (window.XMLHttpRequest)
+                                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                                httpRequest = new XMLHttpRequest();
+                                }
+                                else
+                                {// code for IE6, IE5
+                                                httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                                }
+                                
+                                
+                                
+                                
+                }
                 function qiniuAjaxUp()
                 {
                                 var Qiniu_UploadUrl = "http://up.qiniu.com";
@@ -286,5 +259,4 @@
                                 }
 
                 }
-
 </script>

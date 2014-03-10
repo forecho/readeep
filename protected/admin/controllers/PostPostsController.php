@@ -96,12 +96,15 @@ class PostPostsController extends Controller
             }
             $model->attributes = $_POST['PostPosts'];
             $model->weixin_id  = Yii::app()->session['weixin_id'];
-            print_r( $_POST);exit;
             if ($model->save())
             {
                            
                 Yii::app()->user->setFlash('success', "Thinks saved success!");
                 $this->redirect(array('view', 'id' => $model->id));
+            }
+            else
+            {
+                        $obj->deleteSingeFile($_POST['PostPosts']['image']);//删除成功上传的图片   
             }
         }
 

@@ -178,22 +178,6 @@
 
                                 qiniuAjaxUp();
                 };
-                function ajaxValid()
-                {
-                                var httpRequest
-                                if (window.XMLHttpRequest)
-                                {// code for IE7+, Firefox, Chrome, Opera, Safari
-                                                httpRequest = new XMLHttpRequest();
-                                }
-                                else
-                                {// code for IE6, IE5
-                                                httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-                                }
-                                
-                                
-                                
-                                
-                }
                 function qiniuAjaxUp()
                 {
                                 var Qiniu_UploadUrl = "http://up.qiniu.com";

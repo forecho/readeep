@@ -19,11 +19,20 @@
                                         );
                         }
 
+<<<<<<< HEAD
                         public function actionIndex()
                         {
                                         $obj = new QiNiuClound();
                                         $this->render('index', array('token' => $obj->getUpToken()));
                         }
+=======
+
+    public function actionIndex()
+    {
+       $obj=new QiNiuClound();
+       $this->render('index',array('token'=>$obj->getUpToken()));
+    }
+>>>>>>> 4147fe5a815d5b1f5fdb31d83f49ab830490c428
 
         }
 

@@ -5,6 +5,7 @@ nbproject/
 .idea/
 uploads/
 index.php
+backend.php
 !protected/extensions/yii-debug-toolbar/assets/
 !protected/extensions/yii-elfinder/assets/
 !protected/extensions/timepicker/assets/

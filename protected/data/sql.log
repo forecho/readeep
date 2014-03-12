@@ -30,4 +30,4 @@
 
 2014年03月04日
 post_posts 表添加 weixin_id 字段
-ALTER TABLE `post_posts` ADD `weixin_id` int(10) NOT NULL COMMENT '微信ID',
+ALTER TABLE `post_posts` ADD `weixin_id` int(10) NOT NULL COMMENT '微信ID'

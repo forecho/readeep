@@ -10,3 +10,4 @@ backend.php
 !protected/extensions/yii-elfinder/assets/
 !protected/extensions/timepicker/assets/
 !protected/extensions/yii-selectize/assets/
+!protected/extensions/yii-redactor/assets/

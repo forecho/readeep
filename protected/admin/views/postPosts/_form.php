@@ -57,28 +57,14 @@
 
     <div class="form-group">
         <?php echo $form->labelEx($model, 'content'); ?>
-        <?php
-            $this->widget('ext.wdueditor.WDueditor', array(
-                'model'     => $model,
-                'attribute' => 'content',
-            ));
-//                        $this->widget('ext.yii-tinymce.TinyMce', array(
-//                            'model'           => $model,
-//                            'attribute'       => 'content',
-//                            // Optional config
-//                            'compressorRoute' => 'tinyMce/compressor',
-//                            // 'spellcheckerUrl' => 'http://speller.yandex.net/services/tinyspell',
-//                            'spellcheckerUrl' => array('tinyMce/spellchecker'),
-//                            'fileManager'     => array(
-//                                'class'          => 'ext.yii-elfinder.TinyMceElFinder',
-//                                'connectorRoute' => 'elfinder/connector',
-//                            ),
-//                            'htmlOptions'     => array(
-//                                'rows' => 30,
-//                                'cols' => 60,
-//                            ),
-//                        ));
-        ?>
+        <?php $this->widget('ext.yii-redactor.ERedactorWidget',array(
+            'model'=>$model,
+            'attribute'=>'content',
+            // Redactor options
+            'options'=>array(
+                'lang'=>'zh_cn',
+            ),
+        )); ?>
         <?php echo $form->error($model, 'content'); ?>
     </div>
 
@@ -125,9 +111,6 @@
         <?php echo $form->labelEx($model, 'image'); ?>
         <ul>
             <li>
-                <input id="token" name="token" type='hidden'class="ipt" value="<?php echo $token; ?>"><a target="blank" href="http://jsfiddle.net/gh/get/extjs/4.2/icattlecoder/jsfiddle/tree/master/uptoken">在线生成token</a>
-            </li>
-            <li>
                 <label for="key">key:</label>
                 <input id="key" name="key" class="ipt" value="">
             </li>
@@ -142,35 +125,6 @@
         <button class="btn btn-primary" id="submit" name="submit">提交</button>
     </div>
 </div><!-- form -->
-<style>
-.ipt {
-    width: 300px;
-}
-label {
-    width: 130px;
-    display: block;
-}
-ul li {
-    list-style:none;
-}
-.ui-progressbar {
-    position: relative;
-}
-.progress-label {
-    position: absolute;
-    left: 50%;
-    top: 4px;
-    font-weight: bold;
-    text-shadow: 1px 1px 0 #fff;
-}
-#progressbar{
-    height:30px;
-    display:none;
-}
-#dialog{
-    display:none;
-}
-</style>
 <script>
 document.getElementById("submit").onclick = function() {
     if (document.getElementById('key').value.length == 0)

@@ -86,24 +86,19 @@ class PostPostsController extends Controller
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['PostPosts']))
-        {
-            if (isset($_POST['tags']))
-            {
+        if (isset($_POST['PostPosts'])) {
+            if (isset($_POST['tags'])) {
                 // 添加标签
                 $this->createTags($_POST['tags']);
                 $model->tags = implode(' ', $_POST['tags']);
             }
             $model->attributes = $_POST['PostPosts'];
             $model->weixin_id  = Yii::app()->session['weixin_id'];
-            if ($model->save())
-            {
+            if ($model->save()) {
 
                 Yii::app()->user->setFlash('success', "Thinks saved success!");
                 $this->redirect(array('view', 'id' => $model->id));
-            }
-            else
-            {
+            } else {
                 $obj->deleteSingeFile($_POST['PostPosts']['image']);//删除成功上传的图片
             }
         }
@@ -126,8 +121,7 @@ class PostPostsController extends Controller
                 'admin_id' => Yii::app()->user->id
             ));
             // 判断标签是否存在
-            if (!$count[$key])
-            {
+            if (!$count[$key]) {
                 $tags[$key]           = new PostTags;
                 $tags[$key]->name     = $value;
                 $tags[$key]->admin_id = Yii::app()->user->id;
@@ -150,12 +144,10 @@ class PostPostsController extends Controller
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['PostPosts']))
-        {
+        if (isset($_POST['PostPosts'])) {
             $model->attributes = $_POST['PostPosts'];
             // 标签
-            if (isset($_POST['tags']))
-            {
+            if (isset($_POST['tags'])) {
                 // 添加标签
                 $this->createTags($_POST['tags']);
                 $model->tags = implode(' ', $_POST['tags']);

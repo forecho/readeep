@@ -42,7 +42,7 @@ class ApiController extends Controller
                 $isText = $this->sendText($msg, $admin->admin_id);
                 if ($isText) {
                     // 如果有匹配到
-                    echo $weixin->makeText($item);
+                    echo $weixin->makeText($isText);
                 }else{
                     // 图文回复
                 	$item = $this->_search($msg, $open_id, $admin->admin_id);
@@ -103,12 +103,13 @@ class ApiController extends Controller
     // 文本回复
     public function sendText($msg, $admin->admin_id)
     {
-        $criteria = new CDbCriteria;
-        $criteria->addSearchCondition('keyword', $msg);
-        $criteria->addCondition("type=1");
-        $criteria->addCondition("$admin_id=".$admin_id);
-        $data = WeixinReply::model()->find($criteria);
-        return $data->content;
+        // $criteria = new CDbCriteria;
+        // $criteria->addSearchCondition('keyword', $msg);
+        // $criteria->addCondition("type=1");
+        // $criteria->addCondition("$admin_id=".$admin_id);
+        // $data = WeixinReply::model()->find($criteria);
+        // return $data->content;
+        return '2';
     }
 
 

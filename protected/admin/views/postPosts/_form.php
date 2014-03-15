@@ -67,8 +67,6 @@
         <input type='hidden' name='PostPosts[image]' value='' id='PostPosts_image'></input>
     </div>
 
-
-    <?php $this->endWidget(); ?>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'image'); ?>
         <ul>
@@ -130,6 +128,7 @@
     <div class="form-group">
         <button class="btn btn-primary" id="submit" name="submit">提交</button>
     </div>
+    <?php $this->endWidget(); ?>
 </div><!-- form -->
 <script>
 $("#advanced").click(function(){

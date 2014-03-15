@@ -38,16 +38,15 @@ class ApiController extends Controller
             	//echo $weixin->makeText(Yii::app()->session['uid']);
             	// echo $weixin->makeText($open_id);
                 // 优先文本关键字回复
-                // $item = $this->_text($msg, $admin->admin_id);
-                // if ($item) {
-                //     // 如果有匹配到
-                //     echo $weixin->makeText($item);
-                // }else{
-
-                // }
-                // 图文回复
-            	$item = $this->_search($msg, $open_id, $admin->admin_id);
-            	echo $weixin->makeNews($item);
+                $item = $this->_text($msg, $admin->admin_id);
+                if ($item) {
+                    // 如果有匹配到
+                    echo $weixin->makeText($item);
+                }else{
+                    // 图文回复
+                	$item = $this->_search($msg, $open_id, $admin->admin_id);
+                	echo $weixin->makeNews($item);
+                }
                 break;
             case 'image':
             	echo "image";

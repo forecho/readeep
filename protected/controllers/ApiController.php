@@ -40,10 +40,10 @@ class ApiController extends Controller
                 // 优先文本关键字回复
                 // echo $weixin->makeText('测试');
                 // $isText = $this->sendText($msg, $admin->admin_id);
-                $isText = true;
+                $isText = '';
                 if ($isText) {
                     // 如果有匹配到
-                    echo $weixin->makeText($isText);
+                    echo $weixin->makeText("ss");
                 }else{
                     // 图文回复
                 	$item = $this->_search($msg, $open_id, $admin->admin_id);

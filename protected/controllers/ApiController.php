@@ -101,7 +101,7 @@ class ApiController extends Controller
     }
 
     // 文本回复
-    public function _text($msg, $admin->admin_id)
+    public function _text($msg, $admin_id)
     {
         $criteria = new CDbCriteria;
         $criteria->addSearchCondition('keyword', $msg);

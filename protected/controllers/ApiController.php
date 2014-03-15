@@ -39,7 +39,8 @@ class ApiController extends Controller
             	// echo $weixin->makeText($open_id);
                 // 优先文本关键字回复
                 // echo $weixin->makeText('测试');
-                $isText = $this->sendText($msg, $admin->admin_id);
+                // $isText = $this->sendText($msg, $admin->admin_id);
+                $isText = true;
                 if ($isText) {
                     // 如果有匹配到
                     echo $weixin->makeText($isText);

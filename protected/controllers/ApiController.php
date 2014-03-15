@@ -106,7 +106,6 @@ class ApiController extends Controller
         $criteria->addSearchCondition('keyword', $msg);
         $criteria->addCondition("type=1");
         $criteria->addCondition("$admin_id=".$admin_id);
-        $criteria->addCondition("create_time<".time());
         $data = WeixinReply::model()->find($criteria);
         return $data->content;
     }

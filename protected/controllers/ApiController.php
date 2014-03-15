@@ -38,6 +38,10 @@ class ApiController extends Controller
         	// echo $weixin->makeText($msg);
         	//echo $weixin->makeText(Yii::app()->session['uid']);
         	// echo $weixin->makeText($open_id);
+            // 优先文本关键字回复
+            $item = $this->_text($msg, $admin->admin_id);
+            echo $weixin->makeText($item);
+            // 图文回复
         	$item = $this->_search($msg, $open_id, $admin->admin_id);
         	echo $weixin->makeNews($item);
             break;
@@ -92,6 +96,20 @@ class ApiController extends Controller
     	}
     }
 
+    // 文本回复
+    public function _text($msg, $admin->admin_id)
+    {
+        $criteria = new CDbCriteria;
+        $criteria->addSearchCondition('keyword', $msg);
+        $criteria->addCondition("type=1");
+        $criteria->addCondition("$admin_id=".$admin_id);
+        $criteria->addCondition("create_time<".time());
+        $data = WeixinReply::model()->find($criteria);
+        return $data->content;
+    }
+
+
+    // 图文回复
     public function _search($msg, $open_id, $admin_id)
     // public function actionSearch($msg='')
     {

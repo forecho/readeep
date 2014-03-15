@@ -80,7 +80,7 @@ class Weixin
     public function makeEvent()
     {
         if((!empty($this->msg->Event)) && ($this->msg->Event == 'subscribe')){
-            return $this->makeText('欢迎关注');
+            return $this->makeText('欢迎关注深度阅读，希望在这里你能享受阅读的乐趣。所有内容如无特别声明，都不是原创。回复「m」,我将会告诉你玩法。 ');
         }
     }
 

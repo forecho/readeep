@@ -85,7 +85,10 @@ class PostPostsController extends Controller
         $obj = new QiNiuClound('scz');
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-
+        if (!$model->create_time) {
+            // 添加现在时间
+            $model->create_time = date("Y-m-d H:i");
+        }
         if (isset($_POST['PostPosts'])) {
             if (isset($_POST['tags'])) {
                 // 添加标签

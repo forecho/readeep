@@ -29,6 +29,7 @@
 					array('label'=>t('Admin', 'menu'), 'url'=>array('/admin/index')),
 					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/admin')),
 					array('label'=>t('WeixinSet','menu'), 'url'=>array('/weixinSet/admin')),
+					array('label'=>t('WeixinReply','menu'), 'url'=>array('/WeixinReply/admin')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
 				),

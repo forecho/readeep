@@ -101,15 +101,15 @@ class ApiController extends Controller
     }
 
     // 文本回复
-    public function _text($msg, $admin->admin_id)
-    {
-        $criteria = new CDbCriteria;
-        $criteria->addSearchCondition('keyword', $msg);
-        $criteria->addCondition("type=1");
-        $criteria->addCondition("$admin_id=".$admin_id);
-        $data = WeixinReply::model()->find($criteria);
-        return $data->content;
-    }
+    // public function _text($msg, $admin->admin_id)
+    // {
+    //     $criteria = new CDbCriteria;
+    //     $criteria->addSearchCondition('keyword', $msg);
+    //     $criteria->addCondition("type=1");
+    //     $criteria->addCondition("$admin_id=".$admin_id);
+    //     $data = WeixinReply::model()->find($criteria);
+    //     return $data->content;
+    // }
 
 
     // 图文回复

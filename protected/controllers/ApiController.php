@@ -43,6 +43,7 @@ class ApiController extends Controller
             if ($item) {
                 // 如果有匹配到
                 echo $weixin->makeText($item);
+                exit();
             }
             // 图文回复
         	$item = $this->_search($msg, $open_id, $admin->admin_id);

@@ -17,13 +17,14 @@ class ApiController extends Controller
 
     	$weixin->init();
         $reply = '';
+        // 微信事件操作
         echo $weixin->makeEvent();
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息
         $msg = $weixin->msg->Content;
 
         $rawid = $weixin->msg->ToUserName;
-        $admin = WeixinSet::model()->find('rawid=:rawid', array('rawid'=>$rawid));
+        $admin = WeixinSet::model()->find('rawid=:rawid', array(':rawid'=>$rawid));
 		// var_dump($weixin->msg);
 
  		// 获取 open_id
@@ -119,7 +120,15 @@ class ApiController extends Controller
                 $criteria->limit = 5;
     			break;
     		default:
-    			# code...
+                // 优先匹配关键字回复 再匹配文本回复
+                $count = PostTags::model()->count('name=:name', array(':name'=>$msg));
+                if ($count) {
+                    $criteria->addSearchCondition('tags', $msg);
+                    $criteria->limit = 5;
+                } else {
+                    $criteria->addSearchCondition('title', $msg);
+                    $criteria->limit = 5;
+                }
     			break;
     	}
         $criteria->addCondition("status=1");

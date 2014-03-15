@@ -40,7 +40,10 @@ class ApiController extends Controller
         	// echo $weixin->makeText($open_id);
             // 优先文本关键字回复
             $item = $this->_text($msg, $admin->admin_id);
-            echo $weixin->makeText($item);
+            if ($item) {
+                // 如果有匹配到
+                echo $weixin->makeText($item);
+            }
             // 图文回复
         	$item = $this->_search($msg, $open_id, $admin->admin_id);
         	echo $weixin->makeNews($item);

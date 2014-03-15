@@ -39,7 +39,7 @@ class ApiController extends Controller
         	//echo $weixin->makeText(Yii::app()->session['uid']);
         	// echo $weixin->makeText($open_id);
         	$item = $this->_search($msg, $open_id, $admin->admin_id);
-        	$weixin->makeNews($item);
+        	echo $weixin->makeNews($item);
             break;
         case 'image':
         	echo "image";
@@ -72,7 +72,7 @@ class ApiController extends Controller
         if (!empty($postStr)){
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             if((!empty($postObj->Event)) && ($postObj->Event == 'subscribe')){
-                $weixin->makeNews('欢迎关注');
+                echo $weixin->makeText('欢迎关注');
             }
         }
     }

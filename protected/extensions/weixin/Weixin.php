@@ -79,7 +79,9 @@ class Weixin
      */
     public function makeEvent()
     {
-
+        if((!empty($this->msg->Event)) && ($this->msg->Event == 'subscribe')){
+            return $this->makeText('欢迎关注');
+        }
     }
 
     /**

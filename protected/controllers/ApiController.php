@@ -17,8 +17,7 @@ class ApiController extends Controller
 
     	$weixin->init();
         $reply = '';
-        // 关注时的事件
-        $this->_responseMsg();
+        $weixin->makeEvent();
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息
         $msg = $weixin->msg->Content;
@@ -63,18 +62,6 @@ class ApiController extends Controller
             break;
         }
         $weixin->reply($reply);
-    }
-
-    // 关注时返回消息
-    public function _responseMsg()
-    {
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        if (!empty($postStr)){
-            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            if((!empty($postObj->Event)) && ($postObj->Event == 'subscribe')){
-                echo $weixin->makeText('欢迎关注');
-            }
-        }
     }
 
     /**

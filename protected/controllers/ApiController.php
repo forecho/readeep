@@ -96,7 +96,7 @@ class ApiController extends Controller
     // public function actionSearch($msg='')
     {
     	$type = substr($msg, 0, 1 );
-    	$msg = substr($msg, 1 );
+    	$iMsg = substr($msg, 1 );
 
 		$criteria = new CDbCriteria;
     	switch ($type) {
@@ -112,11 +112,11 @@ class ApiController extends Controller
                 $criteria->limit = $type;
                 break;
     		case '%':
-    			$criteria->addSearchCondition('title', $msg);
+    			$criteria->addSearchCondition('title', $iMsg);
                 $criteria->limit = 5;
     			break;
     		case '#':
-    			$criteria->addSearchCondition('tags', $msg);
+    			$criteria->addSearchCondition('tags', $iMsg);
                 $criteria->limit = 5;
     			break;
     		default:

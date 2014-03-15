@@ -31,44 +31,43 @@ class ApiController extends Controller
         $open_id = $weixin->msg->FromUserName;
         $uid = $this->_isUser($open_id, $admin->admin_id);
 
-        switch ($msgType)
-        {
-        case 'text':
-            //你要处理文本消息代码
-        	// echo $weixin->makeText($msg);
-        	//echo $weixin->makeText(Yii::app()->session['uid']);
-        	// echo $weixin->makeText($open_id);
-            // 优先文本关键字回复
-            $item = $this->_text($msg, $admin->admin_id);
-            if ($item) {
-                // 如果有匹配到
-                echo $weixin->makeText($item);
-                exit();
-            }
-            // 图文回复
-        	$item = $this->_search($msg, $open_id, $admin->admin_id);
-        	echo $weixin->makeNews($item);
-            break;
-        case 'image':
-        	echo "image";
-            //你要处理图文消息代码
-            break;
-        case 'location':
-        	echo "location";
-            //你要处理位置消息代码
-            break;
-        case 'link':
-        	echo "link";
-            //你要处理链接消息代码
-            break;
-        case 'event':
-        	echo "event";
-            //你要处理事件消息代码
-            break;
-        default:
-        	echo "无效";
-            //无效消息情况下的处理方式
-            break;
+        switch ($msgType) {
+            case 'text':
+                //你要处理文本消息代码
+            	// echo $weixin->makeText($msg);
+            	//echo $weixin->makeText(Yii::app()->session['uid']);
+            	// echo $weixin->makeText($open_id);
+                // 优先文本关键字回复
+                $item = $this->_text($msg, $admin->admin_id);
+                if ($item) {
+                    // 如果有匹配到
+                    echo $weixin->makeText($item);
+                    exit();
+                }
+                // 图文回复
+            	$item = $this->_search($msg, $open_id, $admin->admin_id);
+            	echo $weixin->makeNews($item);
+                break;
+            case 'image':
+            	echo "image";
+                //你要处理图文消息代码
+                break;
+            case 'location':
+            	echo "location";
+                //你要处理位置消息代码
+                break;
+            case 'link':
+            	echo "link";
+                //你要处理链接消息代码
+                break;
+            case 'event':
+            	echo "event";
+                //你要处理事件消息代码
+                break;
+            default:
+            	echo "无效";
+                //无效消息情况下的处理方式
+                break;
         }
         $weixin->reply($reply);
     }
@@ -104,12 +103,12 @@ class ApiController extends Controller
     public function _text($msg, $admin->admin_id)
     {
         return '测试';
-        $criteria = new CDbCriteria;
-        $criteria->addSearchCondition('keyword', $msg);
-        $criteria->addCondition("type=1");
-        $criteria->addCondition("$admin_id=".$admin_id);
-        $data = WeixinReply::model()->find($criteria);
-        return $data->content;
+        // $criteria = new CDbCriteria;
+        // $criteria->addSearchCondition('keyword', $msg);
+        // $criteria->addCondition("type=1");
+        // $criteria->addCondition("$admin_id=".$admin_id);
+        // $data = WeixinReply::model()->find($criteria);
+        // return $data->content;
     }
 
 

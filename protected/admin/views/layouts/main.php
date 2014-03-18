@@ -69,5 +69,6 @@
 </div><!-- page -->
 <?php Yii::app()->clientScript->registerCoreScript('jquery');?>
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/script.js"></script>
 </body>
 </html>

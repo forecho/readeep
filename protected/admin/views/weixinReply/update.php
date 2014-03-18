@@ -9,7 +9,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List WeixinReply', 'url'=>array('index')),
 	array('label'=>'Create WeixinReply', 'url'=>array('create')),
 	array('label'=>'View WeixinReply', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage WeixinReply', 'url'=>array('admin')),

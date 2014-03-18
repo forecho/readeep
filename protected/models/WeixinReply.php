@@ -31,7 +31,7 @@ class WeixinReply extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('keyword, content, admin_id', 'required'),
+			array('keyword, content', 'required'),
 			array('type, admin_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>50),
 			array('excerpt', 'length', 'max'=>255),
@@ -112,5 +112,22 @@ class WeixinReply extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+
+	protected function beforeSave()
+	{
+		$this->admin_id = Yii::app()->user->id;
+	    return parent::beforeSave();
+	}
+
+
+	public function getReplyTypeName()
+	{
+		return array(
+				'1' => '文本回复',
+				'2' => '关注时回复',
+				'3' => '回复URL',
+			);
 	}
 }

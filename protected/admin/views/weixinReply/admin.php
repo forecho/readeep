@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List WeixinReply', 'url'=>array('index')),
 	array('label'=>'Create WeixinReply', 'url'=>array('create')),
 );
 
@@ -57,6 +56,26 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		*/
 		array(
 			'class'=>'CButtonColumn',
+		   	'template'=>'{update} {view} {delete}',
+		    'buttons'=>array (
+		        'update'=> array(
+		            'label'=>'',
+		            'imageUrl'=>'',
+		            'options'=>array( 'class'=>'glyphicon glyphicon-pencil', 'title'=>t('update', 'menu')),
+		        ),
+		        'view'=>array(
+		            'label'=>'',
+		            'imageUrl'=>'',
+		            'options'=>array( 'class'=>'glyphicon glyphicon-search', 'title'=>t('view', 'menu')),
+		        ),
+		        'delete'=>array(
+		            'label'=>'',
+		            'imageUrl'=>'',
+		            'options'=>array( 'class'=>'glyphicon glyphicon-trash', 'title'=>t('delete', 'menu')),
+		        ),
+		    ),
+		    'htmlOptions'=>array('style' => 'width: 70px')
 		),
 	),
+	'itemsCssClass'=>'table table-striped table-bordered table-hover',
 )); ?>

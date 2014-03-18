@@ -19,49 +19,48 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'title'); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'excerpt'); ?>
-		<?php echo $form->textField($model,'excerpt',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'excerpt'); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->textField($model,'image',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'image'); ?>
-	</div>
-
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'keyword'); ?>
-		<?php echo $form->textField($model,'keyword',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textField($model,'keyword',array('class' => 'form-control','size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'keyword'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
+		<?php echo $form->dropDownList($model, 'type', WeixinReply::model()->getReplyTypeName(), array('class' => 'form-control')); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 
-	<div class="row">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'content',array('class' => 'form-control','rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'admin_id'); ?>
-		<?php echo $form->textField($model,'admin_id'); ?>
-		<?php echo $form->error($model,'admin_id'); ?>
-	</div>
+	<div style="display: none;">
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'title'); ?>
+			<?php echo $form->textField($model,'title',array('class' => 'form-control','size'=>50,'maxlength'=>50)); ?>
+			<?php echo $form->error($model,'title'); ?>
+		</div>
 
-	<div class="row buttons">
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'excerpt'); ?>
+			<?php echo $form->textField($model,'excerpt',array('class' => 'form-control','size'=>60,'maxlength'=>255)); ?>
+			<?php echo $form->error($model,'excerpt'); ?>
+		</div>
+
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'image'); ?>
+			<?php echo $form->textField($model,'image',array('class' => 'form-control','size'=>60,'maxlength'=>100)); ?>
+			<?php echo $form->error($model,'image'); ?>
+		</div>
+	</div>
+	<a href="javascript:;" id="advanced">显示高级设置</a>
+
+	<div class="form-group buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 

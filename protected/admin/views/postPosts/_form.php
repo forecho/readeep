@@ -110,7 +110,7 @@
 
         <div class="form-group">
             <?php echo $form->labelEx($model, 'status'); ?>
-            <?php echo $form->dropDownList($model, 'status', array('1' => '发布', '0' => '草稿'), array('class' => 'form-control')); ?>
+            <?php echo $form->dropDownList($model, 'status', PostPosts::model()->getPostStatus(), array('class' => 'form-control')); ?>
             <?php echo $form->error($model, 'status'); ?>
         </div>
 
@@ -131,15 +131,6 @@
     <?php $this->endWidget(); ?>
 </div><!-- form -->
 <script>
-$("#advanced").click(function(){
-    $(this).prev().toggle();
-    if ($(this).prev().is(':hidden')) {
-        $(this).text('显示高级设置');
-    } else{
-        $(this).text('隐藏高级设置');
-    };
-});
-
 document.getElementById("submit").onclick = function() {
     if (document.getElementById('key').value.length == 0)
     {

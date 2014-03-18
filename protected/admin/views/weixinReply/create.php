@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List WeixinReply', 'url'=>array('index')),
 	array('label'=>'Manage WeixinReply', 'url'=>array('admin')),
 );
 ?>

@@ -146,4 +146,10 @@ class PostPosts extends CActiveRecord
 	    $this->create_time = Yii::app()->dateFormatter->format('yyyy-MM-dd HH:mm', $this->create_time);
 	    return parent::afterFind();
 	}
+
+	public function getPostStatus()
+	{
+		return array('1' => '发布', '0' => '草稿');
+	}
+
 }

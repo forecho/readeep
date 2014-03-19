@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Options', 'url'=>array('index')),
+	array('label'=>'Qiniu Options', 'url'=>array('qiniu')),
 	array('label'=>'Create Options', 'url'=>array('create')),
 );
 

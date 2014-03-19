@@ -79,6 +79,9 @@ return array(
 			'enableProfiling'=>true,
         	'enableParamLogging'=>true,
 		),
+		'cache'=>array(
+            'class'=>'CFileCache',
+		),
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

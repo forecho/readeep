@@ -32,7 +32,7 @@ class OptionsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','qiniu'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -169,5 +169,27 @@ class OptionsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionQiniu()
+	{
+		$model=new QiniuForm;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['QiniuForm']))
+		{
+			$model->attributes=$_POST['QiniuForm'];
+	        if($model->validate())
+	        {
+	           	Yii::app()->config->set("qiniu",$model->attributes,1);
+	           	Yii::app()->user->setFlash('success', "保存成功！");
+	           	$this->refresh();
+	        }
+		}
+		$this->render('qiniu',array(
+			'model'=>$model,
+		));
 	}
 }

@@ -13,6 +13,7 @@ CREATE TABLE `post_posts` (
   `like_count` int(8) DEFAULT '0' COMMENT '点赞次数',
   `comment_count` int(8) DEFAULT '0' COMMENT '评论次数',
   `admin_id` int(10) NOT NULL,
+  `weixin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文章表';
 
@@ -119,6 +120,7 @@ CREATE TABLE `post_tags` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL COMMENT '名称',
   `admin_id` int(10) NOT NULL,
+  `weixin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='标签库';
 

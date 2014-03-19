@@ -30,7 +30,7 @@
 					array('label'=>t('Post','menu'), 'url'=>array('/postPosts/admin')),
 					array('label'=>t('WeixinSet','menu'), 'url'=>array('/weixinSet/admin')),
 					array('label'=>t('WeixinReply','menu'), 'url'=>array('/weixinReply/admin')),
-					array('label'=>t('Options','menu'), 'url'=>array('/options/admin')),
+					array('label'=>t('Options','menu'), 'url'=>array('/options/qiniu')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
 				),

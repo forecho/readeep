@@ -1,9 +1,19 @@
 <?php
 /* @var $this OptionsController */
 /* @var $model Options */
-/* @var $form CActiveForm */
+
+$this->breadcrumbs=array(
+	'Options'=>array('index'),
+	'Create',
+);
+
+$this->menu=array(
+	array('label'=>'List Options', 'url'=>array('index')),
+	array('label'=>'Manage Options', 'url'=>array('admin')),
+);
 ?>
 
+<h1>Qiniu Options</h1>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -20,25 +30,20 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('class' => 'form-control','size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<?php echo $form->labelEx($model,'accessKey'); ?>
+		<?php echo $form->textField($model,'accessKey',array('class' => 'form-control','size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'accessKey'); ?>
 	</div>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'value'); ?>
-		<?php echo $form->textArea($model,'value',array('class' => 'form-control','rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'value'); ?>
+		<?php echo $form->labelEx($model,'secretKey'); ?>
+		<?php echo $form->textField($model,'secretKey',array('class' => 'form-control','size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'secretKey'); ?>
 	</div>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'admin_id'); ?>
-		<?php echo $form->textField($model,'admin_id',array('class' => 'form-control')); ?>
-		<?php echo $form->error($model,'admin_id'); ?>
-	</div>
 
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton('Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

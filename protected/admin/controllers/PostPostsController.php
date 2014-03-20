@@ -82,7 +82,7 @@ class PostPostsController extends Controller
 
         Yii::import('ext.yii-tinymce.*');
         $model = new PostPosts;
-        $obj = new QiNiuClound();
+        $obj = new QiNiuClound('scz');
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if (!$model->create_time) {

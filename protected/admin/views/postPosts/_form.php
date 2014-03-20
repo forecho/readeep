@@ -31,6 +31,31 @@
     </div>
 
     <div class="form-group">
+        <?php echo $form->labelEx($model, 'create_time'); ?>
+        <?php
+            $this->widget('application.extensions.timepicker.EJuiDateTimePicker', array(
+                'model'       => $model,
+                'attribute'   => 'create_time',
+                'language'    => 'zh-CN',
+                'options'     => array(
+                    'hourGrid'    => 4,
+                    'hourMin'     => 9,
+                    'hourMax'     => 17,
+                    'timeFormat'  => 'hh:mm',
+                    'changeMonth' => true,
+                    'changeYear'  => false,
+                ),
+                'htmlOptions' => array(
+                    'readonly' => true,
+                    'class'    => 'form-control',
+                    'style'    => 'width:180px;'
+                ),
+            ));
+        ?>
+        <?php echo $form->error($model, 'create_time'); ?>
+    </div>
+
+    <div class="form-group">
         <?php echo $form->labelEx($model, 'content'); ?>
         <?php $this->widget('ext.yii-redactor.ERedactorWidget',array(
             'model'=>$model,
@@ -43,7 +68,20 @@
         <?php echo $form->error($model, 'content'); ?>
     </div>
 
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'status'); ?>
+        <?php echo $form->dropDownList($model, 'status', array('1' => '发布', '0' => '草稿'), array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'status'); ?>
+    </div>
 
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'order'); ?>
+        <?php echo $form->textField($model, 'order', array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'order'); ?>
+        <p class="hint">
+            提示：数字越小，越排前面。0在第一位。
+        </p>
+    </div>
 
     <div class="form-group">
         <?php echo $form->labelEx($model, 'tags'); ?>
@@ -67,9 +105,12 @@
         <input type='hidden' name='PostPosts[image]' value='' id='PostPosts_image'></input>
     </div>
 
+
+    <?php $this->endWidget(); ?>
     <div class="form-group">
+        <input  type = 'hidden'id="token"  name="key" class="ipt" value="<?php echo $token;?>">
         <?php echo $form->labelEx($model, 'image'); ?>
-        <ul>
+        <ul> 
             <li>
                 <label for="key">key:</label>
                 <input id="key" name="key" class="ipt" value="">
@@ -81,54 +122,9 @@
             <div id="progressbar"><div class="progress-label"></div></div>
         </ul>
     </div>
-
-    <div style="display: none;">
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'create_time'); ?>
-            <?php
-                $this->widget('application.extensions.timepicker.EJuiDateTimePicker', array(
-                    'model'       => $model,
-                    'attribute'   => 'create_time',
-                    'language'    => 'zh-CN',
-                    'options'     => array(
-                        'hourGrid'    => 4,
-                        'hourMin'     => 9,
-                        'hourMax'     => 17,
-                        'timeFormat'  => 'hh:mm',
-                        'changeMonth' => true,
-                        'changeYear'  => false,
-                    ),
-                    'htmlOptions' => array(
-                        'readonly' => true,
-                        'class'    => 'form-control',
-                        'style'    => 'width:180px;'
-                    ),
-                ));
-            ?>
-            <?php echo $form->error($model, 'create_time'); ?>
-        </div>
-
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'status'); ?>
-            <?php echo $form->dropDownList($model, 'status', PostPosts::model()->getPostStatus(), array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'status'); ?>
-        </div>
-
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'order'); ?>
-            <?php echo $form->textField($model, 'order', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'order'); ?>
-            <p class="hint">
-                提示：数字越小，越排前面。0在第一位。
-            </p>
-        </div>
-    </div>
-    <a href="javascript:;" id="advanced">显示高级设置</a>
-
     <div class="form-group">
         <button class="btn btn-primary" id="submit" name="submit">提交</button>
     </div>
-    <?php $this->endWidget(); ?>
 </div><!-- form -->
 <script>
 document.getElementById("submit").onclick = function() {

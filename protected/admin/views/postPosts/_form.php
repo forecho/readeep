@@ -137,6 +137,7 @@ document.getElementById("submit").onclick = function() {
         var path = document.getElementById("file").value;
         var fileName = getFileName(path);
         document.getElementById('key').value=fileName;
+        document.getElementById('PostPosts_image').value = fileName;
     }
     qiniuAjaxUp();
 };
@@ -185,7 +186,7 @@ function qiniuAjaxUp()
                 var blkRet = JSON.parse(xhr.responseText);
                 // onsole && console.log(blkRet);
                 // $("#dialog").html(xhr.responseText).dialog();
-                document.getElementById('PostPosts_image').value = document.getElementById('key').value;
+                
                 document.getElementById('post-posts-form').submit();
             } else if (xhr.status != 200 && xhr.responseText) {
 

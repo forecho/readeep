@@ -142,16 +142,20 @@ document.getElementById("submit").onclick = function() {
 };
 function qiniuAjaxUp()
 {
+
+
     var Qiniu_UploadUrl = "http://up.qiniu.com";
     var progressbar = $("#progressbar"),
     progressLabel = $(".progress-label");
     //普通上传
     var Qiniu_upload = function(f, token, key) {
         var xhr
-        if (window.XMLHttpRequest){
-        // code for IE7+, Firefox, Chrome, Opera, Safari
+                                                if (window.XMLHttpRequest)
+                                                {// code for IE7+, Firefox, Chrome, Opera, Safari
            xhr = new XMLHttpRequest();
-        } else {// code for IE6, IE5
+                                                }
+                                                else
+                                                {// code for IE6, IE5
             xhr = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xhr.open('POST', Qiniu_UploadUrl, true);
@@ -183,7 +187,7 @@ function qiniuAjaxUp()
         xhr.onreadystatechange = function(response) {
             if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
                 var blkRet = JSON.parse(xhr.responseText);
-                // onsole && console.log(blkRet);
+//                                                console && console.log(blkRet);
                 // $("#dialog").html(xhr.responseText).dialog();
                 document.getElementById('PostPosts_image').value = document.getElementById('key').value;
                 document.getElementById('post-posts-form').submit();
@@ -201,6 +205,7 @@ function qiniuAjaxUp()
     } else {
         console && console.log("form input error");
     }
+
 }
 function getFileName(path) {
     var pos1 = path.lastIndexOf('/');

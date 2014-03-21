@@ -19,25 +19,25 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="form-group">
+	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('class' => 'form-control','size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-	<div class="form-group">
+	<div class="row">
 		<?php echo $form->labelEx($model,'value'); ?>
-		<?php echo $form->textArea($model,'value',array('class' => 'form-control','rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'value',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'value'); ?>
 	</div>
 
-	<div class="form-group">
+	<div class="row">
 		<?php echo $form->labelEx($model,'admin_id'); ?>
-		<?php echo $form->textField($model,'admin_id',array('class' => 'form-control')); ?>
+		<?php echo $form->textField($model,'admin_id'); ?>
 		<?php echo $form->error($model,'admin_id'); ?>
 	</div>
 
-	<div class="form-group buttons">
+	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 

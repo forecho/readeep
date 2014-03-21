@@ -79,7 +79,7 @@ class PostPostsController extends Controller
      */
     public function actionCreate()
     {
-
+        print_r($_SESSION);exit;
         Yii::import('ext.yii-tinymce.*');
         $model = new PostPosts;
         $obj = new QiNiuClound('scz');

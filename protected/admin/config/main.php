@@ -35,6 +35,7 @@ $backendArray=array(
          'application.extensions.qiniu.QiNiuClound',
         'application.extensions.nestedset.*',
         'backend.models.*',
+         'application.extensions.yii-mail.*',
         'backend.components.*', //这里的先后顺序一定要搞清
     ),
     'components'=>array(
@@ -56,6 +57,35 @@ $backendArray=array(
 		// 		),
 		// 	),
 		// ),
+             // 'mail'         => array(
+             //        'class'            => 'application.extensions.yii-mail.YiiMail',
+             //        'viewPath'         => 'application.views.mail',
+             //        'logging'          => true,
+             //        'dryRun'           => false,
+             //        'transportType'    => 'smtp', // case sensitive!  
+             //        'transportOptions' => array(
+             //            'host'     => 'smtp.exmail.qq.com', // smtp服务器  
+             //            'username' => 'no-reply@enlife.com', // 验证用户  
+             //            'password' => 'enlife0808', // 验证密码  
+             //            'port'     => '25', // 端口号  
+             //        // 'encryption'=>'ssl',   
+             //        ),
+             //    )
+              'mail'         => array(
+                    'class'            => 'application.extensions.yii-mail.YiiMail',
+                    'viewPath'         => 'application.views.mail',
+                    'logging'          => true,
+                    'dryRun'           => false,
+                    'transportType'    => 'smtp', // case sensitive!  
+                    'transportOptions' => array(
+                        'host'     => 'smtp.qq.com', // smtp服务器  
+                        'username' => 'forecho@foxmail.com', // 验证用户  
+                        'password' => 'wcxq4219.', // 验证密码  
+                        'port'     => '25', // 端口号  
+                    // 'encryption'=>'ssl',   
+                    ),
+                )
+
     ),
 
     // main is the default layout

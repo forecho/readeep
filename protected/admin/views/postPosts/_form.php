@@ -25,9 +25,10 @@
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'excerpt'); ?>
-        <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
-        <?php echo $form->error($model, 'excerpt'); ?>
+        <?php echo $form->labelEx($model, 'image'); ?>
+            <input id="file" name="file" class="ipt" type="file" />
+            <input id="key" name="key" type="hidden" class="ipt form-control" value="">
+            <div id="progressbar"><div class="progress-label"></div></div>
     </div>
 
     <div class="form-group">
@@ -59,7 +60,6 @@
                 'multiple'       => true,
             ));
         ?>
-        <?php //echo $form->textField($model,'tags',array('size'=>60,'maxlength'=>200)); ?>
         <?php echo $form->error($model, 'tags'); ?>
     </div>
     <div class="form-group">
@@ -67,22 +67,13 @@
         <input type='hidden' name='PostPosts[image]' value='' id='PostPosts_image'></input>
     </div>
 
-    <div class="form-group">
-        <?php echo $form->labelEx($model, 'image'); ?>
-        <ul>
-            <li>
-                <label for="key">key:</label>
-                <input id="key" name="key" class="ipt" value="">
-            </li>
-            <li>
-                <label for="bucket">照片:</label>
-                <input id="file" name="file" class="ipt" type="file" />
-            </li>
-            <div id="progressbar"><div class="progress-label"></div></div>
-        </ul>
-    </div>
-
     <div style="display: none;">
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'excerpt'); ?>
+            <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
+            <?php echo $form->error($model, 'excerpt'); ?>
+        </div>
+
         <div class="form-group">
             <?php echo $form->labelEx($model, 'create_time'); ?>
             <?php
@@ -186,7 +177,7 @@ function qiniuAjaxUp()
                 var blkRet = JSON.parse(xhr.responseText);
                 // onsole && console.log(blkRet);
                 // $("#dialog").html(xhr.responseText).dialog();
-                
+
                 document.getElementById('post-posts-form').submit();
             } else if (xhr.status != 200 && xhr.responseText) {
 

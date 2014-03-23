@@ -50,7 +50,7 @@
         <?php echo $form->labelEx($model, 'tags'); ?>
         <?php
             $this->widget('ext.yii-selectize.YiiSelectize', array(
-                'name'           => 'tags',
+                'name'           => 'tags[]',
                 'selectedValues' => explode(' ', $model->tags),
                 'data'           => PostTags::model()->getAllTags(),
                 'fullWidth'      => false,
@@ -125,8 +125,9 @@
 document.getElementById("submit").onclick = function() {
     if (document.getElementById('key').value.length == 0)
     {
+        var a=new Date();
         var path = document.getElementById("file").value;
-        var fileName = getFileName(path);
+        var fileName = "<?php echo $imgPathPre;?>"+String(a.getTime());
         document.getElementById('key').value=fileName;
         document.getElementById('PostPosts_image').value = fileName;
     }

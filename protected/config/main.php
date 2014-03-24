@@ -22,7 +22,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'application.extensions.qiniu.QiNiuClound',
+        'application.extensions.qiniu.QiNiuClound',
 	),
 
 	'modules'=>array(
@@ -74,7 +74,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=readeep',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 			'enableProfiling'=>true,
         	'enableParamLogging'=>true,

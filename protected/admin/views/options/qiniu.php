@@ -22,7 +22,10 @@ $this->menu=array(
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+    'enableClientValidation'=>true,
+	'clientOptions'=>array(
+        'validateOnSubmit'=>true,
+    ),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -30,14 +33,26 @@ $this->menu=array(
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="form-group">
+		<?php echo $form->labelEx($model,'bucket'); ?>
+		<?php echo $form->textField($model,'bucket',array('class' => 'form-control','size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'bucket'); ?>
+	</div>
+
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'url'); ?>
+		<?php echo $form->textField($model,'url',array('class' => 'form-control','size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'url'); ?>
+	</div>
+
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'accessKey'); ?>
-		<?php echo $form->textField($model,'accessKey',array('class' => 'form-control','size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'accessKey',array('class' => 'form-control','size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'accessKey'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'secretKey'); ?>
-		<?php echo $form->textField($model,'secretKey',array('class' => 'form-control','size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'secretKey',array('class' => 'form-control','size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'secretKey'); ?>
 	</div>
 

@@ -12,30 +12,11 @@ class QiNiuClound extends CApplicationComponent
     public $accessKey;
     public $secretKey;
 
-    public function __construct($who='czh',$bucket = 'readeep', $accessKey = 'nfrMLWJnNuGCdVQbJHEeRTIOh2BWE4gEJBM7WOHg', $secretKey = 'QtaXSlyXMLQ2nF82Nzhb9nQiFUosOHu3iOlVEu8m')
+    public function __construct($data)
     {
-        switch ($who)
-        {
-           case 'czh':
-
-                $this->bucket    = 'readeep';
-                $this->accessKey = 'nfrMLWJnNuGCdVQbJHEeRTIOh2BWE4gEJBM7WOHg';
-                $this->secretKey = 'QtaXSlyXMLQ2nF82Nzhb9nQiFUosOHu3iOlVEu8m';
-                break;
-            case 'scz':
-
-                $this->bucket    = 'phpers';
-                $this->accessKey = 'Nvn2WQOsP8jUF8b7rXCaj9Td1V8yUrAZxZoL2X6c';
-                $this->secretKey = 'WI6vG6ATtmvrMBVM9lkpAML9ulTyLGJEWIetzuz4';
-                break;
-
-            default:
-                $this->bucket    = $bucket;
-                $this->accessKey = $accessKey;
-                $this->secretKey = $secretKey;
-                break;
-        }
-
+        $this->bucket    = $data['bucket'];
+        $this->accessKey = $data['accessKey'];
+        $this->secretKey = $data['secretKey'];
     }
 
     //查看文件信息 require_once("qiniu/rs.php");

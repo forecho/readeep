@@ -7,8 +7,10 @@
  */
 class QiniuForm extends CFormModel
 {
+	public $bucket;
 	public $accessKey;
 	public $secretKey;
+	public $url;
 
 	/**
 	 * Declares the validation rules.
@@ -18,7 +20,8 @@ class QiniuForm extends CFormModel
 	public function rules()
 	{
 		return array(
-			array('accessKey, secretKey', 'required'),
+			array('bucket, accessKey, secretKey, url', 'required'),
+			array('url', 'url', 'defaultScheme' => 'http'),
 		);
 	}
 
@@ -28,8 +31,10 @@ class QiniuForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
+			'bucket'=>'Bucket',
 			'accessKey'=>'SecretKey',
 			'secretKey'=>'SecretKey',
+			'url'=>'Url',
 		);
 	}
 

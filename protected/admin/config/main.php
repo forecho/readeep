@@ -85,6 +85,20 @@ $backendArray=array(
                     // 'encryption'=>'ssl',   
                     ),
                 )
+          // 'mail'         => array(
+          //           'class'            => 'application.extensions.yii-mail.YiiMail',
+          //           'viewPath'         => 'application.views.mail',
+          //           'logging'          => true,
+          //           'dryRun'           => false,
+          //           'transportType'    => 'smtp', // case sensitive!  
+          //           'transportOptions' => array(
+          //               'host'     => 'smtp.exmail.qq.com', // smtp服务器  
+          //               'username' => 'sales4@szdodd.com', // 验证用户  
+          //               'password' => 'dodd1234', // 验证密码  
+          //               'port'     => '25', // 端口号  
+          //           // 'encryption'=>'ssl',   
+          //           ),
+          //       )
 
     ),
 

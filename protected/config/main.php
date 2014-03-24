@@ -74,7 +74,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=readeep',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
 			'enableProfiling'=>true,
         	'enableParamLogging'=>true,

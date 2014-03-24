@@ -81,9 +81,8 @@ class PostPostsController extends Controller
     {
         Yii::import('ext.yii-tinymce.*');
         $model = new PostPosts;
-        $qiniu = new QiniuForm;
-        $qiniu->attributes=Yii::app()->config->get("qiniu",$qiniu->attributes);
-        $obj = new QiNiuClound($qiniu->attributes);
+        $qiniu=Yii::app()->config->get("qiniu");
+        $obj = new QiNiuClound($qiniu);
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);

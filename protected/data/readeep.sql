@@ -156,3 +156,12 @@ CREATE TABLE `messages` (
   `admin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='留言反馈表';
+
+CREATE TABLE `config` (
+  `key` varchar(100) COLLATE utf8_bin NOT NULL,
+  `value` text COLLATE utf8_bin,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `config` (`key`, `value`) VALUES
+('qiniu', 'a:4:{s:6:"bucket";s:7:"readeep";s:9:"accessKey";s:40:"nfrMLWJnNuGCdVQbJHEeRTIOh2BWE4gEJBM7WOHg";s:9:"secretKey";s:40:"QtaXSlyXMLQ2nF82Nzhb9nQiFUosOHu3iOlVEu8m";s:3:"url";s:24:"http://readeep.qiniu.com";}');

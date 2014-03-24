@@ -32,7 +32,7 @@ class QiniuForm extends CFormModel
 	{
 		return array(
 			'bucket'=>'Bucket',
-			'accessKey'=>'SecretKey',
+			'accessKey'=>'AccessKey',
 			'secretKey'=>'SecretKey',
 			'url'=>'Url',
 		);

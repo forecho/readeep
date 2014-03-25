@@ -6,6 +6,8 @@ nbproject/
 uploads/
 index.php
 backend.php
+*db.php
+protected/config/db.php
 !protected/extensions/yii-debug-toolbar/assets/
 !protected/extensions/yii-elfinder/assets/
 !protected/extensions/timepicker/assets/

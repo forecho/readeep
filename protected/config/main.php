@@ -69,16 +69,8 @@ return array(
 		// 	'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		// ),
 		// uncomment the following to use a MySQL database
+		'db'        => file_exists(__DIR__ . '/db.php') ? require_once __DIR__ . '/db.php' : array(),
 
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=readeep',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'root',
-			'charset' => 'utf8',
-			'enableProfiling'=>true,
-        	'enableParamLogging'=>true,
-		),
 		'cache'=>array(
             'class'=>'CFileCache',
 		),

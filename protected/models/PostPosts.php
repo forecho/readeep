@@ -143,7 +143,9 @@ class PostPosts extends CActiveRecord
 
 	protected function afterFind()
 	{
+		$qiniu = Yii::app()->config->get("qiniu");
 	    $this->create_time = Yii::app()->dateFormatter->format('yyyy-MM-dd HH:mm', $this->create_time);
+	    $this->image =  $qiniu['url'].$this->image;
 	    return parent::afterFind();
 	}
 

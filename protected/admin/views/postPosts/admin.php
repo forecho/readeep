@@ -51,9 +51,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		// 'image',
+		array(
+			'name'=>'image',
+         	'value'=> 'CHtml::image($data->image)',
+         	'type'=>'raw',
+		),
 		'title',
 		// 'excerpt',
-		'image',
 		'create_time',
 		'view_count',
 		'thanks_count',

@@ -69,8 +69,18 @@ return array(
 		// 	'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		// ),
 		// uncomment the following to use a MySQL database
-		'db'        => file_exists(__DIR__ . '/db.php') ? require_once __DIR__ . '/db.php' : array(),
-
+		// 'db'        => file_exists(__DIR__ . '/db.php') ? require_once __DIR__ . '/db.php' : array(),
+         'db' => array(
+            'class' => 'CDbConnection',
+            'connectionString' => 'mysql:host=localhost;dbname=readeep',
+            'emulatePrepare' => TRUE,
+            'username' => 'root',
+            'password' => 'root',
+            'charset' => 'utf8',
+            'tablePrefix' => '',
+            'schemaCachingDuration' => 3600, // 数据缓存时间
+            'enableProfiling' => true, // 是否开启数据缓存
+        ),
 		'cache'=>array(
             'class'=>'CFileCache',
 		),

@@ -3,7 +3,7 @@
         /* @var $model PostPosts */
         /* @var $form CActiveForm */
 ?>
-
+<?php  echo Yii::getVersion(); ?>
 <div class="form">
 
     <?php
@@ -27,6 +27,7 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'image'); ?>
             <input id="file" name="file" class="ipt" type="file" />
+            <input id="token" name="token" type="hidden" class="ipt form-control" value="<?php echo $token;?>">
             <input id="key" name="key" type="hidden" class="ipt form-control" value="">
             <div id="progressbar"><div class="progress-label"></div></div>
     </div>
@@ -117,12 +118,12 @@
     <a href="javascript:;" id="advanced">显示高级设置</a>
 
     <div class="form-group">
-        <button class="btn btn-primary" id="submit" name="submit">提交</button>
+        <a class="btn btn-primary" id="submit" name="submit">提交</a>
     </div>
     <?php $this->endWidget(); ?>
 </div><!-- form -->
 <script>
-document.getElementById("submit").onclick = function() {
+    document.getElementById("submit").onclick = function() {
     if (document.getElementById('key').value.length == 0)
     {
         var a=new Date();
@@ -185,7 +186,7 @@ function qiniuAjaxUp()
             }
         };
         startDate = new Date().getTime();
-        $("#progressbar").show();
+        // $("#progressbar").show();
         xhr.send(formData);
     };
     var token = $("#token").val();

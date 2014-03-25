@@ -1,7 +1,7 @@
 <ul>
     <li>
         <label for="token">token:</label>
-        <input id="token" name="token" class="ipt" value=""><a target="blank" href="http://jsfiddle.net/gh/get/extjs/4.2/icattlecoder/jsfiddle/tree/master/uptoken">在线生成token</a>
+        <input id="token" name="token" class="ipt" value="<?php echo $token;?>"><a target="blank" href="http://jsfiddle.net/gh/get/extjs/4.2/icattlecoder/jsfiddle/tree/master/uptoken">在线生成token</a>
     </li>
     <li>
         <label for="key">key:</label>
@@ -40,19 +40,19 @@
  // *  * 4. 提pr
  // *   **********************************************************************************
  
-$(document).ready(function() {
+$(document).ready(function() {;
     var Qiniu_UploadUrl = "http://up.qiniu.com";
     var progressbar = $("#progressbar"),
         progressLabel = $(".progress-label");
-    progressbar.progressbar({
-        value: false,
-        change: function() {
-            progressLabel.text(progressbar.progressbar("value") + "%");
-        },
-        complete: function() {
-            progressLabel.text("Complete!");
-        }
-    });
+    // progressbar.progressbar({
+    //     value: false,
+    //     change: function() {
+    //         progressLabel.text(progressbar.progressbar("value") + "%");
+    //     },
+    //     complete: function() {
+    //         progressLabel.text("Complete!");
+    //     }
+    // });
     $("#btn_upload").click(function() {
         //普通上传
         var Qiniu_upload = function(f, token, key) {
@@ -85,15 +85,15 @@ $(document).ready(function() {
 
             xhr.onreadystatechange = function(response) {
                 if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
-                    var blkRet = JSON.parse(xhr.responseText);
-                    console && console.log(blkRet);
-                    $("#dialog").html(xhr.responseText).dialog();
+                    // var blkRet = JSON.parse(xhr.responseText);
+                    // console && console.log(blkRet);
+                    // $("#dialog").html(xhr.responseText).dialog();
                 } else if (xhr.status != 200 && xhr.responseText) {
 
                 }
             };
             startDate = new Date().getTime();
-            $("#progressbar").show();
+            // $("#progressbar").show();
             xhr.send(formData);
         };
         var token = $("#token").val();

@@ -39,13 +39,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php 
+$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'post-posts-grid',
 	'dataProvider'=>$model->search(),
 	'pager' => array(
 		'header'=>false,
         'htmlOptions'=>array('class'=>'pagination'),
-        'selectedPageCssClass' => 'active',
+       'selectedPageCssClass' => 'active',
         'hiddenPageCssClass' => 'disabled',
 	),
 	'filter'=>$model,
@@ -89,4 +90,5 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 	'itemsCssClass'=>'table table-striped table-bordered table-hover',
-)); ?>
+));
+ ?>

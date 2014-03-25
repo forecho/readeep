@@ -45,7 +45,7 @@ class PostPostsController extends Controller
     {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view','test'),
                 'users'   => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -72,7 +72,14 @@ class PostPostsController extends Controller
             'model' => $this->loadModel($id),
         ));
     }
-
+     public function actiontest()
+    {
+         $qiniu=Yii::app()->config->get("qiniu");
+        $obj = new QiNiuClound($qiniu);
+        $this->render('qiniuloaddemo', array(
+            'token' => $obj->getUpToken(),
+        ));
+    }
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -200,7 +207,7 @@ class PostPostsController extends Controller
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['PostPosts']))
             $model->attributes = $_GET['PostPosts'];
-
+      
         $this->render('admin', array(
             'model' => $model,
         ));

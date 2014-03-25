@@ -32,3 +32,8 @@
 post_posts 表添加 weixin_id 字段
 ALTER TABLE `post_posts` ADD `weixin_id` int(10) NOT NULL COMMENT '微信ID'
 ALTER TABLE `post_tags` ADD `weixin_id` int(10) NOT NULL COMMENT '微信ID'
+
+2014年03月25日
+post_posts 添加作者字段
+ALTER TABLE `post_posts` ADD `author` varchar(50) DEFAULT NULL COMMENT '作者'
+

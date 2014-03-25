@@ -22,6 +22,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'title',
+		'author',
 		'excerpt',
 		'image',
 		'content',

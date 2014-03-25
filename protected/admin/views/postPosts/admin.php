@@ -52,20 +52,18 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		array(
+			'name'=>'image',
+         	'value'=> 'CHtml::image($data->image)',
+         	'type'=>'raw',
+		),
 		'title',
-		// 'excerpt',
-		'image',
+		'author',
 		'create_time',
 		'view_count',
 		'thanks_count',
 		'like_count',
-		'weixin_id',
-		/*
-		'status',
-		'order',
-		'tags',
-		'admin_id',
-		*/
+		// 'weixin_id',
 		array(
 			'class'=>'CButtonColumn',
 		   	'template'=>'{update} {view} {delete}',

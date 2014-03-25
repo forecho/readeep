@@ -32,10 +32,10 @@ $backendArray=array(
         'application.models.*',
         'application.components.*',
         'application.extensions.*',
-         'application.extensions.qiniu.QiNiuClound',
+        'application.extensions.qiniu.QiNiuClound',
         'application.extensions.nestedset.*',
         'backend.models.*',
-         'application.extensions.yii-mail.*',
+        'application.extensions.yii-mail.*',
         'backend.components.*', //这里的先后顺序一定要搞清
     ),
     'components'=>array(
@@ -43,11 +43,6 @@ $backendArray=array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-
-        'request' => array(
-           'class' => 'application.components.HttpRequest',
-           'enableCsrfValidation' => true,
-        ),
 		// 'log'=>array(
 		// 	'class'=>'CLogRouter',
 		// 	'routes'=>array(

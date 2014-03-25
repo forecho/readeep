@@ -42,6 +42,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'post-posts-grid',
 	'dataProvider'=>$model->search(),
+	'pager' => array(
+		'header'=>false,
+        'htmlOptions'=>array('class'=>'pagination'),
+        'selectedPageCssClass' => 'active',
+        'hiddenPageCssClass' => 'disabled',
+	),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',

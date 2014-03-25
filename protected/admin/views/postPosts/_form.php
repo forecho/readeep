@@ -8,12 +8,9 @@
 
     <?php
         $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'post-posts-form',
-            'htmlOptions' => array('name' => 'myForm'),
-            'enableClientValidation'=>true,
-            'clientOptions' => array(
-                'validateOnSubmit'=>true,
-            ),
+            'id'                   => 'post-posts-form',
+            'htmlOptions'          => array('name' => 'myForm'),
+            'enableAjaxValidation' => true,
         ));
     ?>
 
@@ -25,12 +22,6 @@
         <?php echo $form->labelEx($model, 'title'); ?>
         <?php echo $form->textField($model, 'title', array('class' => 'form-control', 'size' => 50, 'maxlength' => 50)); ?>
         <?php echo $form->error($model, 'title'); ?>
-    </div>
-
-    <div class="form-group">
-        <?php echo $form->labelEx($model, 'author'); ?>
-        <?php echo $form->textField($model, 'author', array('class' => 'form-control', 'size' => 50, 'maxlength' => 50)); ?>
-        <?php echo $form->error($model, 'author'); ?>
     </div>
 
     <div class="form-group">
@@ -59,7 +50,7 @@
         <?php echo $form->labelEx($model, 'tags'); ?>
         <?php
             $this->widget('ext.yii-selectize.YiiSelectize', array(
-                'name'           => 'tags[]',
+                'name'           => 'tags',
                 'selectedValues' => explode(' ', $model->tags),
                 'data'           => PostTags::model()->getAllTags(),
                 'fullWidth'      => false,
@@ -134,9 +125,8 @@
 document.getElementById("submit").onclick = function() {
     if (document.getElementById('key').value.length == 0)
     {
-        var a=new Date();
         var path = document.getElementById("file").value;
-        var fileName = "<?php echo $imgPathPre;?>"+String(a.getTime());
+        var fileName = getFileName(path);
         document.getElementById('key').value=fileName;
         document.getElementById('PostPosts_image').value = fileName;
     }

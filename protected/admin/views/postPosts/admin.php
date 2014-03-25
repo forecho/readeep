@@ -51,25 +51,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		// 'image',
 		array(
 			'name'=>'image',
          	'value'=> 'CHtml::image($data->image)',
          	'type'=>'raw',
 		),
 		'title',
-		// 'excerpt',
+		'author',
 		'create_time',
 		'view_count',
 		'thanks_count',
 		'like_count',
-		'weixin_id',
-		/*
-		'status',
-		'order',
-		'tags',
-		'admin_id',
-		*/
+		// 'weixin_id',
 		array(
 			'class'=>'CButtonColumn',
 		   	'template'=>'{update} {view} {delete}',

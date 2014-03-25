@@ -8,9 +8,12 @@
 
     <?php
         $form = $this->beginWidget('CActiveForm', array(
-            'id'                   => 'post-posts-form',
-            'htmlOptions'          => array('name' => 'myForm'),
-            'enableAjaxValidation' => true,
+            'id' => 'post-posts-form',
+            'htmlOptions' => array('name' => 'myForm'),
+            'enableClientValidation'=>true,
+            'clientOptions' => array(
+                'validateOnSubmit'=>true,
+            ),
         ));
     ?>
 
@@ -22,6 +25,12 @@
         <?php echo $form->labelEx($model, 'title'); ?>
         <?php echo $form->textField($model, 'title', array('class' => 'form-control', 'size' => 50, 'maxlength' => 50)); ?>
         <?php echo $form->error($model, 'title'); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'author'); ?>
+        <?php echo $form->textField($model, 'author', array('class' => 'form-control', 'size' => 50, 'maxlength' => 50)); ?>
+        <?php echo $form->error($model, 'author'); ?>
     </div>
 
     <div class="form-group">

@@ -1,6 +1,7 @@
 CREATE TABLE `post_posts` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL COMMENT '标题',
+  `author` varchar(50) DEFAULT NULL COMMENT '作者',
   `excerpt` varchar(255) DEFAULT NULL COMMENT '摘录',
   `image` varchar(100) NOT NULL COMMENT '封面图片',
   `content` text NOT NULL COMMENT '内容',

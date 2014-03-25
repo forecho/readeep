@@ -46,18 +46,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'title',
-		'excerpt',
+		// 'excerpt',
 		'image',
-		// 'content',
 		'create_time',
+		'view_count',
+		'thanks_count',
+		'like_count',
 		'weixin_id',
 		/*
 		'status',
 		'order',
 		'tags',
-		'view_count',
-		'thanks_count',
-		'like_count',
 		'admin_id',
 		*/
 		array(

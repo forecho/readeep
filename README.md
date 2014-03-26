@@ -14,4 +14,4 @@ weixin
 
 最后欢迎关注我们的微信号：readeep
 
-![深度阅读](https://github.com/forecho/readeep/blob/master/readeep.jpg)
+![深度阅读](https://raw.githubusercontent.com/forecho/readeep/master/readeep.jpg)

@@ -3,16 +3,14 @@
         /* @var $model PostPosts */
         /* @var $form CActiveForm */
 ?>
+
 <div class="form">
 
     <?php
         $form = $this->beginWidget('CActiveForm', array(
-           'id' => 'post-posts-form',
-            'htmlOptions' => array('name' => 'myForm'),
-            // 'enableClientValidation'=>true,
-            // 'clientOptions' => array(
-            //     'validateOnSubmit'=>true,
-            // ),
+            'id'                   => 'post-posts-form',
+            'htmlOptions'          => array('name' => 'myForm'),
+            'enableAjaxValidation' => true,
         ));
     ?>
 
@@ -26,18 +24,35 @@
         <?php echo $form->error($model, 'title'); ?>
     </div>
 
-     <div class="form-group">
-        <?php echo $form->labelEx($model, 'author'); ?>
-        <?php echo $form->textField($model, 'author', array('class' => 'form-control', 'size' => 50, 'maxlength' => 50)); ?>
-        <?php echo $form->error($model, 'author'); ?>
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'excerpt'); ?>
+        <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
+        <?php echo $form->error($model, 'excerpt'); ?>
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'image'); ?>
-            <input id="file" name="file" class="ipt" type="file" />
-            <input id="token" name="token" type="hidden" class="ipt form-control" value="<?php echo $token;?>">
-            <input id="key" name="key" type="hidden" class="ipt form-control" value="">
-            <div id="progressbar"><div class="progress-label"></div></div>
+        <?php echo $form->labelEx($model, 'create_time'); ?>
+        <?php
+            $this->widget('application.extensions.timepicker.EJuiDateTimePicker', array(
+                'model'       => $model,
+                'attribute'   => 'create_time',
+                'language'    => 'zh-CN',
+                'options'     => array(
+                    'hourGrid'    => 4,
+                    'hourMin'     => 9,
+                    'hourMax'     => 17,
+                    'timeFormat'  => 'hh:mm',
+                    'changeMonth' => true,
+                    'changeYear'  => false,
+                ),
+                'htmlOptions' => array(
+                    'readonly' => true,
+                    'class'    => 'form-control',
+                    'style'    => 'width:180px;'
+                ),
+            ));
+        ?>
+        <?php echo $form->error($model, 'create_time'); ?>
     </div>
 
     <div class="form-group">
@@ -53,7 +68,20 @@
         <?php echo $form->error($model, 'content'); ?>
     </div>
 
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'status'); ?>
+        <?php echo $form->dropDownList($model, 'status', array('1' => '发布', '0' => '草稿'), array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'status'); ?>
+    </div>
 
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'order'); ?>
+        <?php echo $form->textField($model, 'order', array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'order'); ?>
+        <p class="hint">
+            提示：数字越小，越排前面。0在第一位。
+        </p>
+    </div>
 
     <div class="form-group">
         <?php echo $form->labelEx($model, 'tags'); ?>
@@ -69,6 +97,7 @@
                 'multiple'       => true,
             ));
         ?>
+        <?php //echo $form->textField($model,'tags',array('size'=>60,'maxlength'=>200)); ?>
         <?php echo $form->error($model, 'tags'); ?>
     </div>
     <div class="form-group">
@@ -76,71 +105,37 @@
         <input type='hidden' name='PostPosts[image]' value='' id='PostPosts_image'></input>
     </div>
 
-    <div style="display: none;">
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'excerpt'); ?>
-            <?php echo $form->textArea($model, 'excerpt', array('rows'      => 6, 'cols'      => 50, 'class'     => 'form-control', 'maxlength' => 255)); ?>
-            <?php echo $form->error($model, 'excerpt'); ?>
-        </div>
 
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'create_time'); ?>
-            <?php
-                $this->widget('application.extensions.timepicker.EJuiDateTimePicker', array(
-                    'model'       => $model,
-                    'attribute'   => 'create_time',
-                    'language'    => 'zh-CN',
-                    'options'     => array(
-                        'hourGrid'    => 4,
-                        'hourMin'     => 9,
-                        'hourMax'     => 17,
-                        'timeFormat'  => 'hh:mm',
-                        'changeMonth' => true,
-                        'changeYear'  => false,
-                    ),
-                    'htmlOptions' => array(
-                        'readonly' => true,
-                        'class'    => 'form-control',
-                        'style'    => 'width:180px;'
-                    ),
-                ));
-            ?>
-            <?php echo $form->error($model, 'create_time'); ?>
-        </div>
-
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'status'); ?>
-            <?php echo $form->dropDownList($model, 'status', PostPosts::model()->getPostStatus(), array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'status'); ?>
-        </div>
-
-        <div class="form-group">
-            <?php echo $form->labelEx($model, 'order'); ?>
-            <?php echo $form->textField($model, 'order', array('class' => 'form-control')); ?>
-            <?php echo $form->error($model, 'order'); ?>
-            <p class="hint">
-                提示：数字越小，越排前面。0在第一位。
-            </p>
-        </div>
-    </div>
-    <a href="javascript:;" id="advanced">显示高级设置</a>
-
-    <div class="form-group">
-        <a class="btn btn-primary" id="submit" name="submit">提交</a>
-    </div>
     <?php $this->endWidget(); ?>
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'image'); ?>
+        <ul>
+            <li>
+                
+                <input id="token" name="key" class="ipt" value="<?php echo $token;?>">
+            </li>
+            <li>
+                <label for="key">key:</label>
+                <input id="key" name="key" class="ipt" value="">
+            </li>
+            <li>
+                <label for="bucket">照片:</label>
+                <input id="file" name="file" class="ipt" type="file" />
+            </li>
+            <div id="progressbar"><div class="progress-label"></div></div>
+        </ul>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" id="submit" name="submit">提交</button>
+    </div>
 </div><!-- form -->
 <script>
-    document.getElementById("submit").onclick = function() {
+document.getElementById("submit").onclick = function() {
     if (document.getElementById('key').value.length == 0)
     {
-        var microTime=new Date();
-
-        var imgPath="<?php echo $imgPathPre;?>"+microTime.getTime();
         var path = document.getElementById("file").value;
-        var fileName = imgPath;
-        document.getElementById('key').value=imgPath;
-        document.getElementById('PostPosts_image').value = imgPath;
+        var fileName = getFileName(path);
+        document.getElementById('key').value=fileName;
     }
     qiniuAjaxUp();
 };
@@ -189,14 +184,14 @@ function qiniuAjaxUp()
                 var blkRet = JSON.parse(xhr.responseText);
                 // onsole && console.log(blkRet);
                 // $("#dialog").html(xhr.responseText).dialog();
-
+                document.getElementById('PostPosts_image').value = document.getElementById('key').value;
                 document.getElementById('post-posts-form').submit();
             } else if (xhr.status != 200 && xhr.responseText) {
 
             }
         };
         startDate = new Date().getTime();
-        // $("#progressbar").show();
+        $("#progressbar").show();
         xhr.send(formData);
     };
     var token = $("#token").val();

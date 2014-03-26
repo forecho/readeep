@@ -50,10 +50,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		// 'id',
 		array(
 			'name'=>'image',
-         	'value'=> 'CHtml::image($data->image)',
+         	'value'=> 'CHtml::image($data->image."?imageView2/1/w/160/h/80")',
          	'type'=>'raw',
 		),
 		'title',

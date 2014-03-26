@@ -18,23 +18,8 @@ class PostPostsController extends Controller
             'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
         );
-
     }
 
-    public function actions()
-    {
-        return array(
-            'connector' => array(
-                'class'    => 'ext.yii-elfinder.ElFinderConnectorAction',
-                'settings' => array(
-                    'root'       => Yii::getPathOfAlias('webroot') . '/uploads/',
-                    'URL'        => Yii::app()->baseUrl . '/uploads/',
-                    'rootAlias'  => 'Home',
-                    'mimeDetect' => 'none'
-                )
-            ),
-        );
-    }
 
     /**
      * Specifies the access control rules.
@@ -207,7 +192,7 @@ class PostPostsController extends Controller
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['PostPosts']))
             $model->attributes = $_GET['PostPosts'];
-      
+
         $this->render('admin', array(
             'model' => $model,
         ));

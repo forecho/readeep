@@ -98,7 +98,7 @@ class PostPostsController extends Controller
                 $obj->deleteSingeFile($_POST['PostPosts']['image']);//删除成功上传的图片
             }
         }
-        $imgPathPre=Yii::app()->user->id.'/article/';
+        $imgPathPre=Yii::app()->user->id.'/article/'.rand(0,1000).'_';
         $this->render('create', array(
             'model' => $model,
             'token' => $obj->getUpToken(),

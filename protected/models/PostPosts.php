@@ -148,7 +148,10 @@ class PostPosts extends CActiveRecord
 	{
 		$qiniu = Yii::app()->config->get("qiniu");
 	    $this->create_time = Yii::app()->dateFormatter->format('yyyy-MM-dd HH:mm', $this->create_time);
-	    $this->image =  $qiniu['url'].'/'.$this->image;
+	    if (substr($this->image, 0, 4) != 'http') {
+	    	# 如果不是url
+	    	$this->image =  $qiniu['url'].'/'.$this->image;
+	    }
 	    return parent::afterFind();
 	}
 

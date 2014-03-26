@@ -10,3 +10,8 @@ weixin
 * 查看 index.php 文件导入的路径是否匹配
 * 数据库在 date 文件夹里面，需要新建一个数据库再导入
 * 最后如果你的项目还不能正常访问，请修改文件夹的权限
+
+
+最后欢迎关注我们的微信号：readeep
+
+![深度阅读](https://github.com/forecho/readeep/blob/master/readeep.jpg)

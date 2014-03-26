@@ -33,6 +33,7 @@
 					array('label'=>t('Options','menu'), 'url'=>array('/options/qiniu')),
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
+					array('label'=>'Mail', 'url'=>array('/mail/send')),
 				),
 				'htmlOptions'=>array('class'=>'nav navbar-nav'),
 			)); ?>

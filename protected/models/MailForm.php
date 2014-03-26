@@ -41,11 +41,16 @@ class MailForm extends CFormModel {
      * @param boolen if send mail is ok and then return ture,if not,return false
      * @author 331942828@qq.com
      * @date:2013-12-12 10:00
-     * @example $a=MailForm::sendMail('331942828@qq.com', 'test', 'nihao', $type = '',$from = "forecho@foxmail.com");
      */
 
-    public static function sendMail($to, $subject, $body, $type = '',$from = "forecho@foxmail.com'") {
-        
+    public static function sendMail($to, $subject, $body, $arrKey, $type = '',$from = "no-reply@enlife.com") {
+        if (is_array($arrKey)) {
+            foreach ($arrKey as $key => $value) {
+                $find = '{$' . $key . '}';
+                echo $find;
+                $body = str_replace($find, $value, $body);
+            }
+        }
         $objMail = new MailForm();
         $objMail->from = $from;
         $objMail->to = $to;
@@ -53,7 +58,7 @@ class MailForm extends CFormModel {
         $objMail->body = $body;
 
         $message = new YiiMailMessage();
-        $message->setFrom(array($objMail->from => '深度阅读'));
+        $message->setFrom(array($objMail->from => '民声科技'));
         $message->setTo(array($objMail->to => '收信人'));
         $message->setSubject($objMail->subject);
         $message->setBody($objMail->body, $type);

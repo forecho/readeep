@@ -20,5 +20,16 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-	
+
+	protected function beforeAction($action) {
+		if (strtolower($this->ID) != 'weixinset' && strtolower($this->ID) != 'site' && empty(Yii::app()->session['weixin_id'])) {
+			$data = WeixinSet::model()->findAll(
+				'admin_id=:admin_id',
+				array(':admin_id'=>Yii::app()->user->id)
+			);
+			$this->render('//site/index',array('data'=>$data));
+			return false;
+		}
+		return parent::beforeAction($action);
+	}
 }

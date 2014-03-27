@@ -62,9 +62,9 @@ CREATE TABLE `users` (
 
 CREATE TABLE `options` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `value` text NOT NULL COMMENT '配置信息',
-  `admin_id` int(10) NOT NULL,
+  `key` varchar(20) NOT NULL,
+  `value` text NOT NULL COMMENT 'JSON配置信息',
+  `weixin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='配置表';
 

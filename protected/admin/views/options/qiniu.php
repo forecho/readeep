@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Qiniu Options', 'url'=>array('qiniu')),
-	array('label'=>'Manage Options', 'url'=>array('admin')),
+	array('label'=>'Cnzz Options', 'url'=>array('cnzzIndex')),
 );
 ?>
 

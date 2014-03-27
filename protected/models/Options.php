@@ -5,9 +5,9 @@
  *
  * The followings are the available columns in table 'options':
  * @property integer $id
- * @property string $name
+ * @property string $key
  * @property string $value
- * @property integer $admin_id
+ * @property integer $weixin_id
  */
 class Options extends CActiveRecord
 {
@@ -27,12 +27,12 @@ class Options extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, value, admin_id', 'required'),
-			array('admin_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>20),
+			array('key, value, weixin_id', 'required'),
+			array('weixin_id', 'numerical', 'integerOnly'=>true),
+			array('key', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, value, admin_id', 'safe', 'on'=>'search'),
+			array('id, key, value, weixin_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,9 +54,9 @@ class Options extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'key' => 'Key',
 			'value' => 'Value',
-			'admin_id' => 'Admin',
+			'weixin_id' => 'Weixin',
 		);
 	}
 
@@ -79,9 +79,9 @@ class Options extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('key',$this->key,true);
 		$criteria->compare('value',$this->value,true);
-		$criteria->compare('admin_id',$this->admin_id);
+		$criteria->compare('weixin_id',$this->weixin_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

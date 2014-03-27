@@ -2,7 +2,7 @@
 
 class EConfig extends CApplicationComponent
 {
-	
+
 	const CACHE_KEY = 'Extension.Config';
 
 	public $configTableName = 'Config';
@@ -10,7 +10,7 @@ class EConfig extends CApplicationComponent
 	public $connectionID = 'db';
 	public $cacheID = false;
 	public $strictMode = true;
-	
+
 	private $_db;
 	private $_cache;
 	private $_config;
@@ -25,7 +25,7 @@ class EConfig extends CApplicationComponent
 		{
 			$this->_getConfig($db, $cache);
 		}
-		
+
 		if (false === is_array($this->_config) || false === array_key_exists($key, $this->_config))
 		{
 			if (true === $this->strictMode)
@@ -37,11 +37,11 @@ class EConfig extends CApplicationComponent
 				return null;
 			}
 		}
-		
+
 		return (null === $this->_config[$key]) ? null : unserialize($this->_config[$key]);
-		
+
 	}
-	
+
 	public function set($key, $value)
 	{
 
@@ -62,7 +62,7 @@ class EConfig extends CApplicationComponent
 			else
 			{
 				$dbCommand = $db->createCommand("INSERT INTO `{$this->configTableName}` (`key`, `value`) VALUES (:key, :value)");
-				$dbCommand->bindParam(':key', $key, PDO::PARAM_STR);				
+				$dbCommand->bindParam(':key', $key, PDO::PARAM_STR);
 				$dbCommand->bindValue(':value', serialize($value), PDO::PARAM_STR);
 				$dbCommand->execute();
 			}
@@ -71,7 +71,7 @@ class EConfig extends CApplicationComponent
 		if (false === isset($dbCommand))
 		{
 			$dbCommand = $db->createCommand("UPDATE `{$this->configTableName}` SET `value` = :value WHERE `key` = :key LIMIT 1");
-			$dbCommand->bindValue(':value', serialize($value), PDO::PARAM_STR);		
+			$dbCommand->bindValue(':value', serialize($value), PDO::PARAM_STR);
 			$dbCommand->bindParam(':key', $key, PDO::PARAM_STR);
 			$dbCommand->execute();
 		}
@@ -82,7 +82,7 @@ class EConfig extends CApplicationComponent
 		{
 			$cache->set(self::CACHE_KEY, $this->_config);
 		}
-		
+
 	}
 
 	private function _getDb()
@@ -100,12 +100,12 @@ class EConfig extends CApplicationComponent
 		{
 			throw new CException("Config.connectionID \"{$this->connectionID}\" is invalid. Please make sure it refers to the ID of a CDbConnection application component.");
 		}
-		
+
 	}
-	
+
 	private function _getCache()
 	{
-		
+
 		if (false === $this->cacheID)
 		{
 			return false;
@@ -126,9 +126,9 @@ class EConfig extends CApplicationComponent
 		{
 			throw new CException("Config.cacheID \"{$this->cacheID}\" is invalid. Please make sure it refers to the ID of a CCache application component.");
 		}
-		
+
 	}
-	
+
 	private function _getConfig($db, $cache)
 	{
 
@@ -136,31 +136,31 @@ class EConfig extends CApplicationComponent
 		{
 			$this->_createConfigTable($db);
 		}
-		
+
 		if (false === $cache || false === ($this->_config = $cache->get(self::CACHE_KEY)))
 		{
-			
+
 			$dbReader = $db->createCommand("SELECT * FROM `{$this->configTableName}`")->query();
 
 			while (false !== ($row = $dbReader->read()))
 			{
 				$this->_config[$row['key']] = $row['value'];
 			}
-			
+
 			if (false !== $cache)
 			{
 				$cache->set(self::CACHE_KEY, $this->_config);
 			}
-			
+
 		}
 
 	}
-	
+
 	private function _createConfigTable($db)
 	{
 		$db->createCommand("CREATE TABLE IF NOT EXISTS `{$this->configTableName}` (`key` VARCHAR(100) PRIMARY KEY, `value` TEXT) COLLATE = utf8_bin")->execute();
 	}
-	
+
 }
 
 ?>

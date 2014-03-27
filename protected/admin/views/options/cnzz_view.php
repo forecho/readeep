@@ -1,0 +1,1 @@
+<iframe src="<?php echo $url; ?>" id="iframe" width="100%" height="500px" frameborder="0" scrolling="aotu" ></iframe>

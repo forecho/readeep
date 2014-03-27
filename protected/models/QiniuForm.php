@@ -1,9 +1,9 @@
 <?php
 
 /**
- * LoginForm class.
- * LoginForm is the data structure for keeping
- * user login form data. It is used by the 'login' action of 'SiteController'.
+ * QiniuForm class.
+ * QiniuForm is the data structure for keeping
+ * qiniu form data. It is used by the 'qiniu' action of 'OptionsController'.
  */
 class QiniuForm extends CFormModel
 {
@@ -14,8 +14,6 @@ class QiniuForm extends CFormModel
 
 	/**
 	 * Declares the validation rules.
-	 * The rules state that username and password are required,
-	 * and password needs to be authenticated.
 	 */
 	public function rules()
 	{

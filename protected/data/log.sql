@@ -41,4 +41,7 @@ ALTER TABLE `post_posts` ADD `author` varchar(50) DEFAULT NULL COMMENT '作者'
 2014年03月25日
 mail_templates 增加mail_templates表
 
+2014年3月27日
+options 表的 name 字段改成 key
+
 

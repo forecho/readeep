@@ -22,14 +22,16 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'token',
-		'url',
 		'name',
 		'wx_id',
 		'rawid',
 		'avatar',
 		'qr_code',
-		'admin_id',
+		'token',
+		array(
+			'name'=>'url',
+         	'value'=> Yii::app()->request->hostInfo."/index.php?r=api/weixin&id=".$model->id,
+		),
 		'description',
 	),
 )); ?>

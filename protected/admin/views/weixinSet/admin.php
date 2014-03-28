@@ -56,7 +56,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'wx_id',
 		array(
 			'name'=>'url',
-         	'value'=> 'CHtml::link(Yii::app()->createUrl("user/view",array("id"=>$data->id)), Yii::app()->createUrl("user/view",array("id"=>$data->id)))',
+         	'value'=> 'Yii::app()->request->hostInfo."/index.php?r=api/weixin&id=".$data->id',
          	'type'=>'raw',
 		),
 		// 'rawid',

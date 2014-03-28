@@ -46,11 +46,20 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'token',
+		array(
+			'name'=>'avatar',
+         	'value'=> 'CHtml::image($data->avatar."?imageView2/1/w/160/h/80")',
+         	'type'=>'raw',
+		),
 		'name',
+		'token',
 		'wx_id',
-		'rawid',
-		'avatar',
+		array(
+			'name'=>'url',
+         	'value'=> 'CHtml::link(Yii::app()->createUrl("user/view",array("id"=>$data->id)), Yii::app()->createUrl("user/view",array("id"=>$data->id)))',
+         	'type'=>'raw',
+		),
+		// 'rawid',
 		/*
 		'qr_code',
 		'admin_id',

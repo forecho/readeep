@@ -12,10 +12,12 @@
  * @property string $avatar
  * @property string $qr_code
  * @property string $description
+ * @property string $url
  * @property integer $admin_id
  */
 class WeixinSet extends CActiveRecord
 {
+	public $url;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -32,7 +34,7 @@ class WeixinSet extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('token, name, wx_id, rawid, admin_id', 'required'),
+			array('name, wx_id, rawid', 'required'),
 			array('admin_id', 'numerical', 'integerOnly'=>true),
 			array('token', 'length', 'max'=>10),
 			array('rawid', 'length', 'max'=>50),
@@ -41,7 +43,7 @@ class WeixinSet extends CActiveRecord
 			array('description', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, token, name, wx_id, rawid, avatar, qr_code, description, admin_id', 'safe', 'on'=>'search'),
+			array('id, token, name, wx_id, rawid, avatar, qr_code, description, admin_id, url', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +73,7 @@ class WeixinSet extends CActiveRecord
 			'qr_code' => 'Qr Code',
 			'description' => 'Description',
 			'admin_id' => 'Admin',
+			'url' => 'Url',
 		);
 	}
 
@@ -101,6 +104,7 @@ class WeixinSet extends CActiveRecord
 		$criteria->compare('qr_code',$this->qr_code,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('admin_id',$this->admin_id);
+		$criteria->compare('url',$this->url,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -116,5 +120,12 @@ class WeixinSet extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+
+	protected function beforeSave()
+	{
+		$this->admin_id = Yii::app()->user->id;
+	    return parent::beforeSave();
 	}
 }

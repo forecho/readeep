@@ -23,6 +23,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'token',
+		'url',
 		'name',
 		'wx_id',
 		'rawid',

@@ -71,6 +71,7 @@ class WeixinSetController extends Controller
 		if(isset($_POST['WeixinSet']))
 		{
 			$model->attributes=$_POST['WeixinSet'];
+			$model->token = randomString(10); // 随机生成10位
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

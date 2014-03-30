@@ -83,12 +83,9 @@ $this->menu=array(
         </div>  
 
         <div class="row">  
-                <?php
-                        echo CHtml::Button('送信', array(
-                            'submit' => array(),
-                            'params' => array('YII_CSRF_TOKEN' => Yii::app()->request->csrfToken),
-                        ));
-                ?>  
+           <div class="form-group">
+            <button class="btn btn-primary" id="submit" name="submit">送信</button>
+    </div> 
         </div>  
 
 <?php $this->endWidget(); ?>  

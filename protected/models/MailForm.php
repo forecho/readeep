@@ -47,7 +47,6 @@ class MailForm extends CFormModel {
         if (is_array($arrKey)) {
             foreach ($arrKey as $key => $value) {
                 $find = '{$' . $key . '}';
-                echo $find;
                 $body = str_replace($find, $value, $body);
             }
         }

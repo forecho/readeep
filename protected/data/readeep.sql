@@ -164,5 +164,44 @@ CREATE TABLE `config` (
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `mail_templates`
+--
+
+CREATE TABLE IF NOT EXISTS `mail_templates` (
+  `template_id` tinyint(1) unsigned NOT NULL AUTO_INCREMENT,
+  `template_code` varchar(30) NOT NULL DEFAULT '',
+  `is_html` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `template_subject` varchar(200) NOT NULL DEFAULT '',
+  `template_content` text NOT NULL,
+  `last_modify` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`template_id`),
+  UNIQUE KEY `template_code` (`template_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 INSERT INTO `config` (`key`, `value`) VALUES
 ('qiniu', '');
+
+CREATE TABLE `contact_group` (
+  `contact_group_id` int(11) NOT NULL auto_increment COMMENT '联系人分组id',
+  `mail_template_id` int(11) NOT NULL COMMENT '模板id',
+  `contact_group_name` varchar(60) NOT NULL COMMENT '分组名',
+  `contact_group_parent_id` int(11) NOT NULL default '0' COMMENT '上级分组id',
+  PRIMARY KEY  (`contact_group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE `contact_person` (
+  `contact_person_id` int(11) NOT NULL auto_increment COMMENT '联系人id',
+  `admin_id` int(11) NOT NULL COMMENT '管理员id',
+  `contact_group_id` varchar(60) NOT NULL COMMENT '联系人所在分组id',
+  `mobile` varchar(20) NOT NULL COMMENT '手机号',
+  `gender` tinyint(1) NOT NULL COMMENT '性别',
+  `email` varchar(60) NOT NULL COMMENT 'email邮箱',
+  `birthday` date NOT NULL COMMENT '生日',
+  `address` varchar(60) NOT NULL COMMENT '地址',
+  `nickname` varchar(20) NOT NULL default '0' COMMENT '昵称',
+  PRIMARY KEY  (`contact_person_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+

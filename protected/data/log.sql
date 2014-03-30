@@ -44,4 +44,6 @@ mail_templates 增加mail_templates表
 2014年3月27日
 options 表的 name 字段改成 key
 
+2014年3月30日
+添加contact_group以及contact_person表
 

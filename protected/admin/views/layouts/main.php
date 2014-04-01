@@ -34,6 +34,7 @@
 					array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
 					array('label'=>'Mail', 'url'=>array('/mail/send')),
+                                        array('label'=>'MailAccount', 'url'=>array('/mailaccount/index')),
 				),
 				'htmlOptions'=>array('class'=>'nav navbar-nav'),
 			)); ?>

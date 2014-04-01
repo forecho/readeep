@@ -10,21 +10,24 @@
  * @property integer $body      mail content
 
  */
-class MailForm extends CFormModel {
+class MailForm extends CFormModel
+{
 
     public $from;
     public $to;
     public $subject;
     public $body;
 
-    public function rules() {
+    public function rules()
+    {
         return array(
             array('from, to, subject, body', 'required'),
             array('from, to, subject, body ', 'safe'),
         );
     }
 
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array(
             'from' => '送信人',
             'to' => '收信人',
@@ -34,37 +37,33 @@ class MailForm extends CFormModel {
     }
 
     /*
-     * @param string $from mail sender
-     * @param string $to  mail Recipient
-     * @param string $subject mail subject
-     * @param string $body mail content
+     * @param string $objMail MailForm
      * @param boolen if send mail is ok and then return ture,if not,return false
      * @author 331942828@qq.com
      * @date:2013-12-12 10:00
      */
 
-    public static function sendMail($to, $subject, $body, $arrKey, $type = '',$from = "no-reply@enlife.com") {
-        if (is_array($arrKey)) {
-            foreach ($arrKey as $key => $value) {
+    public static function sendMail(MailForm $objMail, $arrKey, $fromNickName='no-reply',$toNickName='no-reply',$type = '')
+    {
+        if (is_array($arrKey))
+        {
+            foreach ($arrKey as $key => $value)
+            {
                 $find = '{$' . $key . '}';
                 $body = str_replace($find, $value, $body);
             }
         }
-        $objMail = new MailForm();
-        $objMail->from = $from;
-        $objMail->to = $to;
-        $objMail->subject = $subject;
-        $objMail->body = $body;
-
         $message = new YiiMailMessage();
-        $message->setFrom(array($objMail->from => '民声科技'));
-        $message->setTo(array($objMail->to => '收信人'));
+        $message->setFrom(array($objMail->from => $fromNickName));
+        $message->setTo(array($objMail->to => $toNickName));
         $message->setSubject($objMail->subject);
         $message->setBody($objMail->body, $type);
         $sendmail = Yii::app()->mail->send($message);
-        if ($sendmail) {
+        if ($sendmail)
+        {
             return TRUE;
-        } else {
+        } else
+        {
             return FALSE;
         }
     }

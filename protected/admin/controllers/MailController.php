@@ -257,34 +257,33 @@ class MailController extends Controller
 
     public function actionSend()
     {
-        // phpinfo();exit;
-        $sendMail = new YiiMail();
-        $model = new MailForm();
-        if (isset($_POST["MailForm"]))
+        $admin_id = Yii::app()->user->id;
+        $sql = 'select * from admins where id=' . $admin_id;
+        $adminInfo = Yii::app()->db->createCommand($sql)->queryRow();
+        $mailAccount = MailAccount::model()->findByPk($adminInfo['mail_account_id']);
+        if ($mailAccount)
         {
-            $model->attributes = $_POST['MailForm'];
-
-            if ($model->validate())
+            $model = new MailForm();
+            if (isset($_POST["MailForm"]))
             {
-                $message = new YiiMailMessage();
+                $model->attributes = $_POST['MailForm'];
 
-                $message->setFrom(array($model->from => '送信人'));
-                $message->setTo(array($model->to => '收信人'));
-                $message->setSubject($model->subject);
-                $message->setBody($model->body);
-                $sendmail = Yii::app()->mail->send($message);
+                if ($model->validate())
+                {
+                   $sendmail= MailForm::sendMail($model, '1');
 
-                if ($sendmail)
-                {
-                    Yii::app()->user->setFlash("success", "Emails sent: OK \n");
-                    $this->refresh();
-                } else
-                {
-                    Yii::app()->user->setFlash("failed", "Emails sent: NG \n");
+                    if ($sendmail)
+                    {
+                        Yii::app()->user->setFlash("success", "Emails sent: OK \n");
+                        $this->refresh();
+                    } else
+                    {
+                        Yii::app()->user->setFlash("failed", "Emails sent: NG \n");
+                    }
                 }
             }
+            $this->render('send', array('model' => $model, 'mailAccount' => $mailAccount));
         }
-        $this->render('send', array('model' => $model));
     }
 
     public function actionAjaxTemplate()

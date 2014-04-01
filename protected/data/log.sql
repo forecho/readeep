@@ -46,4 +46,7 @@ options 表的 name 字段改成 key
 
 2014年3月30日
 添加contact_group以及contact_person表
+2014年4月1日
+ALTER TABLE `admins` ADD `mail_account_id` int(10) NOT NULL COMMENT '邮箱账号id'
+添加表mail_account
 

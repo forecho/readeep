@@ -204,4 +204,13 @@ CREATE TABLE `contact_person` (
   PRIMARY KEY  (`contact_person_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+CREATE TABLE `mail_account` (
+  `mai_account_id` int(11) NOT NULL auto_increment COMMENT '邮箱账号id',
+  `mail_account` varchar(60) NOT NULL COMMENT '邮箱账号',
+  `nick_name` varchar(60) NOT NULL,
+  `mail_password` varchar(60) NOT NULL COMMENT '邮箱密码',
+  `host` varchar(60) NOT NULL COMMENT '邮箱服务器',
+  `port` tinyint(3) NOT NULL COMMENT '服务器端口',
+  PRIMARY KEY  (`mai_account_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

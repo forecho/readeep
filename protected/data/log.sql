@@ -50,3 +50,6 @@ options 表的 name 字段改成 key
 ALTER TABLE `admins` ADD `mail_account_id` int(10) NOT NULL COMMENT '邮箱账号id'
 添加表mail_account
 
+2014年4月3日
+ ALTER TABLE `admins` ADD UNIQUE (`username`) 
+

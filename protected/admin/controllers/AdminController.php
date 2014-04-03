@@ -67,12 +67,37 @@ class AdminController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+                
 		if(isset($_POST['Admin']))
 		{
-			$model->attributes=$_POST['Admin'];
-			if($model->save())
+                    if($_POST['Admin']['invite_code'])
+                    {
+                        $model->attributes=$_POST['Admin'];
+                        $find=InviteCode::model()->findByAttributes(array('code'=>$_POST['Admin']['invite_code'],'status'=>1));
+                        if($find)
+                        {
+                            $model->login_ip=YIi::app()->request->userHostAddress;
+                            $model->create_ip=YIi::app()->request->userHostAddress;
+                            $model->login_time=time();
+                            $model->create_time=time();
+                            if($model->save())
+                            {
+                                $find->status=0;
+                                $find->save();
 				$this->redirect(array('view','id'=>$model->id));
+                            }
+                            
+                        }
+                        else
+                        {
+                            Yii::app()->user->setFlash("invitefailed", "invite code is failed: please input correct invite code \n");
+                        }
+                    }
+                    else
+                    {
+                        $model->validate();
+                    }
+			
 		}
 
 		$this->render('create',array(
@@ -171,4 +196,5 @@ class AdminController extends Controller
 			Yii::app()->end();
 		}
 	}
+      
 }

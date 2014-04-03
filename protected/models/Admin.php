@@ -45,10 +45,13 @@ class Admin extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username, email, password, login_ip, login_time, create_ip, create_time, invite_code', 'required'),
+            array('username, email, password, invite_code', 'required'),
+            array('username','unique'),
             array('mail_account_id,login_time, login_count, create_time, status', 'numerical', 'integerOnly' => true),
             array('username, password, login_ip, create_ip', 'length', 'max' => 20),
+            array('password','length','min'=>6),
             array('email', 'length', 'max' => 50),
+             array('email', 'email'),
             array('invite_code', 'length', 'max' => 10),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.

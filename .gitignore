@@ -4,7 +4,6 @@ protected/admin/runtime/
 nbproject/
 .idea/
 uploads/
-index.php
 backend.php
 *db.php
 protected/config/db.php

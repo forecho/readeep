@@ -11,8 +11,8 @@ class StatisticsController extends Controller
 	public function actionIndex()
 	{
 		$this->pageTitle = Yii::app()->name . ' - ' . date('Y年m月',time()) . ' - 图形统计';
-		$this->pageKeyword = Yii::app()->name . '-' . date('Y年m月',time()) . ' - 图形统计';
-		$this->pageDesc = Yii::app()->name . date('Y年m月',time()) . '图形统计';
+		//$this->pageKeyword = Yii::app()->name . '-' . date('Y年m月',time()) . ' - 图形统计';
+		//$this->pageDesc = Yii::app()->name . date('Y年m月',time()) . '图形统计';
 		
 		$type = array('0'=>'访问量','1'=>'点赞数','2'=>'感谢数');//可配置
 		
@@ -29,6 +29,11 @@ class StatisticsController extends Controller
 		$criteria->compare('create_time','>'.$t1);
 		$result = $model->findAll($criteria);//查询当月文章
 		$i= 0;
+		//定义变量
+		$view_count = array();
+		$like_count = array();
+		$thanks_count = array();
+		$title = array();
 		foreach ($result as $key=>$val){
 			$view_count[$i] = $val['view_count'];
 			$like_count[$i] = $val['like_count'];
@@ -42,6 +47,7 @@ class StatisticsController extends Controller
 		$like_count = json_encode($like_count);
 		$thanks_count = json_encode($thanks_count);
 		$title = json_encode($title);
+
 		$this->render('index',array(
 				'type' => $type,
 				'view_count' => $view_count,

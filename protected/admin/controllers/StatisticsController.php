@@ -15,13 +15,24 @@ class StatisticsController extends Controller
 		//$this->pageDesc = Yii::app()->name . date('Y年m月',time()) . '图形统计';
 		
 		$type = array('0'=>'访问量','1'=>'点赞数','2'=>'感谢数');//可配置
-		
 		$y=date("Y",time());
-		$m=date("m",time());
+		$m = date("m",time());
 		$t0=date('t');           		  // 本月一共有几天
 		$t1=mktime(0,0,0,$m,1,$y);        // 本月开始时间
 		$t2=mktime(23,59,59,$m,$t0,$y);   // 本月结束时间
+		$start_time = date('Y-m-d',$t1);
+		$end_time = date('Y-m-d',$t2);
 
+		if(isset($_POST['submit'])){
+			$overduetime = array();
+			$time = $_POST['overduetime']?trim($_POST['overduetime']):'';//时间段
+			$overduetime = explode('—',$time);
+			$start_time = $overduetime[0];
+			$end_time = $overduetime[1];
+			$t1 = strtotime($start_time);
+			$t2 = strtotime($end_time);
+		}
+		
 		$model=new PostPosts('search');
 		$criteria=new CDbCriteria;
 		$criteria->compare('status',1);
@@ -53,7 +64,9 @@ class StatisticsController extends Controller
 				'view_count' => $view_count,
 				'like_count' => $like_count,
 				'thanks_count' => $thanks_count,
-				'title' => $title
+				'title' => $title,
+				'start_time' => $start_time,
+				'end_time' => $end_time
 		));
 	}
 }

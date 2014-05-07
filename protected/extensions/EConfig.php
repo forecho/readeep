@@ -18,7 +18,7 @@ class EConfig extends CApplicationComponent
 	public function get($key)
 	{
 
-		$db = $this->_getDb();
+	 	$db = $this->_getDb();
 		$cache = $this->_getCache();
 
 		if (null === $this->_config)

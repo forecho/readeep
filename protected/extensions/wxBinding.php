@@ -3,7 +3,7 @@
 echo "自动绑定DEMO开始:<br/>";
 
 $appAccount = 'xxx';
-$appPasswd = 'xx';
+$appPasswd = 'xxx';
 
 $demo = new demo();
 
@@ -21,9 +21,11 @@ $tokenRaw = explode('&token=', basename($demo->callBack['redirect_url']));
 $token = $tokenRaw[1];
 var_dump($token.'<br/>');
 
+echo "获取微信相关认证信息appid，appkey 等";
 $wxInfo = $demo->getWxInfo($ch, $token);
-var_dump($wxInfo.'<br/>');
-exit();
+echo "<pre>";
+print_r($wxInfo);
+echo "<hr>";
 //打开开发者模式
 $htmlRaw = $demo->openAdvancedSwitch($ch, 1, $token, 2, $demo->cookieName);
 print_r($htmlRaw.'<br/>');
@@ -35,30 +37,36 @@ if($html == true) {
 }
 
 //设置回调
-$backurl = 'http://mini.beta.vikduo.com/Api/index/wx/64';
-$callback_token = 'k2ocuIVf6Kg0bb1idYzH';
-$set = $demo->setCallbackProfile($ch, $backurl, $callback_token, $token);
+$backurl = 'http://www.readeep.com/index.php?r=api/weixin&id=1';
+$callback_token = 'forecho';
+$type = 2;
+$set = $demo->setCallbackProfile($ch, $backurl, $callback_token, $token, $type);
 $html = strpos($set , '"ret":"0"') != null ? true : false;
+if ($html) {
+	echo "智能绑定成功!";
+} else {
+	echo "智能绑定失败! 请30秒后重试! 请勿频繁操作!";
+}
 var_dump($set.'<br/>');
 var_dump($html);
 
 exit('end');
 
 class demo {
-	var $appAccount = '1157324096';
-    var $appPasswd = 'a12345678';
+	var $appAccount = 'xxx';
+    var $appPasswd = 'xxx';
 	var $callBack = array();
-	var $cookieName = '';
+	var $cookieFileName = '';
 
 	/**
 	 * 登录微信后台
 	 */
 	function init($appAccount, $appPasswd, $cookieFileName) {
 		$url = "https://mp.weixin.qq.com/cgi-bin/login?lang=zh_CN";
-		$ch = curl_init($url);
 		$post["username"] = $appAccount;
 		$post["pwd"] = md5($appPasswd);
 		$post["f"] = "json";
+		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0');
@@ -103,7 +111,8 @@ class demo {
 	/**
 	 * 设置接管高级模式的地址
 	 */
-	function setCallbackProfile($ch,$backurl,$callback_token,$token, $type){
+	function setCallbackProfile($ch,$backurl,$callback_token,$token,$type){
+		// $url = "https://mp.weixin.qq.com/advanced/callbackprofile?t=ajax-response&token=".$token."&lang=zh_CN";
 		$url = "https://mp.weixin.qq.com/advanced/callbackprofile?t=ajax-response&lang=zh_CN";
 		$post["callback_token"] = $callback_token;
 		$post["url"] = $backurl;
@@ -111,17 +120,10 @@ class demo {
 		$post["type"] = $type;
 		$post["f"] = "json";
 		curl_setopt($ch,CURLOPT_URL, $url);
-		//curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
-		//curl_setopt($ch, CURLOPT_HEADER, 1);
-		//curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0');
-		//curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
-		//curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-		//curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
 		curl_setopt($ch, CURLOPT_REFERER, 'https://mp.weixin.qq.com/misc/skeyform?form=advancedswitchform&lang=zh_CN');
 		$html = curl_exec($ch);
 		curl_close($ch);
-		//var_dump($html);
 		return $html;
 	}
 
@@ -131,19 +133,12 @@ class demo {
 	 */
 	function getWxInfo($ch, $token){
 		$url = "https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token=".$token."&lang=zh_CN&f=json";
-
 		curl_setopt($ch,CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
-		//curl_setopt($ch, CURLOPT_HEADER,0);
-		//curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0');
-		//curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
 		curl_setopt($ch, CURLOPT_HTTPGET, 1);
-		//curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
 		curl_setopt($ch, CURLOPT_REFERER, '	https://mp.weixin.qq.com/advanced/advanced?action=dev&t=advanced/dev&token='.$token.'&lang=zh_CN');
 		$html = curl_exec($ch);
 		$arr = json_decode($html,true);
-		echo "<pre>";
-		print_r($arr);
-		return $arr['advanced_info']['dev_info'];
+		return $arr;
 	}
 }

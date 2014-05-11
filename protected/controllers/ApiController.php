@@ -21,30 +21,27 @@ class ApiController extends Controller
         echo $weixin->makeEvent();
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息
-        $msg = $weixin->msg->Content;
-
-        $rawid = $weixin->msg->ToUserName;
-        $admin = WeixinSet::model()->find('rawid=:rawid', array(':rawid'=>$rawid));
-		// var_dump($weixin->msg);
+        $content = $weixin->msg->Content;
+        $createTime = $weixin->msg->CreateTime;
 
  		// 获取 open_id
         $open_id = $weixin->msg->FromUserName;
-        $uid = $this->_isUser($open_id, $admin->admin_id);
+        $uid = $this->_isUser($open_id, $id, $createTime, $content);
 
         switch ($msgType) {
             case 'text':
                 //你要处理文本消息代码
-            	// echo $weixin->makeText($msg);
-            	//echo $weixin->makeText(Yii::app()->session['uid']);
+            	// echo $weixin->makeText($content);
+            	// echo $weixin->makeText(Yii::app()->session['uid']);
             	// echo $weixin->makeText($open_id);
                 // 优先文本关键字回复
-                $item = $this->_text($msg, $admin->admin_id);
+                $item = $this->_text($content, $id);
                 if ($item) {
                     // 如果有匹配到
                     echo $weixin->makeText($item);
                 }else{
                     // 图文回复
-                	$item = $this->_search($msg, $open_id, $admin->admin_id);
+                	$item = $this->_search($content, $open_id, $weixin_set->admin_id);
                 	echo $weixin->makeNews($item);
                 }
                 break;
@@ -76,34 +73,58 @@ class ApiController extends Controller
      * 判断是否存在 并写入 session
      * 返回写入 session 的用户 id
      */
-    public function _isUser($open_id, $admin_id)
+    private function _isUser($open_id, $weixin_id, $createTime='', $content='')
     {
+        Yii::import('ext.wxapi.include.WeiXinApi');
+        $option = Options::model()->find(
+            'key=:key AND weixin_id=:weixinId',
+            array(':key'=>'login', ':weixinId'=>$weixin_id)
+        );
+        $login = json_decode($option->value, true);
+        $wxConfig = array(
+            'account' => $login['account'],
+            'password' => $login['password'],
+            'cookiePath' => Yii::getPathOfAlias('application').'/runtime/'.$login['account'].'-cookie', // cookie缓存文件路径
+            'webTokenPath' => Yii::getPathOfAlias('application').'/runtime/'.$login['account'].'-webToken', // webToken缓存文件路径
+        );
+        $wxapi = new WeiXinApi($wxConfig);
+        // 得到用户Fakeid
+        $userInfo = $wxapi->getLatestMsgByCreateTimeAndContent($createTime, $content);
+
     	$data = Users::model()->find(
-    		'open_id=:openId AND admin_id=:adminId',
-    		array(':openId'=>$open_id, ':adminId'=>$admin_id)
+    		'open_id=:openId AND weixin_id=:weixinId',
+    		array(':openId'=>$open_id, ':weixinId'=>$weixin_id)
     	);
+
     	if (!$data) {
     		$model = new Users;
 			$model->open_id = $open_id;
-			$model->admin_id = $admin_id;
+            $model->weixin_id = $weixin_id;
+            if ($userInfo) {
+                $model->fake_id = $userInfo['fakeid'];
+    			$model->username = $userInfo['nick_name'];
+            }
 			if($model->save()){
 				return Yii::app()->session['uid'] = $model->attributes['id'];
 			}
 			exit;
     	} else {
-    		if($data->save()){
-    			// 登录次数 == 发送消息数
-    			$data->saveCounters(array('login_count'=>1));
-				return Yii::app()->session['uid'] = $data->id;
+    		if(!$data->fake_id && $userInfo){
+                $data->fake_id = $userInfo['fakeid'];
+                $data->username = $userInfo['nick_name'];
+                $data->save();
 			}
+            // 登录次数 == 发送消息数
+            $data->saveCounters(array('login_count'=>1));
+            return Yii::app()->session['uid'] = $data->id;
     	}
     }
 
     // 文本回复
-    public function _text($msg, $admin_id)
+    private function _text($content, $admin_id)
     {
         $criteria = new CDbCriteria;
-        $criteria->addSearchCondition('keyword', $msg);
+        $criteria->addSearchCondition('keyword', $content);
         $criteria->addCondition("type=1");
         $criteria->addCondition("admin_id=".$admin_id);
         $data = WeixinReply::model()->find($criteria);
@@ -112,11 +133,11 @@ class ApiController extends Controller
 
 
     // 图文回复
-    public function _search($msg, $open_id, $admin_id)
-    // public function actionSearch($msg='')
+    private function _search($content, $open_id, $admin_id)
+    // public function actionSearch($content='')
     {
-    	$type = substr($msg, 0, 1 );
-    	$iMsg = substr($msg, 1 );
+    	$type = substr($content, 0, 1 );
+    	$iMsg = substr($content, 1 );
 
 		$criteria = new CDbCriteria;
     	switch ($type) {
@@ -141,12 +162,12 @@ class ApiController extends Controller
     			break;
     		default:
                 // 优先匹配关键字回复 再匹配文本回复
-                $count = PostTags::model()->count('name=:name', array(':name'=>$msg));
+                $count = PostTags::model()->count('name=:name', array(':name'=>$content));
                 if ($count) {
-                    $criteria->addSearchCondition('tags', $msg);
+                    $criteria->addSearchCondition('tags', $content);
                     $criteria->limit = 5;
                 } else {
-                    $criteria->addSearchCondition('title', $msg);
+                    $criteria->addSearchCondition('title', $content);
                     $criteria->limit = 5;
                 }
     			break;

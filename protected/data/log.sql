@@ -51,5 +51,11 @@ ALTER TABLE `admins` ADD `mail_account_id` int(10) NOT NULL COMMENT '邮箱账�
 添加表mail_account
 
 2014年4月3日
- ALTER TABLE `admins` ADD UNIQUE (`username`) 
+ALTER TABLE `admins` ADD UNIQUE (`username`)
+
+2014年05月11日
+用户表添加 fakeid
+ALTER TABLE `users` ADD `fake_id` int(10) DEFAULT NULL COMMENT '微信的 fakeid'
+把 admin_id 修改为 weixin_id
+ALTER TABLE `users` CHANGE `admin_id` `weixin_id` int(10);
 

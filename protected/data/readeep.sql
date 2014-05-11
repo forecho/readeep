@@ -55,6 +55,7 @@ CREATE TABLE `users` (
   `login_count` int(10) DEFAULT '0' COMMENT '登录次数',
   `create_ip` varchar(20) NOT NULL COMMENT '创建IP',
   `create_time` int(10) NOT NULL COMMENT '创建时间',
+  `fake_id` int(10) NOT NULL COMMENT '微信的 fakeid',
   `admin_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='会员表';

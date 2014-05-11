@@ -14,7 +14,8 @@
  * @property integer $login_count
  * @property string $create_ip
  * @property integer $create_time
- * @property integer $admin_id
+ * @property integer $weixin_id
+ * @property integer $fake_id
  */
 class Users extends CActiveRecord
 {
@@ -34,14 +35,14 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('admin_id', 'required'),
-			array('login_time, login_count, create_time, admin_id', 'numerical', 'integerOnly'=>true),
+			array('weixin_id', 'required'),
+			array('login_time, login_count, create_time, weixin_id, fake_id', 'numerical', 'integerOnly'=>true),
 			array('open_id', 'length', 'max'=>80),
 			array('username, password, login_ip, create_ip', 'length', 'max'=>20),
 			array('email', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, open_id, username, email, password, login_ip, login_time, login_count, create_ip, create_time, admin_id', 'safe', 'on'=>'search'),
+			array('id, open_id, username, email, password, login_ip, login_time, login_count, create_ip, create_time, weixin_id, fake_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,7 +73,8 @@ class Users extends CActiveRecord
 			'login_count' => 'Login Count',
 			'create_ip' => 'Create Ip',
 			'create_time' => 'Create Time',
-			'admin_id' => 'Admin',
+			'weixin_id' => 'Weixin',
+			'fake_id' => 'Fake',
 		);
 	}
 
@@ -104,7 +106,8 @@ class Users extends CActiveRecord
 		$criteria->compare('login_count',$this->login_count);
 		$criteria->compare('create_ip',$this->create_ip,true);
 		$criteria->compare('create_time',$this->create_time);
-		$criteria->compare('admin_id',$this->admin_id);
+		$criteria->compare('weixin_id',$this->weixin_id);
+		$criteria->compare('fake_id',$this->fake_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

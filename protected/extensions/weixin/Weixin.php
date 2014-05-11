@@ -198,6 +198,7 @@ class Weixin
     {
         if ($this->debug)
         {
+            fopen(Yii::getPathOfAlias('application').'/runtime/weixin_log.txt', 'a+');
             file_put_contents(Yii::getPathOfAlias('application').'/runtime/weixin_log.txt', var_export($log, true)."\n\r", FILE_APPEND);
         }
     }

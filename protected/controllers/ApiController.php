@@ -75,6 +75,38 @@ class ApiController extends Controller
      */
     private function _isUser($open_id, $weixin_id, $createTime='', $content='')
     {
+    	$data = Users::model()->find(
+    		'open_id=:openId AND weixin_id=:weixinId',
+    		array(':openId'=>$open_id, ':weixinId'=>$weixin_id)
+    	);
+    	if (!$data) {
+            $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
+    		$model = new Users;
+			$model->open_id = $open_id;
+            $model->weixin_id = $weixin_id;
+            if ($userInfo) {
+                $model->fake_id = $userInfo['fakeid'];
+    			$model->username = $userInfo['nick_name'];
+            }
+			if($model->save()){
+				return Yii::app()->session['uid'] = $model->attributes['id'];
+			}
+    	} else {
+            if(!$data->fake_id){
+                $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
+                $data->fake_id = $userInfo['fakeid'];
+                $data->username = $userInfo['nick_name'];
+                $data->save();
+			}
+            // 登录次数 == 发送消息数
+            $data->saveCounters(array('login_count'=>1));
+            return Yii::app()->session['uid'] = $data->id;
+    	}
+    }
+
+    // 得到用户Fakeid
+    private function getUserInfo($weixin_id, $createTime='', $content='')
+    {
         Yii::import('ext.wxapi.include.WeiXinApi');
         $option = Options::model()->find(
             'key=:key AND weixin_id=:weixinId',
@@ -89,35 +121,7 @@ class ApiController extends Controller
         );
         $wxapi = new WeiXinApi($wxConfig);
         // 得到用户Fakeid
-        $userInfo = $wxapi->getLatestMsgByCreateTimeAndContent($createTime, $content);
-
-    	$data = Users::model()->find(
-    		'open_id=:openId AND weixin_id=:weixinId',
-    		array(':openId'=>$open_id, ':weixinId'=>$weixin_id)
-    	);
-
-    	if (!$data) {
-    		$model = new Users;
-			$model->open_id = $open_id;
-            $model->weixin_id = $weixin_id;
-            if ($userInfo) {
-                $model->fake_id = $userInfo['fakeid'];
-    			$model->username = $userInfo['nick_name'];
-            }
-			if($model->save()){
-				return Yii::app()->session['uid'] = $model->attributes['id'];
-			}
-			exit;
-    	} else {
-    		if(!$data->fake_id && $userInfo){
-                $data->fake_id = $userInfo['fakeid'];
-                $data->username = $userInfo['nick_name'];
-                $data->save();
-			}
-            // 登录次数 == 发送消息数
-            $data->saveCounters(array('login_count'=>1));
-            return Yii::app()->session['uid'] = $data->id;
-    	}
+        return $wxapi->getLatestMsgByCreateTimeAndContent($createTime, $content);
     }
 
     // 文本回复

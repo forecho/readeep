@@ -109,7 +109,7 @@ class ApiController extends Controller
     {
         Yii::import('ext.wxapi.include.WeiXinApi');
         $option = Options::model()->find(
-            'key=:key AND weixin_id=:weixinId',
+            '`key`=:key AND `weixin_id`=:weixinId',
             array(':key'=>'login', ':weixinId'=>$weixin_id)
         );
         $login = json_decode($option->value, true);

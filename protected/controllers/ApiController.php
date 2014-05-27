@@ -95,12 +95,12 @@ class ApiController extends Controller
     	} else {
             if(!$data->fake_id){
                 // 更新用户
-                $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
-                if ($userInfo) {
-                    $data->fake_id = $userInfo['fakeid'];
-                    $data->username = $userInfo['nick_name'];
-                    $data->save();
-                }
+                // $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
+                // if ($userInfo) {
+                //     $data->fake_id = $userInfo['fakeid'];
+                //     $data->username = $userInfo['nick_name'];
+                //     $data->save();
+                // }
 			}
             // 登录次数 == 发送消息数
             $data->saveCounters(array('login_count'=>1));

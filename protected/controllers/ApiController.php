@@ -80,6 +80,7 @@ class ApiController extends Controller
     		array(':openId'=>$open_id, ':weixinId'=>$weixin_id)
     	);
     	if (!$data) {
+            // 添加用户
             $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
     		$model = new Users;
 			$model->open_id = $open_id;
@@ -93,10 +94,13 @@ class ApiController extends Controller
 			}
     	} else {
             if(!$data->fake_id){
+                // 更新用户
                 $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
-                $data->fake_id = $userInfo['fakeid'];
-                $data->username = $userInfo['nick_name'];
-                $data->save();
+                if ($userInfo) {
+                    $data->fake_id = $userInfo['fakeid'];
+                    $data->username = $userInfo['nick_name'];
+                    $data->save();
+                }
 			}
             // 登录次数 == 发送消息数
             $data->saveCounters(array('login_count'=>1));

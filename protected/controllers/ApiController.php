@@ -81,14 +81,14 @@ class ApiController extends Controller
     	);
     	if (!$data) {
             // 添加用户
-            $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
+            //$userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
     		$model = new Users;
 			$model->open_id = $open_id;
             $model->weixin_id = $weixin_id;
-            if ($userInfo) {
-                $model->fake_id = $userInfo['fakeid'];
-    			$model->username = $userInfo['nick_name'];
-            }
+       //      if ($userInfo) {
+       //          $model->fake_id = $userInfo['fakeid'];
+    			// $model->username = $userInfo['nick_name'];
+       //      }
 			if($model->save()){
 				return Yii::app()->session['uid'] = $model->attributes['id'];
 			}

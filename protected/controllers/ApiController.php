@@ -18,7 +18,7 @@ class ApiController extends Controller
     	$weixin->init();
         $reply = '';
         // 微信事件操作
-        echo $weixin->makeEvent();
+        $weixin->makeEvent();
         $msgType = empty($weixin->msg->MsgType) ? '' : strtolower($weixin->msg->MsgType);
         // 获得用户发过来的消息
         $content = $weixin->msg->Content;

@@ -117,6 +117,7 @@ class ApiController extends Controller
             array(':key'=>'login', ':weixinId'=>$weixin_id)
         );
         $login = json_decode($option->value, true);
+        $weixin->makeText($login['account']);
         $wxConfig = array(
             'account' => $login['account'],
             'password' => $login['password'],

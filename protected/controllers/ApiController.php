@@ -31,7 +31,7 @@ class ApiController extends Controller
         switch ($msgType) {
             case 'text':
                 //你要处理文本消息代码
-            	echo $weixin->makeText($uid);
+            	echo $weixin->makeText('23');
             	// echo $weixin->makeText(Yii::app()->session['uid']);
             	// echo $weixin->makeText($open_id);
                 // 优先文本关键字回复

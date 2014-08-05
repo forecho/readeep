@@ -1,7 +1,7 @@
 <?php
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../yii14/framework/yii.php';
+$yii=dirname(__FILE__).'/../yii15/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
 //加载全局函数
 $globals = dirname(__FILE__).'/protected/globals.php';

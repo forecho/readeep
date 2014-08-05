@@ -24,14 +24,14 @@ class LoginWeixin {
 	private $cookie;
 	private $pageSize = 100000;//每页用户数（用于读取所有用户）
 	private $userAgent = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0';
-	
-	
+
+
 	public function __construct($options){
 		$this->_account = isset($options['account'])?$options['account']:'';
 		$this->_password = isset($options['password'])?$options['password']:'';
 		$this->login();
 	}
-	
+
 	//登录
 	private function login(){
 		$url = 'https://mp.weixin.qq.com/cgi-bin/login?lang=zh_CN';
@@ -84,7 +84,7 @@ class LoginWeixin {
 			}
 		}
 	}
-	
+
     //单发消息
 	private function send($fakeid,$content){
 		$url = 'https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response&lang=zh_CN';
@@ -99,7 +99,7 @@ class LoginWeixin {
 		$this->referer = 'https://mp.weixin.qq.com/cgi-bin/singlemsgpage?token='.$this->token.'&fromfakeid='.$fakeid.'&msgid=&source=&count=20&t=wxm-singlechat&lang=zh_CN';
 		return $this->curlPost($url);
 	}
-	
+
 	//群发消息
     public function sendMessage($content='',$userId='') {
 		if(is_array($userId) && !empty($userId)){
@@ -117,22 +117,22 @@ class LoginWeixin {
 				}
 			}
 		}
-		
+
 		//共发送用户数
 		$count = count($this->userFakeid);
 		//发送失败用户数
 		$errCount = count($errUser);
 		//发送成功用户数
 		$succeCount = $count-$errCount;
-		
+
 		$data = array(
 			'status'=>0,
 			'count'=>$count,
 			'succeCount'=>$succeCount,
 			'errCount'=>$errCount,
-			'errUser'=>$errUser 
+			'errUser'=>$errUser
 		);
-		
+
 		return json_encode($data);
     }
 	//获取所有用户信息
@@ -140,12 +140,12 @@ class LoginWeixin {
 		foreach($this->userFakeid as $v){
 			$info[] = $this->getUserInfo($v['groupid'],$v['fakeid']);
 		}
-		
+
 		return $info;
 	}
-	
-	
-	
+
+
+
 	//获取用户信息
 	public function getUserInfo($groupId,$fakeId){
 		$url = "https://mp.weixin.qq.com/cgi-bin/getcontactinfo?t=ajax-getcontactinfo&lang=zh_CN&fakeid={$fakeId}";
@@ -158,7 +158,7 @@ class LoginWeixin {
         $message_opt = $this->curlPost($url);
         return $message_opt;
 	}
-	
+
 	//获取所有用户fakeid
 	private function getUserFakeid(){
 		ini_set('max_execution_time',600);
@@ -219,7 +219,7 @@ class LoginWeixin {
         curl_close($curl); //关闭curl
         return $result;
     }
-	
+
 	private function vget($url){ // 模拟获取内容函数
 		$header = array(
 				'Accept:*/*',
@@ -230,7 +230,7 @@ class LoginWeixin {
 				'Referer:'.$this->referer,
 				'X-Requested-With:XMLHttpRequest'
 		);
-		
+
 		$useragent = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0';
 		$curl = curl_init(); // 启动一个CURL会话
 		curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址

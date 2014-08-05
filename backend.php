@@ -1,7 +1,7 @@
 <?php
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../yii14/framework/yii.php';
+$yii=dirname(__FILE__).'/../yii15/framework/yii.php';
 $config=dirname(__FILE__).'/protected/admin/config/main.php';
 $globals = dirname(__FILE__).'/protected/globals.php';
 

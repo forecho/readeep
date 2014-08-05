@@ -31,7 +31,7 @@ class ApiController extends Controller
         switch ($msgType) {
             case 'text':
                 //你要处理文本消息代码
-            	echo $weixin->makeText('23');
+            	// echo $weixin->makeText('23');
             	// echo $weixin->makeText(Yii::app()->session['uid']);
             	// echo $weixin->makeText($open_id);
                 // 优先文本关键字回复
@@ -81,26 +81,26 @@ class ApiController extends Controller
     	);
     	if (!$data) {
             // 添加用户
-            //$userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
+            $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
     		$model = new Users;
 			$model->open_id = $open_id;
             $model->weixin_id = $weixin_id;
-       //      if ($userInfo) {
-       //          $model->fake_id = $userInfo['fakeid'];
-    			// $model->username = $userInfo['nick_name'];
-       //      }
+            if ($userInfo) {
+                $model->fake_id = $userInfo['fakeid'];
+    			$model->username = $userInfo['nick_name'];
+            }
 			if($model->save()){
 				return Yii::app()->session['uid'] = $model->attributes['id'];
 			}
     	} else {
             if(!$data->fake_id){
                 // 更新用户
-                // $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
-                // if ($userInfo) {
-                //     $data->fake_id = $userInfo['fakeid'];
-                //     $data->username = $userInfo['nick_name'];
-                //     $data->save();
-                // }
+                $userInfo = $this->getUserInfo($weixin_id, $createTime='', $content='');
+                if ($userInfo) {
+                    $data->fake_id = $userInfo['fakeid'];
+                    $data->username = $userInfo['nick_name'];
+                    $data->save();
+                }
 			}
             // 登录次数 == 发送消息数
             $data->saveCounters(array('login_count'=>1));

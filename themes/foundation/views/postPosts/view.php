@@ -128,7 +128,7 @@ $this->breadcrumbs=array(
 <script>
 //微信Native图片插件
 var srcList = [];
-$.each($('section img'),function(i,item){
+$.each($('.post-view img'),function(i,item){
     // var src = 'http://' + location.host + $(this).attr('src');
     var src = $(this).attr('src');
     if (src) {

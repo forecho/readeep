@@ -30,7 +30,7 @@ $this->breadcrumbs=array(
 			</header>
 			<section class="mtb20">
 				<?php echo CHtml::link(CHtml::image($model->image, '',array('class'=>'w100 mb20')), $model->image); ?>
-				<?php echo CHtml::image($model->image, '',array('class'=>'w100 mb20') ?>
+				<?php echo CHtml::image($model->image, '',array('class'=>'w100 mb20')) ?>
 				<?php echo $model->content; ?>
 			</section>
 			<footer>

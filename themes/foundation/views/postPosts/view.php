@@ -92,7 +92,7 @@ $this->breadcrumbs=array(
 					ds.type = 'text/javascript';ds.async = true;
 					ds.src = 'http://static.duoshuo.com/embed.js';
 					ds.charset = 'UTF-8';
-					(document.getElementsByTagName('head')[0] 
+					(document.getElementsByTagName('head')[0]
 					|| document.getElementsByTagName('body')[0]).appendChild(ds);
 				})();
 				</script>
@@ -125,3 +125,19 @@ $this->breadcrumbs=array(
 		</aside>
   	</div>
 </div>
+<script>
+//微信Native图片插件
+var srcList = [];
+$.each($('section img'),function(i,item){
+    var src = 'http://' + location.host + $(this).attr('src');
+    if (src) {
+        srcList.push(src);
+        $(item).click(function(e){
+            WeixinJSBridge.invoke('imagePreview', {
+                'current' : src,
+                'urls' : srcList
+            });
+        });
+    }
+});
+</script>

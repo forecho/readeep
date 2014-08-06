@@ -29,8 +29,7 @@ $this->breadcrumbs=array(
 				</ul>
 			</header>
 			<section class="mtb20">
-				<?php echo CHtml::link(CHtml::image($model->image, '',array('class'=>'w100 mb20')), $model->image); ?>
-				<?php echo CHtml::image($model->image, '',array('class'=>'w100 mb20')) ?>
+				<?php echo CHtml::image($model->image, '',array('class'=>'w100 mb20')); ?>
 				<?php echo $model->content; ?>
 			</section>
 			<footer>
@@ -130,7 +129,8 @@ $this->breadcrumbs=array(
 //微信Native图片插件
 var srcList = [];
 $.each($('section img'),function(i,item){
-    var src = 'http://' + location.host + $(this).attr('src');
+    // var src = 'http://' + location.host + $(this).attr('src');
+    var src = $(this).attr('src');
     if (src) {
         srcList.push(src);
         $(item).click(function(e){

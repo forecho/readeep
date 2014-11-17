@@ -98,7 +98,7 @@ $backendArray=array(
     ),
 
     // main is the default layout
-    //'layout'=>'main',
+    'layout'=>'main2',
     // alternate layoutPath
     'layoutPath'=>dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'layouts'.DIRECTORY_SEPARATOR,
 );

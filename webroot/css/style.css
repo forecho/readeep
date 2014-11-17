@@ -23,3 +23,23 @@
 .pager .next>a, .pager .next>span {
 	float: left;
 }
+.nav a {
+	color: #fff;
+}
+
+
+.nav>li>a:hover, .nav>li>a:focus {
+	color: #18bc9c;
+	background-color: #202d3b;
+}
+
+.navbar-collapse {
+	max-height: 600px;
+}
+
+.navbar-nav {
+	margin-right: 10px
+}
+.breadcrumbs {
+	padding: 17px 0 0;
+}

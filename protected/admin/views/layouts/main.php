@@ -52,8 +52,20 @@
                     'submenuOptions'=>array('class'=>'nav nav-second-level collapse'),
                     'items'=>array(
                         array(
-                            'label'=>'文本回复',
+                            'label'=>'帐号管理',
                             'url'=>array('/weixinSet/admin'),
+                        ),
+                        array(
+                            'label'=>'验证信息',
+                            'url'=>array('/'),
+                        ),
+                        array(
+                            'label'=>'功能设置',
+                            'url'=>array('/'),
+                        ),
+                        array(
+                            'label'=>'修改密码',
+                            'url'=>array('/'),
                         ),
                     ),
                 ),
@@ -64,8 +76,12 @@
                     'submenuOptions'=>array('class'=>'nav nav-second-level collapse'),
                     'items'=>array(
                         array(
-                            'label'=>'文本回复',
-                            'url'=>array('/weixinSet/admin'),
+                            'label'=>'文本回复列表',
+                            'url'=>array('/weixinReply/admin'),
+                        ),
+                        array(
+                            'label'=>'添加文本回复',
+                            'url'=>array('/weixinReply/create'),
                         ),
                     ),
                 ),
@@ -88,32 +104,32 @@
                 array(
                     'label'=>t('Options', 'menu'),
                     'url'=>array('/'),
-                    'active'=>$this->id=='weixinReply'?true:false,
+                    'active'=>$this->id=='options'?true:false,
                     'submenuOptions'=>array('class'=>'nav nav-second-level collapse'),
                     'items'=>array(
                         array(
                             'label'=>'七牛',
-                            'url'=>array('/weixinSet/admin'),
+                            'url'=>array('/Options/qiniu'),
                         ),
                         array(
                             'label'=>'邮件',
-                            'url'=>array('/weixinSet/admin'),
+                            'url'=>array('/Options/mail'),
                         ),
                     ),
                 ),
                 array(
                     'label'=>t('Statistics', 'menu'),
                     'url'=>array('/'),
-                    'active'=>$this->id=='weixinReply'?true:false,
+                    'active'=>$this->id=='statistics'?true:false,
                     'submenuOptions'=>array('class'=>'nav nav-second-level collapse'),
                     'items'=>array(
                         array(
                             'label'=>'文章统计',
-                            'url'=>array('/weixinSet/admin'),
+                            'url'=>array('/Statistics/index'),
                         ),
                         array(
                             'label'=>'会员统计',
-                            'url'=>array('/weixinSet/admin'),
+                            'url'=>array('/Statistics/user'),
                         ),
                     ),
                 ),

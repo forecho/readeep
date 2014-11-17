@@ -26,15 +26,6 @@
     <div class="navbar-collapse collapse" id="navbar-main">
         <?php $this->widget('zii.widgets.CMenu',array(
             'items'=>array(
-                array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
-                 array(
-                        array('label'=>t('Home', 'menu'), 'url'=>array('/site/index')),
-                    )
-            ),
-            'htmlOptions'=>array('class'=>'nav navbar-nav'),
-        )); ?>
-        <?php $this->widget('zii.widgets.CMenu',array(
-            'items'=>array(
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),

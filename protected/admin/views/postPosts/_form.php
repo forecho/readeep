@@ -33,6 +33,16 @@
     </div>
 
     <div class="form-group">
+        <?php $this->widget('backend.components.imageLoader', array(
+              'crumbs' => array(
+                array('name' => 'Home', 'url' => array('site/index')),
+                array('name' => 'Login'),
+              ),
+              'delimiter' => ' &rarr; ', // if you want to change it
+        )); ?>
+    </div>
+
+    <div class="form-group">
         <?php echo $form->labelEx($model, 'image'); ?>
             <input id="file" name="file" class="ipt" type="file" />
             <input id="token" name="token" type="hidden" class="ipt form-control" value="<?php echo $token;?>">

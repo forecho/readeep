@@ -135,7 +135,7 @@
                 ),
                 array(
                     'label'=>'图片管理',
-                    'url'=>array('/picture'),
+                    'url'=>array('images/admin'),
                     'active'=>$this->id=='picture'?true:false,
                 ),
                 array(

@@ -59,3 +59,17 @@ ALTER TABLE `users` ADD `fake_id` int(10) DEFAULT NULL COMMENT '微信的 fakeid
 把 admin_id 修改为 weixin_id
 ALTER TABLE `users` CHANGE `admin_id` `weixin_id` int(10);
 
+2014年11月26日
+添加一个图片库表
+CREATE TABLE `images` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(10) NOT NULL,
+  `name` VARCHAR(100) NOT NULL COMMENT '原文件名',
+  `size` VARCHAR(100) DEFAULT NULL COMMENT '大小',
+  `cdn_url` VARCHAR(250) DEFAULT NULL COMMENT '七牛地址',
+  `admin_id` int(10) NOT NULL,
+  `created` DATETIME NOT NULL COMMENT '创建时间',
+  `modified` DATETIME DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='图片表' ;
+

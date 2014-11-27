@@ -64,17 +64,27 @@ class ImagesController extends Controller
 	{
 		$model=new Images;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['Images']))
 		{
-			$model->attributes=$_POST['Images'];
-			$model->name=CUploadedFile::getInstance($model,'name');
-			if($model->save())
-				$model->name->saveAs(Yii::app()->basePath .
-                           '/../images/' . $model->id.'.jpg');
-				$this->redirect(array('view','id'=>$model->id));
+			$dir=Yii::getPathOfAlias('webroot.uploads.images');
+          	$images = CUploadedFile::getInstancesByName('Images[filename]');
+          	if (isset($images) && count($images) > 0) {
+               // 上传多图片
+               foreach ($images as $key => $image) {
+					$fileName=time().$key.'_'.$image->name;
+                   	if ($image->saveAs($dir.'/'.$fileName)){
+	                    $imgAdd = new Images();
+	                    $imgAdd->filename = $image->name;
+	                    $imgAdd->type = 1;
+	                    $imgAdd->admin_id = Yii::app()->user->id;
+	                    $imgAdd->created = date('Y-m-d H:i:s', time());
+	                    $imgAdd->save();
+                   	} else {
+                   		echo "保存失败";
+                   	}
+               	}
+               	Yii::app()->user->setFlash('success', "Thinks saved success!");
+            }
 		}
 
 		$this->render('create',array(

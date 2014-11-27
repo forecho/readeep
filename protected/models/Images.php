@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'images':
  * @property integer $id
  * @property string $type
- * @property string $name
+ * @property string $filename
  * @property string $size
  * @property string $cdn_url
  * @property integer $admin_id
@@ -31,15 +31,16 @@ class Images extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type, name, admin_id, created', 'required'),
+			array('type, filename, admin_id, created', 'required'),
 			array('admin_id', 'numerical', 'integerOnly'=>true),
 			array('type', 'length', 'max'=>10),
-			array('name, size', 'length', 'max'=>100),
+			// array('filename', 'length', 'max'=>255),
+			array('size', 'length', 'max'=>100),
 			array('cdn_url', 'length', 'max'=>250),
 			array('modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, type, name, size, cdn_url, admin_id, created, modified', 'safe', 'on'=>'search'),
+			array('id, type, filename, size, cdn_url, admin_id, created, modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +63,7 @@ class Images extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'type' => 'Type',
-			'name' => 'Name',
+			'filename' => 'Filename',
 			'size' => 'Size',
 			'cdn_url' => 'Cdn Url',
 			'admin_id' => 'Admin',
@@ -91,7 +92,7 @@ class Images extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('type',$this->type,true);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('filename',$this->filename,true);
 		$criteria->compare('size',$this->size,true);
 		$criteria->compare('cdn_url',$this->cdn_url,true);
 		$criteria->compare('admin_id',$this->admin_id);

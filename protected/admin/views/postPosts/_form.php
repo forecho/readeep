@@ -44,7 +44,7 @@
 
     <div class="form-group">
         <?php echo $form->labelEx($model, 'image'); ?>
-            <input id="file" name="file" class="ipt" type="file" />
+            <input id="file" name="file" class="ipt" type="file" multiple="multiple"/>
             <input id="token" name="token" type="hidden" class="ipt form-control" value="<?php echo $token;?>">
             <input id="key" name="key" type="hidden" class="ipt form-control" value="">
             <div id="progressbar"><div class="progress-label"></div></div>

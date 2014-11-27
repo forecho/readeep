@@ -502,3 +502,19 @@ function randomString($length=20, $max=FALSE)
     }
     return $output;
 }
+/**
+ * 调试代码
+ * @param array $array 数组
+ * @param bool $exit 是否退出
+ * @return void
+ */
+function debug($array='', $exit=false)
+{
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+    if ($exit) {
+        exit();
+    }
+}
+

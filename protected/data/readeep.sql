@@ -218,7 +218,7 @@ CREATE TABLE `mail_account` (
 CREATE TABLE `images` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(10) NOT NULL,
-  `name` VARCHAR(100) NOT NULL COMMENT '原文件名',
+  `filename` VARCHAR(255) NOT NULL COMMENT '原文件名',
   `size` VARCHAR(100) DEFAULT NULL COMMENT '大小',
   `cdn_url` VARCHAR(250) DEFAULT NULL COMMENT '七牛地址',
   `admin_id` int(10) NOT NULL,

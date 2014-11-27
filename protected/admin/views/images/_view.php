@@ -13,8 +13,8 @@
 	<?php echo CHtml::encode($data->type); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->name); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('filename')); ?>:</b>
+	<?php echo CHtml::encode($data->filename); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('size')); ?>:</b>

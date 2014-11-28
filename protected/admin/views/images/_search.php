@@ -17,18 +17,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->label($model,'image_group_id'); ?>
+		<?php echo $form->textField($model,'image_group_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'filename'); ?>
-		<?php echo $form->textField($model,'filename',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'filename',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'size'); ?>
-		<?php echo $form->textField($model,'size',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'size'); ?>
 	</div>
 
 	<div class="row">

@@ -5,9 +5,9 @@
  *
  * The followings are the available columns in table 'images':
  * @property integer $id
- * @property string $type
+ * @property integer $image_group_id
  * @property string $filename
- * @property string $size
+ * @property integer $size
  * @property string $cdn_url
  * @property integer $admin_id
  * @property string $created
@@ -31,16 +31,14 @@ class Images extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('type, filename, admin_id, created', 'required'),
-			array('admin_id', 'numerical', 'integerOnly'=>true),
-			array('type', 'length', 'max'=>10),
+			array('image_group_id, filename, admin_id', 'required'),
+			array('image_group_id, size, admin_id', 'numerical', 'integerOnly'=>true),
 			// array('filename', 'length', 'max'=>255),
-			array('size', 'length', 'max'=>100),
 			array('cdn_url', 'length', 'max'=>250),
 			array('modified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, type, filename, size, cdn_url, admin_id, created, modified', 'safe', 'on'=>'search'),
+			array('id, image_group_id, filename, size, cdn_url, admin_id, created, modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +60,7 @@ class Images extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'type' => 'Type',
+			'image_group_id' => 'Image Group',
 			'filename' => 'Filename',
 			'size' => 'Size',
 			'cdn_url' => 'Cdn Url',
@@ -91,9 +89,9 @@ class Images extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('type',$this->type,true);
+		$criteria->compare('image_group_id',$this->image_group_id);
 		$criteria->compare('filename',$this->filename,true);
-		$criteria->compare('size',$this->size,true);
+		$criteria->compare('size',$this->size);
 		$criteria->compare('cdn_url',$this->cdn_url,true);
 		$criteria->compare('admin_id',$this->admin_id);
 		$criteria->compare('created',$this->created,true);
@@ -114,4 +112,18 @@ class Images extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    /**
+     * 时间更新
+     * @return void
+     */
+    public function beforeSave()
+    {
+        if ($this->isNewRecord)
+            $this->created = new CDbExpression('NOW()');
+
+        $this->modified = new CDbExpression('NOW()');
+
+        return parent::beforeSave();
+    }
 }

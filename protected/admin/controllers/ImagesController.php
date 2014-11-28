@@ -75,12 +75,17 @@ class ImagesController extends Controller
                    	if ($image->saveAs($dir.'/'.$fileName)){
 	                    $imgAdd = new Images();
 	                    $imgAdd->filename = $image->name;
-	                    $imgAdd->type = 1;
+	                    $imgAdd->image_group_id = 0;
+	                    $imgAdd->size = $image->size;
+	                    Yii::log('图片尺寸'.$image->size, 'info', 'system');
 	                    $imgAdd->admin_id = Yii::app()->user->id;
-	                    $imgAdd->created = date('Y-m-d H:i:s', time());
-	                    $imgAdd->save();
+	                    if (!$imgAdd->save()) {
+	                    	Yii::app()->user->setFlash('error', json_encode($imgAdd->geterrors()));
+	                    	$this->refresh();
+	                    }
                    	} else {
-                   		echo "保存失败";
+                   		Yii::app()->user->setFlash('error', json_encode($imgAdd->geterrors()));
+                   		$this->refresh();
                    	}
                	}
                	Yii::app()->user->setFlash('success', "Thinks saved success!");

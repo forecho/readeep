@@ -9,10 +9,6 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'images-form',
 	'htmlOptions' => array('enctype' => 'multipart/form-data'),
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -22,7 +18,7 @@
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'filename'); ?>
-		<?php echo $form->fileField($model,'filename[]',array('size'=>60,'maxlength'=>255,'multiple'=>true,'class' => 'form-control')); ?>
+		<?php echo $form->fileField($model,'filename[]',array('id'=>'uploadfile','multiple'=>true,'class'=>'btn btn-primary form-control')); ?>
 		<?php echo $form->error($model,'filename'); ?>
 	</div>
 
@@ -35,22 +31,41 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
 <script type="text/javascript">
-// $(document).ready(function (e){
-// 	$("#images-form").on('submit',(function(e){
-// 	e.preventDefault();
-// 		$.ajax({
-// 			url: "upload.php",
-// 			type: "POST",
-// 			data:  new FormData(this),
-// 			contentType: false,
-// 			cache: false,
-// 			processData:false,
-// 			success: function(data){
-// 				$("#targetLayer").html(data);
-// 			},
-// 			error: function(){}
-// 		});
-// 	}));
-// });
+$('#uploadfile').change(function() {
+	send();
+});
+// this script for collecting the form data and pass to the controller action and doing the on success validations
+function send(){
+    var formData = new FormData($("#images-form")[0]);
+    $.ajax({
+        url: '<?php echo Yii::app()->createUrl("images/create"); ?>',
+        type: 'POST',
+        data: formData,
+        datatype:'json',
+        // async: false,
+        beforeSend: function() {
+            // do some loading options
+        },
+        success: function (data) {
+            // on success do some validation or refresh the content div to display the uploaded images
+            alert(1);
+            // jQuery("#list-of-post").load("<?php echo Yii::app()->createUrl('//forumPost/forumPostDisplay'); ?>");
+        },
+
+        complete: function() {
+            // success alerts
+        },
+
+        error: function (data) {
+            alert("There may a error on uploading. Try again later");
+        },
+       	cache: false,
+        contentType: false, //必须
+        processData: false //必须
+    });
+
+    return false;
+}
 </script>

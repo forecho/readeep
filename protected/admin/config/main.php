@@ -38,20 +38,26 @@ $backendArray=array(
         'application.extensions.yii-mail.*',
         'backend.components.*', //这里的先后顺序一定要搞清
     ),
+    'preload'=>array('log'),
     'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-		// 'log'=>array(
-		// 	'class'=>'CLogRouter',
-		// 	'routes'=>array(
-		// 		array(
-		// 			'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-		// 			'ipFilters'=>array('*'),
-		// 		),
-		// 	),
-		// ),
+		'log'=>array(
+			'class'=>'CLogRouter',
+			'routes'=>array(
+                 array(
+                    'class'=>'CFileLogRoute',
+                    'levels'=>'trace, info',
+                    'categories'=>'system.*',
+                ),
+				// array(
+				// 	'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+				// 	'ipFilters'=>array('*'),
+				// ),
+			),
+		),
              // 'mail'         => array(
              //        'class'            => 'application.extensions.yii-mail.YiiMail',
              //        'viewPath'         => 'application.views.mail',

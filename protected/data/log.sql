@@ -61,15 +61,27 @@ ALTER TABLE `users` CHANGE `admin_id` `weixin_id` int(10);
 
 2014年11月26日
 添加一个图片库表
+DROP TABLE IF EXISTS `images`;
 CREATE TABLE `images` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(10) NOT NULL,
+  `image_group_id` INT(10) NOT NULL COMMENT '分组ID',
   `filename` VARCHAR(255) NOT NULL COMMENT '原文件名',
-  `size` VARCHAR(100) DEFAULT NULL COMMENT '大小',
+  `size` INT(10) DEFAULT NULL COMMENT '大小单位是K',
   `cdn_url` VARCHAR(250) DEFAULT NULL COMMENT '七牛地址',
-  `admin_id` int(10) NOT NULL,
+  `admin_id` INT(10) NOT NULL,
   `created` DATETIME NOT NULL COMMENT '创建时间',
   `modified` DATETIME DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='图片表' ;
 
+2014年11月28日
+添加一个图片库组
+DROP TABLE IF EXISTS `image_groups`;
+CREATE TABLE `image_groups` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL COMMENT '分组名',
+  `admin_id` INT(10) NOT NULL,
+  `created` DATETIME NOT NULL COMMENT '创建时间',
+  `modified` DATETIME DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='图片分组表' ;

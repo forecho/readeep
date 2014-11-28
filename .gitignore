@@ -4,7 +4,6 @@ protected/admin/runtime/
 nbproject/
 .idea/
 uploads/
-backend.php
 *db.php
 protected/config/db.php
 !protected/extensions/yii-debug-toolbar/assets/

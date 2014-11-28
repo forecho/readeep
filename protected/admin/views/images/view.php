@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Images'=>array('index'),
-	$model->filename,
+	$model->id,
 );
 
 $this->menu=array(
@@ -22,7 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'type',
+		'image_group_id',
 		'filename',
 		'size',
 		'cdn_url',

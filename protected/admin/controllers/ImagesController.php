@@ -74,7 +74,7 @@ class ImagesController extends Controller
 					$fileName=time().$key.'_'.$image->name;
                    	if ($image->saveAs($dir.'/'.$fileName)){
 	                    $imgAdd = new Images();
-	                    $imgAdd->filename = $image->name;
+	                    $imgAdd->filename = $fileName;
 	                    $imgAdd->image_group_id = 0;
 	                    $imgAdd->size = $image->size;
 	                    Yii::log('图片尺寸'.$image->size, 'info', 'system');

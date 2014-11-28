@@ -43,18 +43,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'images-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	// 'filter'=>$model,
 	'columns'=>array(
+		 array(
+            'type' => 'raw',
+            'value' => 'CHtml::image(Yii::app()->baseUrl . "/uploads/images/" . $data->filename)'
+        ),
 		'id',
 		'image_group_id',
-		'filename',
+		// 'filename',
 		'size',
-		'cdn_url',
-		'admin_id',
-		/*
-		'created',
-		'modified',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

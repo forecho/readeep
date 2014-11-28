@@ -22,9 +22,6 @@
 		<?php echo $form->error($model,'filename'); ?>
 	</div>
 
-	<div class="form-group">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-primary')); ?>
-    </div>
 	<div class="row buttons">
 	</div>
 

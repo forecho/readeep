@@ -1,0 +1,9 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "protected/extensions/yii-selectize/vendors/selectize.js/package.json"
+      ]
+    }
+  }
+}

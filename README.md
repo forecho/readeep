@@ -1,6 +1,8 @@
 readeep
 =======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/forecho/readeep.svg)](https://greenkeeper.io/)
+
 weixin
 
 * 基于Yii1.14的针对微信公众平台的项目
